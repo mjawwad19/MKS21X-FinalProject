@@ -1,2 +1,2 @@
 # MKS21X-FinalProject
-APCS Project ;)
+APCS Project ;) : Calculator

@@ -23,7 +23,7 @@ public class Monomial{
 
   public String toString(){
     if ((getCoef() + "").equals("0")) return "0";
-    if (getDeg() == 0) return "" + getCoef();
+    if (getDeg() == 0) return "" + getCoef(); //will have to be updated when we have multivariable monomials.
     return "" + getCoef() + getVar() + "^" + "(" + getDeg() + ")";
   }
 
@@ -70,6 +70,38 @@ public class Monomial{
     return out;
   }
 
+  public Monomial subtract(Monomial other) {
+    Monomial out = new Monomial(new Fraction(0, 1), 'x', 0);
+    if (likeTerms(other) && likeDeg(other)) {
+      out.setCoef(getCoef().subtract(other.getCoef()));
+      out.setVar(getVar());
+      out.setDeg(getDeg());
+    }
+    return out;
+  }
+
+  public Monomial multiply(Monomial other) {
+    Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
+    if (likeTerms(other)) {
+      out.setCoef(getCoef().multiply(other.getCoef()));
+      out.setVar(getVar());
+      out.setDeg(getDeg() + other.getDeg());
+    }
+    //else we're going to need to allow Monomials to have multiple variables
+    return out;
+  }
+
+  public Monomial divide(Monomial other) {
+    Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
+    if (likeTerms(other)) {
+      out.setCoef(getCoef().divide(other.getCoef()));
+      out.setVar(getVar());
+      out.setDeg(getDeg() - other.getDeg());
+    }
+    //else we're going to need to allow Monomials to have multiple variables
+    return out;
+  }
+
   public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
     Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
@@ -84,5 +116,8 @@ public class Monomial{
     System.out.println(a.likeTerms(e)); //true;
     System.out.println(a.likeDeg(e)); //true;
     System.out.println(a.add(e)); // 6.5 x^2
+    System.out.println(a.subtract(e)); // 1.5 x^2
+    System.out.println(a.multiply(e)); // 10x^4
+    System.out.println(a.divide(e)); // 1.6
   }
 }

@@ -125,7 +125,7 @@ public class Monomial{
     System.out.println(a.divide(e)); // 1.6
     System.out.println(a.sub(2)); // 4 * 2^2 = 16.0
     System.out.println(b.sub(2));//0
-    System.out.println(c.sub(3)); //.6
+    System.out.println(c.sub(3)); //0.6
     System.out.println(e.sub(3)); //2.5* 3^2 = 22.5
   }
 }

@@ -1,3 +1,4 @@
+import java.io.*;
 public class Fraction{
   private int numerator,denominator;
 
@@ -42,6 +43,23 @@ public class Fraction{
     return dsor;
   }
 
+  public Fraction add(Fraction other){
+    return new Fraction(getNum() * other.getDeno() + getDeno() * other.getNum(), getDeno() * other.getDeno());
+  }
+
+  public Fraction subtract(Fraction other){
+    return new Fraction(getNum() * other.getDeno() - getDeno() * other.getNum(), getDeno() * other.getDeno());
+  }
+
+  public Fraction multiply(Fraction other){
+    return new Fraction(getNum() * other.getNum(), getDeno() * other.getDeno());
+  }
+
+  public Fraction divide(Fraction other){
+    if (other.getNum() == 0) throw new IllegalArgumentException("cannot divide" + this + "by 0");
+    return new Fraction(getNum() * other.getDeno(), getDeno() * other.getNum());
+  }
+
   public String toString(){
     if (numerator == 0) return "0";
     if (denominator == 1) return "" + getNum();
@@ -49,8 +67,18 @@ public class Fraction{
   }
 
   public static void main(String[]args){
-    Fraction test = new Fraction(30,15);
-    System.out.println(test);
+    Fraction a = new Fraction(30,15);
+    Fraction b = new Fraction(1,2);
+    System.out.println(a + " : " + a.getNum() +"/" + a.getDeno());
+    System.out.println(b + " : " + b.getNum() +"/" + b.getDeno());
+    Fraction c = a.add(b);
+    System.out.println(c + " : " + c.getNum() +"/" + c.getDeno());
+    Fraction d = c.subtract(b);
+    System.out.println(d + " : " + d.getNum() +"/" + d.getDeno());
+    Fraction e = a.multiply(c);
+    System.out.println(e + " : " + e.getNum() +"/" + e.getDeno());
+    Fraction f = b.divide(c);
+    System.out.println(f + " : " + f.getNum() +"/" + f.getDeno());
   }
 
 }

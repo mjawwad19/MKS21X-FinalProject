@@ -102,6 +102,10 @@ public class Monomial{
     return out;
   }
 
+  public double sub(int var) {
+    return  ((double) getCoef().getNum() / getCoef().getDeno()) * (Math.pow(var, getDeg()));
+  }
+
   public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
     Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
@@ -119,5 +123,9 @@ public class Monomial{
     System.out.println(a.subtract(e)); // 1.5 x^2
     System.out.println(a.multiply(e)); // 10x^4
     System.out.println(a.divide(e)); // 1.6
+    System.out.println(a.sub(2)); // 4 * 2^2 = 16.0
+    System.out.println(b.sub(2));//0
+    System.out.println(c.sub(3)); //.6
+    System.out.println(e.sub(3)); //2.5* 3^2 = 22.5
   }
 }

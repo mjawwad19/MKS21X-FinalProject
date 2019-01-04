@@ -1,18 +1,45 @@
 public class Graph{
-  char[][] grid;
-  Polynomial equation;
-  int startX = -40;
-  int startY = -40;
-  int endX = 40;
-  int endY = 40;
+  private char[][] grid;
+  private Polynomial equation;
+  private int startX = -20;
+  private int startY = -20;
+  private int endX = 20;
+  private int endY = 20;
   // creates empty graph grid (2D array) [helper]
-  private void helpGraph(int minX, int maxX, int minY, int maxY) {}
-  //finds center row and col and labels as axis
-  private void axis() {}
-  //graphs the equation given
-  public Graph() {}
+  private void setGraph(int minX, int maxX, int minY, int maxY) {
+    int c = Math.abs(maxX- minX) + 1;
+    int r = Math.abs(maxY - minY)+ 1;
+    grid = new char[r][c];
+    for (int i = 0; i < r; i++) {
+      for (int j= 0; j < c; j++) {
+        if (i == r - Math.abs(maxY) -1 || j == c - Math.abs(maxX) -1) grid[i][j] = '#';
+        else grid[i][j] = '_';
+      }
+    }
+  }
+  //graphs the equation given on default bounds
+  public Graph() {
+    setGraph(startX, endX, startY, endY);
+  }
   //graphs the equation given and the bounds specified
-  public Graph (int minX, int maxX, int minY, int maxY) {}
+  public Graph (int minX, int maxX, int minY, int maxY) {
+    setGraph(minX, maxX, minY, maxY);
+
+  }
   //output for user to see
-  public String toString() {return "dummy";}
+  public String toString() {
+    String out = "";
+    for (int i = 0; i < grid.length; i++) {
+      for (int j = 0; j < grid[i].length; j++) {
+        if (j == 0) out += "\n";
+        out += grid[i][j] + " ";
+      }
+    }
+    return out;
+  }
+  public static void main(String[] args) {
+    Graph g1 = new Graph(-10, 15, -8, 8);
+    System.out.println(g1);
+
+  }
 }

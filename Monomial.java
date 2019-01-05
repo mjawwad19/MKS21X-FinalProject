@@ -40,14 +40,10 @@ public class Monomial{
   }
 
   public boolean likeTerms(Monomial other) {
-    if (getVar() == other.getVar()) return true;
+    if (getVar() == other.getVar() && getDeg() == other.getDeg()) return true;
     return false;
   }
 
-  public boolean likeDeg(Monomial other) {
-    if (getDeg() == other.getDeg()) return true;
-    return false;
-  }
   /*Below is a WIP for add(Monomial) because of certain issues
   1) if you add two monomials together and they aren't compatible, then they
   would create a Polynomial.
@@ -57,7 +53,7 @@ public class Monomial{
   public Monomial add(Monomial other) {
     //Polynomial end = new Polynomial();
     Monomial out = new Monomial(new Fraction(0, 1), 'x', 0); //default
-    if (likeTerms(other) && likeDeg(other)) {
+    if (likeTerms(other)) {
       out.setCoef(getCoef().add(other.getCoef()));
       out.setVar(getVar());
       out.setDeg(getDeg());
@@ -72,7 +68,7 @@ public class Monomial{
 
   public Monomial subtract(Monomial other) {
     Monomial out = new Monomial(new Fraction(0, 1), 'x', 0);
-    if (likeTerms(other) && likeDeg(other)) {
+    if (likeTerms(other)) {
       out.setCoef(getCoef().subtract(other.getCoef()));
       out.setVar(getVar());
       out.setDeg(getDeg());
@@ -82,7 +78,7 @@ public class Monomial{
 
   public Monomial multiply(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
-    if (likeTerms(other)) {
+    if (getVar() == other.getVar()) {
       out.setCoef(getCoef().multiply(other.getCoef()));
       out.setVar(getVar());
       out.setDeg(getDeg() + other.getDeg());
@@ -93,7 +89,7 @@ public class Monomial{
 
   public Monomial divide(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
-    if (likeTerms(other)) {
+    if (getVar() == other.getVar()) {
       out.setCoef(getCoef().divide(other.getCoef()));
       out.setVar(getVar());
       out.setDeg(getDeg() - other.getDeg());
@@ -102,8 +98,8 @@ public class Monomial{
     return out;
   }
 
-  public double sub(int var) {
-    return  ((double) getCoef().getNum() / getCoef().getDeno()) * (Math.pow(var, getDeg()));
+  public Fraction sub(int v) {
+    return  getCoef().multiply(new Fraction((int)Math.pow(v, getDeg()), 1));
   }
 
   public static void main(String[] args) {
@@ -116,9 +112,8 @@ public class Monomial{
     System.out.println(b);
     System.out.println(c);
     System.out.println(a.likeTerms(b)); //false;
-    System.out.println(a.likeTerms(d)); //true;
+    System.out.println(a.likeTerms(d)); //false;
     System.out.println(a.likeTerms(e)); //true;
-    System.out.println(a.likeDeg(e)); //true;
     System.out.println(a.add(e)); // 6.5 x^2
     System.out.println(a.subtract(e)); // 1.5 x^2
     System.out.println(a.multiply(e)); // 10x^4

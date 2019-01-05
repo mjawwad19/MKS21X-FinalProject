@@ -60,6 +60,10 @@ public class Fraction{
     return new Fraction(getNum() * other.getDeno(), getDeno() * other.getNum());
   }
 
+  public Fraction power(double pow){
+    return new Fraction((int)Math.pow(getNum(), pow), (int)Math.pow(getDeno(), pow));
+  }
+
   public String toString(){
     if (numerator == 0) return "0";
     if (denominator == 1) return "" + getNum();
@@ -79,6 +83,8 @@ public class Fraction{
     System.out.println(e + " : " + e.getNum() +"/" + e.getDeno());
     Fraction f = b.divide(c);
     System.out.println(f + " : " + f.getNum() +"/" + f.getDeno());
+    Fraction g = a.power(2);
+    System.out.println(g + " : " + g.getNum() +"/" + g.getDeno());
   }
 
 }

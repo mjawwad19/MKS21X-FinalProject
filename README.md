@@ -13,7 +13,7 @@ Development Log:
 - Worked on the foundation for the Graph class: a graph with axis can be made with specified or non specified bounds. (Jawwad)
 
 1/4/2019
-- Finished the Fraction class and started working on Monomial. (Peihua)
+- Finished the Fraction class and started working on Monomial. Also did some debugging on the Monomial class after all the methods were written. (Peihua)
 - Added work on Monomial class (Jawwad) and merged.
        -Our first merge conflict! *sheds a tear*
 

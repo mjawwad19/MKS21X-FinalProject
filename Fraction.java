@@ -17,7 +17,7 @@ public class Fraction{
   }
 
   private void simplify(){
-    int g = gcf(getNum(),getDeno());
+    int g = gcf(Math.abs(getNum()),Math.abs(getDeno()));
     numerator /= g;
     denominator /= g;
   }

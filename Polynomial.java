@@ -24,10 +24,15 @@ public class Polynomial{
     return new Polynomial(monos);
   }
 
+  public Polynomial subtract(Monomial other){
+    return add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
+  }
+
   public String toString(){
     String ans = "";
     for (Monomial term: monos){
-      if (Double.parseDouble(term.getCoef().toString()) < 0) ans += " - " + term.multiply(new Monomial(new Fraction(-1, 1), term.getVar(), 0));
+      if (term.toString().equals("0"));
+      else if (Double.parseDouble(term.getCoef().toString()) < 0) ans += " - " + term.multiply(new Monomial(new Fraction(-1, 1), term.getVar(), 0));
       else if (monos.indexOf(term) != 0) ans += " + " + term;
       else ans += term;
     }
@@ -39,7 +44,7 @@ public class Polynomial{
     a = a.add(new Monomial(new Fraction(4, 1), 'x', 2));
     a = a.add(new Monomial(new Fraction(-6, 1), 'x', 5));
     a = a.add(new Monomial(new Fraction(9, 1), 'x', 5));
-
+    a = a.subtract(new Monomial(new Fraction(3, 1), 'x', 5));
     System.out.println(a);
   }
 }

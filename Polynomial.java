@@ -62,6 +62,14 @@ public class Polynomial{
     }
   }
 
+  public Fraction sub(int v) {
+    Fraction ans = new Fraction(0, 1);
+    for (Monomial term: monos) {
+      ans = ans.add(term.sub(v));
+    }
+    return ans;
+  }
+
   public String toString(){
     String ans = "";
     for (Monomial term: monos){
@@ -96,7 +104,9 @@ public class Polynomial{
     a.add(new Monomial(new Fraction(-6, 1), 'x', 5));
     a.add(new Monomial(new Fraction(9, 1), 'x', 5));
     a.subtract(new Monomial(new Fraction(6, 1), 'x', 5));
-    System.out.println(a);
+    System.out.println(a); //4x^2 - 3x^5
+    System.out.println(a.sub(2)); //16/1 - 96/1 = -80/1 or - 80
+    System.out.println();
     Polynomial b = new Polynomial();
     b.add(new Monomial(new Fraction(1, 1), 'x', 2));
     b.add(new Monomial(new Fraction(-1, 1), 'x', 1));
@@ -104,8 +114,8 @@ public class Polynomial{
     System.out.println(b.solveQuad()[0]);
     System.out.println(b.solveQuad()[1]);
     System.out.println(b);
+    System.out.println(b.sub(3)); //0
     System.out.println();
-    System.out.println(b);
     b.multiply(new Monomial(new Fraction(4, 1), 'x', 2));
     System.out.println(b);
     b.divide(new Monomial(new Fraction(4, 1), 'x', 2));

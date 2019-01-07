@@ -24,3 +24,4 @@ Development Log:
 
 1/7/2019
 - Added sub method for polynomial and cleaned up monomial's toString (added helpers) to avoid showing 1 as a coefficient or a degree. (Jawwad)
+- Got four function operations to work in calculator class. (Peihua)

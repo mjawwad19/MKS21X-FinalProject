@@ -33,12 +33,12 @@ public class Monomial{
     degree = deg;
   }
 //--------toString---------
-
+  //helper
   private String coString(){
     if ((getCoef() + "").equals("1")) return "";
     else return "" + getCoef();
   }
-
+  //helper
   private String degString(){
     if ((getDeg() == 1)) return "" + getVar();
     else return "" + getVar() + "^" + "(" + getDeg() + ")";

@@ -33,10 +33,21 @@ public class Monomial{
     degree = deg;
   }
 //--------toString---------
+
+  private String coString(){
+    if ((getCoef() + "").equals("1")) return "";
+    else return "" + getCoef();
+  }
+
+  private String degString(){
+    if ((getDeg() == 1)) return "" + getVar();
+    else return "" + getVar() + "^" + "(" + getDeg() + ")";
+  }
+
   public String toString(){
     if ((getCoef() + "").equals("0")) return "0";
     if (getDeg() == 0) return "" + getCoef(); //will have to be updated when we have multivariable monomials.
-    return "" + getCoef() + getVar() + "^" + "(" + getDeg() + ")";
+    else return coString() + degString();
   }
 /*method likeTerms compares Monomials and returns a boolean if they are combinable
 *@param other is the Monomial being compared. */

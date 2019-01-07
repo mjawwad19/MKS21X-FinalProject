@@ -28,6 +28,24 @@ public class Polynomial{
     add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 
+  public void multiply(Monomial other){
+    for (Monomial term: monos){
+      if (term.getVar() == other.getVar()){
+        term.setCoef(term.getCoef().multiply(other.getCoef()));
+        term.setDeg(term.getDeg() + other.getDeg());
+      }
+    }
+  }
+
+  public void divide(Monomial other){
+    for (Monomial term: monos){
+      if (term.getVar() == other.getVar()){
+        term.setCoef(term.getCoef().divide(other.getCoef()));
+        term.setDeg(term.getDeg() - other.getDeg());
+      }
+    }
+  }
+
   public String toString(){
     String ans = "";
     for (Monomial term: monos){
@@ -69,6 +87,12 @@ public class Polynomial{
     b.add(new Monomial(new Fraction(-6, 1), 'x', 0));
     System.out.println(b.solveQuad()[0]);
     System.out.println(b.solveQuad()[1]);
+    System.out.println(b);
+    System.out.println();
+    System.out.println(b);
+    b.multiply(new Monomial(new Fraction(4, 1), 'x', 2));
+    System.out.println(b);
+    b.divide(new Monomial(new Fraction(4, 1), 'x', 2));
     System.out.println(b);
   }
 }

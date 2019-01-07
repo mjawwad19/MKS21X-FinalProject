@@ -13,6 +13,10 @@ public class Polynomial{
     }
   }
 
+  public ArrayList<Monomial> getMonos(){
+    return monos;
+  }
+
   public void add(Monomial other){
     boolean added = false;
     for (int i = 0; i < monos.size(); i++){
@@ -24,8 +28,20 @@ public class Polynomial{
     if (!added) monos.add(other);
   }
 
+  public void add(Polynomial other){
+    for (Monomial term: other.getMonos()){
+      this.add(term);
+    }
+  }
+
   public void subtract(Monomial other){
     add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
+  }
+
+  public void subtract(Polynomial other){
+    for (Monomial term: other.getMonos()){
+      this.subtract(term);
+    }
   }
 
   public void multiply(Monomial other){
@@ -79,7 +95,7 @@ public class Polynomial{
     a.add(new Monomial(new Fraction(4, 1), 'x', 2));
     a.add(new Monomial(new Fraction(-6, 1), 'x', 5));
     a.add(new Monomial(new Fraction(9, 1), 'x', 5));
-    a.subtract(new Monomial(new Fraction(3, 1), 'x', 5));
+    a.subtract(new Monomial(new Fraction(6, 1), 'x', 5));
     System.out.println(a);
     Polynomial b = new Polynomial();
     b.add(new Monomial(new Fraction(1, 1), 'x', 2));
@@ -93,6 +109,10 @@ public class Polynomial{
     b.multiply(new Monomial(new Fraction(4, 1), 'x', 2));
     System.out.println(b);
     b.divide(new Monomial(new Fraction(4, 1), 'x', 2));
+    System.out.println(b);
+    b.add(a);
+    System.out.println(b);
+    b.subtract(a);
     System.out.println(b);
   }
 }

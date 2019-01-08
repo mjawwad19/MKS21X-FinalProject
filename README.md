@@ -25,3 +25,4 @@ Development Log:
 1/7/2019
 - Added sub method for polynomial and cleaned up monomial's toString (added helpers) to avoid showing 1 as a coefficient or a degree. (Jawwad)
 - Got four function operations to work in calculator class. (Peihua)
+- Added round [helper] method that rounds a fraction to nearest int, and with the aid of another helper, *we can now graph any equation!* (Jawwad)

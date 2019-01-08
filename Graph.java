@@ -23,14 +23,38 @@ public class Graph{
       }
     }
   }
+
+  /*rounds a Fraction class instance to int. (Will be helpful for graphing)[helper]
+  *@param term is what is being converted*/
+  private int round(Fraction term) {
+    return (int) Double.parseDouble(term.toString());
+  }
+  //graphs the equation [helper]
+  private void setEq(Polynomial Eq) {
+  for (int i = startX; i <= endX; i++) {
+    int y = round(Eq.sub(i));
+    //System.out.println(y); may be used later on for Table command
+    int x = i + Math.abs(startX);
+    if (y >= startY && y <= endY) {
+      y = Math.abs(endY - y);
+      grid[y][x] = 'O';
+    //  System.out.println("" + x + " " + y); debug
+    }
+  }
+}
   //graphs the equation given on default bounds
-  public Graph() {
+  public Graph(Polynomial eq) {
     setGraph(startX, endX, startY, endY);
+    setEq(eq);
   }
   //graphs the equation given and the bounds specified
-  public Graph (int minX, int maxX, int minY, int maxY) {
-    setGraph(minX, maxX, minY, maxY);
-
+  public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq) {
+    startX = minX;
+    startY = minY;
+    endX = maxX;
+    endY = maxY;
+    setGraph(startX, endX, startY, endY);
+    setEq(eq);
   }
   //output for user to see
   public String toString() {
@@ -44,9 +68,13 @@ public class Graph{
     return out;
   }
   public static void main(String[] args) {
-    Graph g1 = new Graph(-10, 15, -8, 8);
+    Polynomial a = new Polynomial();
+    a.add(new Monomial(new Fraction(1,1), 'x', 1));
+    System.out.println("y = " + a); //x
+    Graph g1 = new Graph(-10, 15, -8, 8, a);
+
     System.out.println(g1);
-    Graph g2 = new Graph(5, 10, 2, 4);
+    /*Graph g2 = new Graph(5, 10, 2, 4);
     System.out.println(g2); //shouldn't have axis
     Graph g3 = new Graph (5, 10, -2 , 4);
     System.out.println(g3); // should have 1 axis near bottom
@@ -55,6 +83,6 @@ public class Graph{
     Graph g5 = new Graph (-5, -10, 2, 4);
     System.out.println(g5); //none
     Graph g6 = new Graph(-10, -15, -8, -10);
-    System.out.println(g6); // none
+    System.out.println(g6); // none*/
   }
 }

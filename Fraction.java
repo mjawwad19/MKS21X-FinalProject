@@ -70,6 +70,12 @@ public class Fraction{
     return "" + (double)getNum()/getDeno();
   }
 
+  /*rounds a Fraction class instance to int. (Will be helpful for graphing)[helper]
+  *@param term is what is being converted*/
+  public int round() {
+    return (int) Double.parseDouble(this.toString());
+  }
+
   public static void main(String[]args){
     Fraction a = new Fraction(30,15);
     Fraction b = new Fraction(1,2);

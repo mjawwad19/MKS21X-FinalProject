@@ -24,15 +24,11 @@ public class Graph{
     }
   }
 
-  /*rounds a Fraction class instance to int. (Will be helpful for graphing)[helper]
-  *@param term is what is being converted*/
-  private int round(Fraction term) {
-    return (int) Double.parseDouble(term.toString());
-  }
+
   //graphs the equation [helper]
   private void setEq(Polynomial Eq) {
   for (int i = startX; i <= endX; i++) {
-    int y = round(Eq.sub(i));
+    int y = Eq.sub(i).round();
     //System.out.println(y); may be used later on for Table command
     int x = i + Math.abs(startX);
     if (y >= startY && y <= endY) {
@@ -47,6 +43,7 @@ public class Graph{
     setGraph(startX, endX, startY, endY);
     setEq(eq);
   }
+
   //graphs the equation given and the bounds specified
   public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq) {
     startX = minX;
@@ -69,9 +66,10 @@ public class Graph{
   }
   public static void main(String[] args) {
     Polynomial a = new Polynomial();
-    a.add(new Monomial(new Fraction(1,1), 'x', 1));
-    System.out.println("y = " + a); //x
-    Graph g1 = new Graph(-10, 15, -8, 8, a);
+    a.add(new Monomial(new Fraction(-1,1), 'x', 3));
+    a.add(new Monomial(new Fraction(1,1), 'x', 0));
+    System.out.println("y = " + a); //-x^3 +1
+    Graph g1 = new Graph(-10, 15, -20, 20, a);
 
     System.out.println(g1);
     /*Graph g2 = new Graph(5, 10, 2, 4);

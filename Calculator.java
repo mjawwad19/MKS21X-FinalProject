@@ -1,4 +1,6 @@
 import java.util.*;
+
+
 public class Calculator{
   private static String asolve(List<String> input){
     for (int i = 0; i < input.size(); i++){
@@ -58,7 +60,11 @@ public class Calculator{
     return Double.parseDouble(asolve(input));
   }
 
+
+
   public static void main(String[] args) {
+    System.out.println("\033[107m\033[30m");
+    
     String[] temp = args[0].split(" ");
     ArrayList<String> input = new ArrayList<>();
     for (String arg: temp){

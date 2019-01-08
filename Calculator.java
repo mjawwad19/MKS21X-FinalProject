@@ -1,6 +1,6 @@
 import java.util.*;
 public class Calculator{
-  public static double solve(List<String> input){
+  private static String asolve(List<String> input){
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("**")){
         input.set(i, "" + Math.pow(Double.parseDouble(input.get(i - 1)),Double.parseDouble(input.get(i + 1))));
@@ -38,7 +38,24 @@ public class Calculator{
       }
     }
 
-    return Double.parseDouble(input.get(0));
+    return input.get(0);
+  }
+
+  public static double solve(List<String> input){
+    for (int i = 0; i < input.size(); i++){
+      if (input.get(i).equals("(")){
+        boolean swap = false;
+        for (int j = 0; j < input.size(); j++){
+          if (input.get(j).equals(")") && swap == false){
+            asolve(input.subList(i + 1, j));
+            input.remove(i);
+            input.remove(i + 1);
+            swap = true;
+          }
+        }
+      }
+    }
+    return Double.parseDouble(asolve(input));
   }
 
   public static void main(String[] args) {
@@ -47,19 +64,7 @@ public class Calculator{
     for (String arg: temp){
       input.add(arg);
     }
-    for (int i = 0; i < input.size(); i++){
-      if (input.get(i).equals("(")){
-        boolean swap = false;
-        for (int j = 0; j < input.size(); j++){
-          if (input.get(j).equals(")") && swap == false){
-            solve(input.subList(i + 1, j));
-            input.remove(i);
-            input.remove(i + 1);
-            swap = true;
-          }
-        }
-      }
-    }
+
     System.out.println(solve(input));
   }
 }

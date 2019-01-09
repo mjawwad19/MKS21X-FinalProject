@@ -107,7 +107,7 @@ public class Polynomial{
         ans.add(Monomial.parseMono(p[i+1]));
       }
       if (p[i].equals("-")){
-        ans.add(Monomial.parseMono("-1").multiply(Monomial.parseMono(p[i+i])));
+        ans.add(Monomial.parseMono("-1").multiply(Monomial.parseMono(p[i+1])));
       }
     }
     return ans;

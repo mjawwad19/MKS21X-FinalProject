@@ -12,7 +12,7 @@ public class Fraction{
     String dub = "" + doub;
     String[] d = dub.split("\\.");
     denominator = (int)Math.pow(10, d[0].length());
-    numerator = Integer.parseInt(d[0]) * denominator + Integer.parseInt(d[0]);
+    numerator = Integer.parseInt(d[0]) * denominator + Integer.parseInt(d[1]);
     simplify();
   }
 

@@ -125,11 +125,13 @@ via plotting purposes.
     Fraction c = new Fraction(0.0);
     char v = 'x';
     int d = 0;
+    boolean added = false;
     for (int i = 0; i < mono.length(); i++){
       if (mono.charAt(i) == '('){
         for (int j = 0; j < mono.length(); j++){
           if (mono.charAt(j) == ')'){
             d = Integer.parseInt(mono.substring(i + 1, j));
+            added = true;
           }
         }
       }
@@ -138,8 +140,10 @@ via plotting purposes.
         if (i == 0) c = new Fraction(1);
         else c = new Fraction(Double.parseDouble(mono.substring(0,i)));
         v = mono.charAt(i);
+        added = true;
       }
     }
+    if (!added) c = new Fraction(Double.parseDouble(mono));
     return new Monomial(c,v,d);
   }
 

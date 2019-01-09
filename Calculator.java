@@ -58,13 +58,19 @@ public class Calculator{
     return Double.parseDouble(asolve(input));
   }
 
-  public static void main(String[] args) {
-    String[] temp = args[0].split(" ");
-    ArrayList<String> input = new ArrayList<>();
-    for (String arg: temp){
-      input.add(arg);
-    }
+  public static double Quad(List<String> input){
+    Polynomial ans = new Polynomial();
+    return 0;
+  }
 
-    System.out.println(solve(input));
+  public static void main(String[] args) {
+    ArrayList<String> input = new ArrayList<>();
+    if (args.length > 0 && args[0].equals("PEMDAS")){
+      String[] temp = args[1].split(" ");
+      for (String arg: temp){
+        input.add(arg);
+      }
+      System.out.println(solve(input));
+    }
   }
 }

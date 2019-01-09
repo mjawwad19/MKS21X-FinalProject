@@ -8,6 +8,14 @@ public class Fraction{
     simplify();
   }
 
+  public Fraction(double doub){
+    String dub = "" + doub;
+    String[] d = dub.split("\\.");
+    denominator = (int)Math.pow(10, d[0].length());
+    numerator = Integer.parseInt(d[0]) * denominator + Integer.parseInt(d[1]);
+    simplify();
+  }
+
   public int getNum(){
     return numerator;
   }
@@ -91,6 +99,8 @@ public class Fraction{
     System.out.println(f + " : " + f.getNum() +"/" + f.getDeno());
     Fraction g = a.power(2);
     System.out.println(g + " : " + g.getNum() +"/" + g.getDeno());
+    Fraction h = new Fraction(4.5);
+    System.out.println(h + " : " + h.getNum() +"/" + h.getDeno());
   }
 
 }

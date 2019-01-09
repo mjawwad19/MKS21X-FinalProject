@@ -52,7 +52,7 @@ public class Monomial{
 /*method likeTerms compares Monomials and returns a boolean if they are combinable
 *@param other is the Monomial being compared. */
   public boolean likeTerms(Monomial other) {
-    if (getVar() == other.getVar() && getDeg() == other.getDeg()) return true;
+    if (getVar() == other.getVar() && getDeg() == other.getDeg() || (getDeg() == 0 && other.getDeg() == 0)) return true;
     return false;
   }
 /*method add adds monomials that are combinable together into a single monomial.
@@ -89,9 +89,10 @@ if we have time we will alow monomials to be multivariable.
 *@param other is the monomial being multiplied with.*/
   public Monomial multiply(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
-    if (getVar() == other.getVar()) {
+    if (getVar() == other.getVar() || getDeg() == 0 || other.getDeg() == 0) {
       out.setCoef(getCoef().multiply(other.getCoef()));
-      out.setVar(getVar());
+      if (getDeg() == 0) out.setVar(other.getVar());
+      else out.setVar(getVar());
       out.setDeg(getDeg() + other.getDeg());
     }
     //else we're going to need to allow Monomials to have multiple variables
@@ -120,6 +121,28 @@ via plotting purposes.
     return  getCoef().multiply(new Fraction((int)Math.pow(v, getDeg()), 1));
   }
 
+  public static Monomial parseMono(String mono){
+    Fraction c = new Fraction(0.0);
+    char v = 'x';
+    int d = 0;
+    for (int i = 0; i < mono.length(); i++){
+      if (mono.charAt(i) == '('){
+        for (int j = 0; j < mono.length(); j++){
+          if (mono.charAt(j) == ')'){
+            d = Integer.parseInt(mono.substring(i + 1, j));
+          }
+        }
+      }
+      if (Character.isLetter(mono.charAt(i))){
+        d = 1;
+        if (i == 0) c = new Fraction(1);
+        else c = new Fraction(Double.parseDouble(mono.substring(0,i)));
+        v = mono.charAt(i);
+      }
+    }
+    return new Monomial(c,v,d);
+  }
+
   public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
     Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
@@ -140,5 +163,7 @@ via plotting purposes.
     System.out.println(b.sub(2));//0
     System.out.println(c.sub(3)); //0.6
     System.out.println(e.sub(3)); //2.5* 3^2 = 22.5
+    System.out.println(parseMono("4.8x^(1)"));
+    System.out.println(c.multiply(a));
   }
 }

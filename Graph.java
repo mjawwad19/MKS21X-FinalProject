@@ -7,6 +7,7 @@ public class Graph{
   private int endY = 20;
   public static final String ANSI_RESET = "\u001B[0m";
   public static final String ANSI_RED = "\u001B[31m";
+  public static final String WHITE = "\033[107m\033[30m";
   // creates empty graph grid (2D array) [helper]
   private void setGraph(int minX, int maxX, int minY, int maxY) {
     int c = Math.abs(maxX- minX) + 1;
@@ -44,6 +45,7 @@ public class Graph{
   public Graph(Polynomial eq) {
     setGraph(startX, endX, startY, endY);
     setEq(eq);
+    System.out.println(WHITE + eq);
   }
 
   //graphs the equation given and the bounds specified
@@ -54,24 +56,25 @@ public class Graph{
     endY = maxY;
     setGraph(startX, endX, startY, endY);
     setEq(eq);
+    System.out.println(WHITE + ANSI_RED + eq + ANSI_RESET + WHITE);
   }
   //output for user to see
   public String toString() {
+    System.out.println("\033[107m\033[30m");
     String out = "";
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid[i].length; j++) {
         if (j == 0) out += "\n";
-        if (grid[i][j] == 'O') out += ANSI_RED + "O" + ANSI_RESET + " ";
+        if (grid[i][j] == 'O') out += ANSI_RED + "O" + ANSI_RESET + WHITE + " ";
         else out += grid[i][j] + " ";
       }
     }
     return out + "\n\nX Bounds: " + startX + " to " + endX +
-                        "\nY Bounds: " + startY + " to " + endY;
+                        "\nY Bounds: " + startY + " to " + endY + ANSI_RESET;
   }
   public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(1,1), 'x', 2));
-    System.out.println(ANSI_RED+ a + ANSI_RESET); //x^2
     Graph g1 = new Graph(-10, 15, -20, 20, a);
     System.out.println(g1);
 

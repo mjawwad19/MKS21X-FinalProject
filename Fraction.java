@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 public class Fraction{
   private int numerator,denominator;
 
@@ -11,7 +12,7 @@ public class Fraction{
   public Fraction(double doub){
     String dub = "" + doub;
     String[] d = dub.split("\\.");
-    denominator = (int)Math.pow(10, d[0].length());
+    denominator = (int)Math.pow(10, d[1].length());
     numerator = Integer.parseInt(d[0]) * denominator + Integer.parseInt(d[1]);
     simplify();
   }
@@ -69,7 +70,7 @@ public class Fraction{
   }
 
   public Fraction power(double pow){
-    return new Fraction((int)Math.pow(getNum(), pow), (int)Math.pow(getDeno(), pow));
+    return new Fraction(Math.round(Math.pow(getNum(), pow) / Math.pow(getDeno(), pow) * 1000.0) / 1000.0);
   }
 
   public String toString(){

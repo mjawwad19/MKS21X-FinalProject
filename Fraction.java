@@ -10,9 +10,9 @@ public class Fraction{
 
   public Fraction(double doub){
     String dub = "" + doub;
-    String[] d = dub.split(".");
-    denominator = 1;//(int)Math.pow(10, d[0].length());
-    numerator = d.length;//Integer.parseInt(d[0]) * denominator + Integer.parseInt(d[0]);
+    String[] d = dub.split("\\.");
+    denominator = (int)Math.pow(10, d[0].length());
+    numerator = Integer.parseInt(d[0]) * denominator + Integer.parseInt(d[0]);
     simplify();
   }
 

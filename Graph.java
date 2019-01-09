@@ -5,6 +5,8 @@ public class Graph{
   private int startY = -20;
   private int endX = 20;
   private int endY = 20;
+  public static final String ANSI_RESET = "\u001B[0m";
+  public static final String ANSI_RED = "\u001B[31m";
   // creates empty graph grid (2D array) [helper]
   private void setGraph(int minX, int maxX, int minY, int maxY) {
     int c = Math.abs(maxX- minX) + 1;
@@ -59,28 +61,19 @@ public class Graph{
     for (int i = 0; i < grid.length; i++) {
       for (int j = 0; j < grid[i].length; j++) {
         if (j == 0) out += "\n";
-        out += grid[i][j] + " ";
+        if (grid[i][j] == 'O') out += ANSI_RED + "O" + ANSI_RESET + " ";
+        else out += grid[i][j] + " ";
       }
     }
-    return out;
+    return out + "\n\nX Bounds: " + startX + " to " + endX +
+                        "\nY Bounds: " + startY + " to " + endY;
   }
   public static void main(String[] args) {
     Polynomial a = new Polynomial();
-    a.add(new Monomial(new Fraction(-1,1), 'x', 3));
-    a.add(new Monomial(new Fraction(1,1), 'x', 0));
-    System.out.println("y = " + a); //-x^3 +1
+    a.add(new Monomial(new Fraction(1,1), 'x', 2));
+    System.out.println(ANSI_RED+ a + ANSI_RESET); //x^2
     Graph g1 = new Graph(-10, 15, -20, 20, a);
-
     System.out.println(g1);
-    /*Graph g2 = new Graph(5, 10, 2, 4);
-    System.out.println(g2); //shouldn't have axis
-    Graph g3 = new Graph (5, 10, -2 , 4);
-    System.out.println(g3); // should have 1 axis near bottom
-    Graph g4 = new Graph (5, 10, -2, -4);
-    System.out.println(g4); //shouldn't have axis
-    Graph g5 = new Graph (-5, -10, 2, 4);
-    System.out.println(g5); //none
-    Graph g6 = new Graph(-10, -15, -8, -10);
-    System.out.println(g6); // none*/
+
   }
 }

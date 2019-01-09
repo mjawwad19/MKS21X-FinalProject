@@ -98,6 +98,21 @@ public class Polynomial{
     return ans;
   }
 
+  public static Polynomial parsePoly(String poly){
+    String[] p = poly.split(" ");
+    Polynomial ans = new Polynomial();
+    if (p.length > 0) ans.add(Monomial.parseMono(p[0]));
+    for (int i = 1; i < p.length; i += 2){
+      if (p[i].equals("+")){
+        ans.add(Monomial.parseMono(p[i+1]));
+      }
+      if (p[i].equals("-")){
+        ans.add(Monomial.parseMono("-1").multiply(Monomial.parseMono(p[i+i])));
+      }
+    }
+    return ans;
+  }
+
   public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(4, 1), 'x', 2));
@@ -124,5 +139,6 @@ public class Polynomial{
     System.out.println(b);
     b.subtract(a);
     System.out.println(b);
+    System.out.println(parsePoly("5x^(2) - 4x + 5"));
   }
 }

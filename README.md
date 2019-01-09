@@ -29,3 +29,4 @@ Development Log:
 
 1/8/2019
 - Wrote parseMono and parsePoly in the respective classes to convert a String into either a Monomial or Polynomial (this will be helpful later on after implementing solve given the value of the variable or for solving quadratics). Also added a constructor in Fraction that takes in a double, making it easier to parse expressions with decimal coefficients. Also fixed some small bugs and errors in various methods. (Peihua)
+- Made graphing background/ background in general white, and equations being graphed red. (Jawwad)

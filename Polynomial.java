@@ -35,12 +35,12 @@ public class Polynomial{
   }
 
   public void subtract(Monomial other){
-    add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
+    this.add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 
   public void subtract(Polynomial other){
-    for (Monomial term: other.getMonos()){
-      this.subtract(term);
+    for (int i = 1; i < other.getMonos().size(); i++){
+      this.subtract(other.getMonos().get(i - 1));
     }
   }
 
@@ -117,7 +117,7 @@ public class Polynomial{
         ans.add(Monomial.parseMono(p[i+1]));
       }
       if (p[i].equals("-")){
-        ans.add(Monomial.parseMono("-1").multiply(Monomial.parseMono(p[i+i])));
+        ans.add(Monomial.parseMono("-1").multiply(Monomial.parseMono(p[i+1])));
       }
     }
     return ans;
@@ -148,8 +148,8 @@ public class Polynomial{
     b.add(a);
     System.out.println(b); // 5x^2 - x - 6 -3x^5
     b.subtract(a);
+    System.out.println(b);
     System.out.println(a);
-    System.out.println(b); //x^2 - x - 6
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
     System.out.print(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
     4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/

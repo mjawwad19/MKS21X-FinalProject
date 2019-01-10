@@ -4,7 +4,7 @@ import java.util.*;
 public class Calculator{
   private static String asolve(List<String> input){
     for (int i = 0; i < input.size(); i++){
-      if (input.get(i).equals("**")){
+      if (input.get(i).equals("^")){
         input.set(i, "" + Math.pow(Double.parseDouble(input.get(i - 1)),Double.parseDouble(input.get(i + 1))));
         input.remove(i - 1);
         input.remove(i);
@@ -60,9 +60,9 @@ public class Calculator{
     return Double.parseDouble(asolve(input));
   }
 
-  public static double Quad(List<String> input){
-    Polynomial ans = new Polynomial();
-    return 0;
+  public static Fraction[] Quad(String input){
+    Polynomial ans = Polynomial.parsePoly(input);
+    return ans.solveQuad();
   }
 
   public static double mean(List<String> input){
@@ -104,8 +104,13 @@ public class Calculator{
       for (int i = 1; i < args.length; i++) {
         input.add(args[i]);
       }
-      System.out.println(input);
       System.out.println("Median: " + median(input));
+    }
+    else if (args.length > 0 && args[0].equals("solve-quadratic")){
+      System.out.println(Arrays.toString(Quad(args[1])));
+    }
+    else if (args.length > 0 && args[0].equals("sub-poly")){
+      System.out.println(Polynomial.parsePoly(args[1]).sub(Integer.parseInt(args[2])));
     }
   }
 }

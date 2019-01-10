@@ -29,3 +29,6 @@ Development Log:
 
 1/8/2019
 - Wrote parseMono and parsePoly in the respective classes to convert a String into either a Monomial or Polynomial (this will be helpful later on after implementing solve given the value of the variable or for solving quadratics). Also added a constructor in Fraction that takes in a double, making it easier to parse expressions with decimal coefficients. Also fixed some small bugs and errors in various methods. (Peihua)
+
+1/9/2019
+-Wrote a mean and median (if time section stuff) in calculator class and a Polynomial on Polynomial multiplier. Found an error in polynomial subtract that modifies the polynomial being subtracted as well as the one being subtracted from, when it should only modify the polynomial that is calling the method. (Jawwad)

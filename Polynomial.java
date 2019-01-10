@@ -35,12 +35,12 @@ public class Polynomial{
   }
 
   public void subtract(Monomial other){
-    add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
+    this.add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 
   public void subtract(Polynomial other){
-    for (Monomial term: other.getMonos()){
-      this.subtract(term);
+    for (int i = 1; i < other.getMonos().size(); i++){
+      this.subtract(other.getMonos().get(i - 1));
     }
   }
 
@@ -139,6 +139,7 @@ public class Polynomial{
     System.out.println(b);
     b.subtract(a);
     System.out.println(b);
+    System.out.println(a);
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
   }
 }

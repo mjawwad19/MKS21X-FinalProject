@@ -66,20 +66,26 @@ public class Calculator{
   }
 
   public static double mean(List<String> input){
-    double ans;
-    for (int i = 1; i < input.size(); i++) {
-      ans += (double)(i);
+    double ans = 0.0;
+    for (int i = 0; i < input.size(); i++) {
+      ans += Integer.parseInt(input.get(i));
     }
-    return ((ans / input.size()) - 1);
+    return (ans / input.size());
   }
 
-  public static int median(List<String> input){
-    int center = (input.size() / 2) + 1;
-    return (int) Integer.parseInt(input.get(center));
+  public static double median(List<String> input){
+    int center = input.size() / 2;
+    if (input.size() % 2 == 0) {
+      center--;
+      ArrayList<String> inTween = new ArrayList<>();
+      inTween.add(input.get(center));
+      inTween.add(input.get(center + 1));
+      return mean(inTween);
+    }
+    return (double) Integer.parseInt(input.get(center));
   }
 
   public static void main(String[] args) {
-    System.out.println("\033[107m\033[30m");
     ArrayList<String> input = new ArrayList<>();
     if (args.length > 0 && args[0].equals("PEMDAS")){
       String[] temp = args[1].split(" ");
@@ -88,8 +94,18 @@ public class Calculator{
       }
       System.out.println(solve(input));
     }
-    if (args.length > 0 && args[0].equals("MEAN")) {
-      System.out.println(mean(input));
+    else if (args.length > 0 && args[0].equals("MEAN")) {
+      for (int i = 1; i < args.length; i++){
+        input.add(args[i]);
+      }
+      System.out.println("Mean: " + mean(input));
+    }
+    else if (args.length > 0 && args[0].equals("MEDIAN")) {
+      for (int i = 1; i < args.length; i++) {
+        input.add(args[i]);
+      }
+      System.out.println(input);
+      System.out.println("Median: " + median(input));
     }
   }
 }

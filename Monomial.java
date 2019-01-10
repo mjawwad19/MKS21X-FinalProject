@@ -52,8 +52,7 @@ public class Monomial{
 /*method likeTerms compares Monomials and returns a boolean if they are combinable
 *@param other is the Monomial being compared. */
   public boolean likeTerms(Monomial other) {
-    if (getVar() == other.getVar() && getDeg() == other.getDeg() || (getDeg() == 0 && other.getDeg() == 0)) return true;
-    return false;
+    return (getVar() == other.getVar() && getDeg() == other.getDeg() || (getDeg() == 0 && other.getDeg() == 0));
   }
 /*method add adds monomials that are combinable together into a single monomial.
 Note this add feature does not have functionality when the bases or degrees do

@@ -83,13 +83,14 @@ Note this subtract feature does not have functionality when the bases or degrees
 do not match as that would result in a polynomial answer.
 *@param other is the Monomial being subtracted.*/
   public Monomial subtract(Monomial other) {
-    Monomial out = new Monomial(new Fraction(0, 1), 'x', 0);
+  /*  Monomial out = new Monomial(new Fraction(0, 1), 'x', 0);
     if (likeTerms(other)) {
       out.setCoef(getCoef().subtract(other.getCoef()));
       out.setVar(getVar());
       out.setDeg(getDeg());
     }
-    return out;
+    return out;*/
+    return add(other.multiply(new Monomial(new Fraction(-1,1), 'x', 0)));
   }
 /*method multiply takes two monomials and multiplies them into a single monomial.
 Note this multiply feature is currently bound to monomials of the same base---

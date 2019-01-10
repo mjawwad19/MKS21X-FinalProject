@@ -53,6 +53,16 @@ public class Polynomial{
     }
   }
 
+  public Polynomial multiply(Polynomial other){
+    Polynomial out = new Polynomial();
+    for (Monomial term: monos){
+      for (Monomial mon: other.getMonos()){
+        out.add(term.multiply(mon));
+      }
+    }
+    return out;
+  }
+
   public void divide(Monomial other){
     for (Monomial term: monos){
       if (term.getVar() == other.getVar()){
@@ -126,19 +136,22 @@ public class Polynomial{
     b.add(new Monomial(new Fraction(1, 1), 'x', 2));
     b.add(new Monomial(new Fraction(-1, 1), 'x', 1));
     b.add(new Monomial(new Fraction(-6, 1), 'x', 0));
-    System.out.println(b.solveQuad()[0]);
-    System.out.println(b.solveQuad()[1]);
-    System.out.println(b);
+    System.out.println(b.solveQuad()[0]); //3
+    System.out.println(b.solveQuad()[1]); //-2
+    System.out.println(b); //x^2 - x - 6
     System.out.println(b.sub(3)); //0
     System.out.println();
     b.multiply(new Monomial(new Fraction(4, 1), 'x', 2));
-    System.out.println(b);
+    System.out.println(b); //4x^2 - 4x - 24
     b.divide(new Monomial(new Fraction(4, 1), 'x', 2));
-    System.out.println(b);
+    System.out.println(b); // x^2 - x - 6
     b.add(a);
-    System.out.println(b);
+    System.out.println(b); // 5x^2 - x - 6 -3x^5
     b.subtract(a);
-    System.out.println(b);
+    System.out.println(a);
+    System.out.println(b); //x^2 - x - 6
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
+    System.out.print(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
+    4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
   }
 }

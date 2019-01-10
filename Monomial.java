@@ -60,7 +60,6 @@ Note this add feature does not have functionality when the bases or degrees do
 not match as that would result in a polynomial answer.
 *@param other is the Monomial being added.*/
   public Monomial add(Monomial other) {
-    //Polynomial end = new Polynomial();
     Monomial out = new Monomial(new Fraction(0, 1), 'x', 0); //default
     if (likeTerms(other)) {
       out.setCoef(getCoef().add(other.getCoef()));
@@ -69,6 +68,15 @@ not match as that would result in a polynomial answer.
     }
     return out;
   }
+
+  public Polynomial addP(Monomial other) {
+    Polynomial out = new Polynomial();
+    if (!likeTerms(other)) {
+    out.add(this);
+    out.add(other);
+  }
+  return out;
+}
 /*method subtract subtracts a monomial only if it is compatible with the monomial
 calling the method, thus resulting in a single monomial.
 Note this subtract feature does not have functionality when the bases or degrees

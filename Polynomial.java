@@ -19,13 +19,14 @@ public class Polynomial{
 
   public void add(Monomial other){
     boolean added = false;
+    Monomial to = new Monomial(other.getCoef(), other.getVar(), other.getDeg());
     for (int i = 0; i < monos.size(); i++){
       if (monos.get(i).likeTerms(other)){
-        monos.get(i).setCoef(monos.get(i).getCoef().add(other.getCoef()));
+        monos.get(i).add(to);
         added = true;
       }
     }
-    if (!added) monos.add(other);
+    if (!added) monos.add(to);
   }
 
   public void add(Polynomial other){
@@ -39,9 +40,11 @@ public class Polynomial{
   }
 
   public void subtract(Polynomial other){
-    for (int i = 1; i < other.getMonos().size(); i++){
-      this.subtract(other.getMonos().get(i - 1));
+    Polynomial opp = new Polynomial();
+    for (Monomial t: other.getMonos()) {
+      opp.add(t.multiply(new Monomial(new Fraction(-1, 1), 'x', 0)));
     }
+    this.add(opp);
   }
 
   public void multiply(Monomial other){

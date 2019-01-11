@@ -33,3 +33,4 @@ Development Log:
 
 1/9/2019
 -Wrote a mean and median (if time section stuff) in calculator class and a Polynomial on Polynomial multiplier. Found an error in polynomial subtract that modifies the polynomial being subtracted as well as the one being subtracted from, when it should only modify the polynomial that is calling the method. (Jawwad)
+- Finished implementing quadratic solving in Calculator class. Also went around fixing bugs found along the way. There's one bug that still needs to be worked on. (Peihua)

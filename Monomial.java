@@ -52,7 +52,7 @@ public class Monomial{
 /*method likeTerms compares Monomials and returns a boolean if they are combinable
 *@param other is the Monomial being compared. */
   public boolean likeTerms(Monomial other) {
-    if (getVar() == other.getVar() && getDeg() == other.getDeg() || (getDeg() == 0 && other.getDeg() == 0)) return true;
+    if (getVar() == other.getVar() && getDeg() == other.getDeg()) return true;
     return false;
   }
 /*method add adds monomials that are combinable together into a single monomial.
@@ -60,13 +60,9 @@ Note this add feature does not have functionality when the bases or degrees do
 not match as that would result in a polynomial answer.
 *@param other is the Monomial being added.*/
   public Monomial add(Monomial other) {
-    Monomial out = new Monomial(new Fraction(0, 1), 'x', 0); //default
-    if (likeTerms(other)) {
-      out.setCoef(getCoef().add(other.getCoef()));
-      out.setVar(getVar());
-      out.setDeg(getDeg());
-    }
-    return out;
+    if (this.likeTerms(other))
+      this.setCoef(getCoef().add(other.getCoef()));
+      return this;
   }
 
   public Polynomial addP(Monomial other) {

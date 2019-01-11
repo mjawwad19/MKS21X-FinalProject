@@ -45,6 +45,42 @@ public class Calculator{
 
   public static double solve(List<String> input){
     for (int i = 0; i < input.size(); i++){
+      if (input.get(i).equals("sin(")){
+        boolean swap = false;
+        for (int j = 0; j < input.size(); j++){
+          if (input.get(j).equals(")") && swap == false){
+            asolve(input.subList(i + 1, j));
+            input.remove(i);
+            input.set(i, "" + Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))));
+            input.remove(i + 1);
+            swap = true;
+          }
+        }
+      }
+      if (input.get(i).equals("cos(")){
+        boolean swap = false;
+        for (int j = 0; j < input.size(); j++){
+          if (input.get(j).equals(")") && swap == false){
+            asolve(input.subList(i + 1, j));
+            input.remove(i);
+            input.set(i, "" + Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))));
+            input.remove(i + 1);
+            swap = true;
+          }
+        }
+      }
+      if (input.get(i).equals("tan(")){
+        boolean swap = false;
+        for (int j = 0; j < input.size(); j++){
+          if (input.get(j).equals(")") && swap == false){
+            asolve(input.subList(i + 1, j));
+            input.remove(i);
+            input.set(i, "" + Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))));
+            input.remove(i + 1);
+            swap = true;
+          }
+        }
+      }
       if (input.get(i).equals("(")){
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){

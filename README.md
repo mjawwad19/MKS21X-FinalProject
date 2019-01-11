@@ -17,7 +17,7 @@ Development Log:
 - Added the four operation methods (add/subtract/divide/multiply), mutator methods, boolean checks for operations, and documented the methods. (Jawwad)
 
 - Complication#1: Adding/Subtracting a monomial to another monomial without the same base and exponent causes the creation of a polynomial, but polynomial has not yet been defined (created). So for now, we won't touch it but we need to figure this out. (Jawwad)
-- Complication#2: Multiplication can lead to monomials with more than one variable so eventually we WILL have to allow monomials to be multivariable and update our methods as such. (Jawad0)
+- Complication#2: Multiplication can lead to monomials with more than one variable so eventually we WILL have to allow monomials to be multivariable and update our methods as such. (Jawwad)
 
 1/6/2019
 - Added multiply and divide polynomial by a monomial. Also wrote add and subtract polynomial from polynomial. (Peihua)
@@ -32,5 +32,8 @@ Development Log:
 - Made graphing background/ background in general white, and equations being graphed red. (Jawwad)
 
 1/9/2019
--Wrote a mean and median (if time section stuff) in calculator class and a Polynomial on Polynomial multiplier. Found an error in polynomial subtract that modifies the polynomial being subtracted as well as the one being subtracted from, when it should only modify the polynomial that is calling the method. (Jawwad)
+- Wrote a mean and median (if time section stuff) in calculator class and a Polynomial on Polynomial multiplier. Found an error in polynomial subtract that modifies the polynomial being subtracted as well as the one being subtracted from, when it should only modify the polynomial that is calling the method. (Jawwad)
 - Finished implementing quadratic solving in Calculator class. Also went around fixing bugs found along the way. There's one bug that still needs to be worked on. (Peihua)
+
+1/10/2019
+- After EXTENSIVE debugging of practically everything, and isolating that no matter what I do to other like other.add, it will also update the polynomial that is subtracting other. HENCE, they must be linked. The solution: do operations on a copy of other, not other itself, thus breaking that link. *(actually now that I say it it sounds really simple)* HOLY FRIGGIN GOD THE BUG IS OVER. (literally 2 hours both of us and 3 hours today) (Jawwad)

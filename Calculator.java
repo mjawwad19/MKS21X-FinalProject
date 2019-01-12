@@ -189,5 +189,8 @@ public class Calculator{
     if (args.length > 0 && args[0].equals("FOIL")){
       System.out.println(foil(args[1]));
     }
+    if (args.length > 0 && args[0].equals("linear")){
+      System.out.println(Polynomial.linear(args[1]));
+    }
   }
 }

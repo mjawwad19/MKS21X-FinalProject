@@ -36,17 +36,21 @@ public class Monomial{
   //helper
   private String coString(){
     if ((getCoef() + "").equals("1")) return "";
+    if ((getCoef() + "").equals("-1")) return "-";
     else return "" + getCoef();
   }
   //helper
   private String degString(){
     if ((getDeg() == 1)) return "" + getVar();
+    if ((getDeg() == -1)) return "" + getVar();
+    if ((getDeg() < -1)) return  "" + getVar() + "^" + "(" + getDeg()*-1 + ")";
     else return "" + getVar() + "^" + "(" + getDeg() + ")";
   }
 
   public String toString(){
     if ((getCoef() + "").equals("0")) return "0";
     if (getDeg() == 0) return "" + getCoef(); //will have to be updated when we have multivariable monomials.
+    if (getDeg() < 0) return coString() + "/(" + degString() + ")";
     else return coString() + degString();
   }
 /*method likeTerms compares Monomials and returns a boolean if they are combinable
@@ -60,9 +64,14 @@ Note this add feature does not have functionality when the bases or degrees do
 not match as that would result in a polynomial answer.
 *@param other is the Monomial being added.*/
   public Monomial add(Monomial other) {
-    if (this.likeTerms(other))
+    if (this.likeTerms(other)) {
       this.setCoef(getCoef().add(other.getCoef()));
       return this;
+    }
+    else {
+      System.out.print("Could not be added or subtracted: ");
+      return new Monomial(new Fraction(-1, 1), 'x', 0);
+    }
   }
 
   public Polynomial addP(Monomial other) {
@@ -93,11 +102,9 @@ Note this multiply feature is currently bound to monomials of the same base---
 if we have time we will alow monomials to be multivariable.
 *@param other is the monomial being multiplied with.*/
   public Monomial multiply(Monomial other) {
-    Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
+    Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
     if (getVar() == other.getVar() || getDeg() == 0 || other.getDeg() == 0) {
       out.setCoef(getCoef().multiply(other.getCoef()));
-      if (getDeg() == 0) out.setVar(other.getVar());
-      else out.setVar(getVar());
       out.setDeg(getDeg() + other.getDeg());
     }
     //else we're going to need to allow Monomials to have multiple variables
@@ -108,10 +115,9 @@ Note this divide feature does not work when the bases are of different variable.
 To be honest, graphing calculators usually have only x and y as variables so...
 *@param other is the monomial that we divide with.*/
   public Monomial divide(Monomial other) {
-    Monomial out = new Monomial(new Fraction(0,1), 'x', 0);
+    Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
     if (getVar() == other.getVar()) {
       out.setCoef(getCoef().divide(other.getCoef()));
-      out.setVar(getVar());
       out.setDeg(getDeg() - other.getDeg());
     }
     //else we're going to need to allow Monomials to have multiple variables
@@ -158,14 +164,16 @@ via plotting purposes.
     Monomial c = new Monomial(new Fraction(3,5), 'q', 0);
     Monomial d = new Monomial(new Fraction(0,1), 'x', 1);
     Monomial e = new Monomial(new Fraction(5,2), 'x', 2);
+    Monomial x = new Monomial((a.subtract(e)).getCoef(), a.getVar(), a.getDeg());
     System.out.println(a); //4x^2
     System.out.println(b); //0
     System.out.println(c); //0.6
+    System.out.println(x); //1.5x^2
     System.out.println(a.likeTerms(b)); //false;
     System.out.println(a.likeTerms(d)); //false;
     System.out.println(a.likeTerms(e)); //true;
     System.out.println(a.add(e)); // 6.5 x^2
-    System.out.println(a.subtract(e)); // 1.5 x^2
+    System.out.println(x.subtract(e)); // -x^2
     System.out.println(a.multiply(e)); // 10x^4
     System.out.println(a.divide(e)); // 1.6
     System.out.println(a.sub(2)); // 4 * 2^2 = 16

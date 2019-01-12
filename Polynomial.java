@@ -126,6 +126,25 @@ public class Polynomial{
     return ans;
   }
 
+  public static String linear(String input){
+    String[] arg = input.split(" = ");
+    Polynomial left = Polynomial.parsePoly(arg[0]);
+    Polynomial right = Polynomial.parsePoly(arg[1]);
+    left.subtract(right);
+    char vari = ' ';
+    Fraction ans = new Fraction(0);
+    Fraction c = new Fraction(0);
+    Fraction d = new Fraction(1);
+    for (Monomial term: left.getMonos()){
+      if (term.getDeg() == 0) c = term.getCoef();
+      if (term.getDeg() == 1){
+        d = term.getCoef();
+        vari = term.getVar();
+      }
+    }
+    return vari + " = " + ans.subtract(c).divide(d);
+  }
+
   public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(4, 1), 'x', 2));

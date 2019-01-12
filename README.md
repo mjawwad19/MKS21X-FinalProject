@@ -37,7 +37,11 @@ Development Log:
 
 1/10/2019
 - After EXTENSIVE debugging of practically everything, and isolating that no matter what I do to other like other.add, it will also update the polynomial that is subtracting other. HENCE, they must be linked. The solution: do operations on a copy of other, not other itself, thus breaking that link. *(actually now that I say it it sounds really simple)* HOLY FRIGGIN GOD THE BUG IS OVER. (literally 2 hours both of us and 3 hours today) (Jawwad)
-- Added trig functions into PEMDAS evaluations and added foil method to allow foiling. (Peihua)
+- Added trig functions into PEMDAS evaluations and added foil method to allow foiling. (Conversion of binomials to be multiplied) (Peihua)
 
 1/11/2019
 - Added the functionality of solving linear equations that have one variable. Also changed the foil method and remained it factor method. Now it can do polynomial multiplied by polynomial instead of just binomial x binomial. (Peihua)
+
+1/12/2019
+- Added other fxns to driver main so user can call them/ streamlined factor method to be used for multiply/add/subtract: 2 factor Methods: one for poly poly and one for mono mono operations; and if they don't they are given all their possible options (Jawwad) (This is between 1/11 and 1/12) (Jawwad)
+- Updated Monomial methods (a little cleanup here and there, some updates to toString(s)) etc. (Jawwad)

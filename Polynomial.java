@@ -145,6 +145,14 @@ public class Polynomial{
     return vari + " = " + ans.subtract(c).divide(d);
   }
 
+  public Polynomial power(int p){
+    Polynomial temp = Polynomial.parsePoly(this.toString());
+    for(int i = 1; i < p; i++){
+      temp = temp.multiply(this);
+    }
+    return temp;
+  }
+
   public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(4, 1), 'x', 2));
@@ -173,7 +181,11 @@ public class Polynomial{
     System.out.println(b);
     System.out.println(a);
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
-    System.out.print(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
+    System.out.println(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
     4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
+    Polynomial c = Polynomial.parsePoly("x + 1");
+    System.out.println(c);
+    System.out.println(c.power(3));
+    System.out.println(c);
   }
 }

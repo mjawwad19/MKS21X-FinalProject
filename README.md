@@ -38,3 +38,6 @@ Development Log:
 1/10/2019
 - After EXTENSIVE debugging of practically everything, and isolating that no matter what I do to other like other.add, it will also update the polynomial that is subtracting other. HENCE, they must be linked. The solution: do operations on a copy of other, not other itself, thus breaking that link. *(actually now that I say it it sounds really simple)* HOLY FRIGGIN GOD THE BUG IS OVER. (literally 2 hours both of us and 3 hours today) (Jawwad)
 - Added trig functions into PEMDAS evaluations and added foil method to allow foiling. (Peihua)
+
+1/11/2019
+- Added the functionality of solving linear equations that have one variable. Also changed the foil method and remained it factor method. Now it can do polynomial multiplied by polynomial instead of just binomial x binomial. (Peihua)

@@ -102,7 +102,7 @@ public class Calculator{
   }
 
 
-  private static String drwl(int len){
+  private static String drwl(int len){ 
     String a = "-";
     String l = String.join("", Collections.nCopies(len, a));
     return l;

@@ -145,7 +145,7 @@ public class Polynomial{
     return vari + " = " + ans.subtract(c).divide(d);
   }
 
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(4, 1), 'x', 2));
     a.add(new Monomial(new Fraction(-6, 1), 'x', 5));
@@ -174,6 +174,6 @@ public class Polynomial{
     System.out.println(a);
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
     System.out.print(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
-    4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
-  }
+    4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5
+  }*/
 }

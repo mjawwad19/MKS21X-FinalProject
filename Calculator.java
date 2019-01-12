@@ -101,42 +101,11 @@ public class Calculator{
     return ans.solveQuad();
   }
 
-  public static Polynomial foil(String input){
-    int count = 0;
-    Monomial a = Monomial.parseMono("0");
-    Monomial b = Monomial.parseMono("0");
-    Monomial c = Monomial.parseMono("0");
-    Monomial d = Monomial.parseMono("0");
-    for (int i = 0; i < input.length(); i++){
-      if (input.charAt(i) == '('){
-        boolean filled = false;
-        for (int j = i; j < input.length(); j++){
-          if (!filled && (input.charAt(j) == '+' || input.charAt(j) == '-')){
-            if (count == 0) a = Monomial.parseMono(input.substring(i+1,j));
-            if (count == 2) c = Monomial.parseMono(input.substring(i+1,j));
-            filled = true;
-            count++;
-          }
-        }
-      }
-      if (input.charAt(i) == '+' || input.charAt(i) == '-'){
-        boolean filled = false;
-        for (int j = i; j < input.length(); j++){
-          if (!filled && input.charAt(j) == ')'){
-            if (count == 1) b = Monomial.parseMono(input.substring(i,j));
-            if (count == 3) d = Monomial.parseMono(input.substring(i,j));
-            filled = true;
-            count++;
-          }
-        }
-      }
-    }
-    Polynomial ans = new Polynomial();
-    ans.add(a.multiply(c));
-    ans.add(a.multiply(d));
-    ans.add(b.multiply(c));
-    ans.add(b.multiply(d));
-    return ans;
+  public static Polynomial factor(String input){
+    String[] out = input.split("\\)\\(");
+    Polynomial a = Polynomial.parsePoly(out[0].substring(1));
+    Polynomial b = Polynomial.parsePoly(out[1].substring(0, out[1].length() - 1));
+    return a.multiply(b);
   }
 
   public static double mean(List<String> input){
@@ -186,8 +155,8 @@ public class Calculator{
     else if (args.length > 0 && args[0].equals("sub-poly")){
       System.out.println(Polynomial.parsePoly(args[1]).sub(Integer.parseInt(args[2])));
     }
-    if (args.length > 0 && args[0].equals("FOIL")){
-      System.out.println(foil(args[1]));
+    if (args.length > 0 && args[0].equals("factor")){
+      System.out.println(factor(args[1]));
     }
     if (args.length > 0 && args[0].equals("linear")){
       System.out.println(Polynomial.linear(args[1]));

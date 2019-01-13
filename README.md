@@ -45,3 +45,7 @@ Development Log:
 1/12/2019
 - Added other fxns to driver main so user can call them/ streamlined factor method to be used for multiply/add/subtract: 2 factor Methods: one for poly poly and one for mono mono operations; and if they don't they are given all their possible options (Jawwad) (This is between 1/11 and 1/12) (Jawwad)
 - Updated Monomial methods (a little cleanup here and there, some updates to toString(s)) etc. (Jawwad)
+- Wrote power method for Polynomial class (Peihua)
+
+1/13/2019
+- Went around all of classes debugging and testing the functionality of the Calculator (making sure that the right Exceptions are thrown and the right messages are printed). Also went around trying to simplify code and made the Calculator easy to use. Also added comments to the classes that don't already have them. (Peihua)

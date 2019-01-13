@@ -99,7 +99,7 @@ public class Polynomial{
     Fraction a = new Fraction(0, 1);
     Fraction b = new Fraction(0, 1);
     Fraction c = new Fraction(0, 1);
-    for (Monomial term: monos){
+    for (Monomial term: getMonos()){
       if (term.getDeg() > 2) throw new IllegalArgumentException("The polynomial is not a quadratic, the highest degree of " + term.getVar() + " is " + term.getDeg());
       if (term.getDeg() == 2) a = term.getCoef();
       if (term.getDeg() == 1) b = term.getCoef();
@@ -123,6 +123,9 @@ public class Polynomial{
       return ans;
     }
     ArrayList<String> input = new ArrayList<>();
+    for (String term: p){
+      input.add(term);
+    }
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("*")){
         input.set(i, "" + Monomial.parseMono(input.get(i-1)).multiply(Monomial.parseMono(input.get(i + 1))));
@@ -211,7 +214,8 @@ public class Polynomial{
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
     System.out.println(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
     4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
-    Polynomial c = Polynomial.parsePoly("-3x");
+    Polynomial c = Polynomial.parsePoly("x^(2) - 1");
     System.out.println(c);
+    System.out.println(Arrays.toString(c.solveQuad()));
   }
 }

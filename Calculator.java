@@ -174,7 +174,7 @@ public class Calculator{
   public static void main(String[] args) {
     String m1 = "\n\nTo write a polynomial/monomial (nomial for both), please note the following: \n\nVariables to a degree are encapsulated in parenthesis: x^(5)\nPlease place quotation marks with one space from either end around your nomial(s) \" [nomial(s)] \" \nTo have multiply nomials, please place a '_' in between them: \" [nomial]_[nomial] \"";
     String p = "\n\nsolve-quadratic \" [quadratic polynomial] \" \n\nadd-pp \" [polynomial]_[polynomial] \" \n\nsubtract-pp \" [polynomial]_[polynomial] \" \n\nmultiply-pp \" [polynomial]_[polynomial] \" \n\n";
-    String needTest = "linear \" [polynomial] \"";
+    String needTest = "linear \"[nomial equation]\"";
     String m = "add-mm \" [monomial]_[monomial]  \" \n\nsubtract-mm \" [monomial]_[monomial]  \" \n\nmultiply-mm \" [monomial]_[monomial] ] \" \n\ndivide-mm \" [monomial]_[monomial] \"";
     String msg = m1 + "\n\nIf you would like to use this calculator, please use the following format:  \n\n\nmean [num1] [num2]...  \n\nmedian [num1] [num2]...\n\nsub-p \" [polynomial] \" [int] \n\nsub-m \" [monomial] \" [int]\n\ngraph \" [nomial] \" [xbound1] [xbound2] [ybound1] [ybound2] or graph \" [nomial] \"\n\n" + needTest + p + m;
     try {

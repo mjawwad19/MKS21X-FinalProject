@@ -3,8 +3,46 @@ APCS Project ;) : Calculator
 
 
 Instructions:
+- Put expressions/equations in quotation marks!
+- If you would like to use this calculator, please use the following format:
+  - PEMDAS " [expression(no variable)] "
+         *ex: java Calculator PEMDAS "4 ^ 2 + 5 * 3 - 6 / 2 "*
+         Can be used with trig fxns: sin/cos/tan:
+         *ex: PEMDAS "4 ^ 2 + 5sin( 30 )"*
 
+  - mean [num1] [num2]...
+         *ex: java Calculator mean 10 20 30 40 92*
 
+  - median [num1] [num2]...
+         *ex: java Calculator median 39 48 49 37 28 12*
+
+  - solve-quadratic " [quadratic equation] "
+         *ex: java Calculator solve-quadratic "x^(2) - 1 = 0"*
+
+  - add-pp "([polynomial])([polynomial]) "
+         *ex: java Calculator add-pp "(4x^(2) - 3x)(5x + 4)"*
+
+  - subtract-pp "([polynomial])([polynomial])"
+         *ex: java Calculator subtract-pp "(4x^(2) - 3x)(5x^(3) + 4x)"*
+
+  - multiply-pp "([polynomial])([polynomial])"
+         *ex: java Calculator multiply-pp "(x - 1)(x + 1)"*
+
+  - power-pp "([polynomial])([int])"
+         *ex: java Calculator power-pp "(x - 1)(3)"*
+
+  - four_function-mono "[expression(with one variable)]"
+         *ex: java Calculator four_function-mono "4x^(2) * 5x^(3) - 3x^(6) + 4x"*
+
+  - sub "[polynomial/monomial]" [int]
+        *ex: java Calculator sub "4x^(2) + 3" 8*
+
+  - singleVar-equation "[single variable equation]"
+        *ex: java Calculator singleVar-equation "4x - 5 = 2"*
+
+  - graph "[polynomial/monomial(with one variable)]" OR
+    graph "[polyomial/monomial(with one variable)]" [int(X min)] [int(X max)] [int(Y min)] [int(Y max))
+       *ex: java Calculator graph " 4x^(2) + 2x + 2 " -5 5 -10 10*
 
 
 Development Log:
@@ -49,3 +87,4 @@ Development Log:
 
 1/13/2019
 - Went around all of classes debugging and testing the functionality of the Calculator (making sure that the right Exceptions are thrown and the right messages are printed). Also went around trying to simplify code and made the Calculator easy to use. Also added comments to the classes that don't already have them. (Peihua)
+- Ditto (Jawwad), and catching each other's mistakes/ guide typos.

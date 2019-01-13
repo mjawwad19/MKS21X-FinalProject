@@ -138,7 +138,7 @@ public class Calculator{
    * @return The resulting Polynomial after the operation
    */
   public static Polynomial factor(String input, String method){
-    String[] out = input.split("_");
+    String[] out = input.split("\\)\\(");
     Polynomial a = Polynomial.parsePoly(out[0].substring(1));
     Polynomial b = Polynomial.parsePoly(out[1].substring(0, out[1].length() - 1));
     if (method.equals("multiply-pp")) {
@@ -197,17 +197,14 @@ public class Calculator{
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
                 + "median [num1] [num2]... \n \t ex: java Calculator median 39 48 49 37 28 12\n\n"
                 + "solve-quadratic \" [quadratic equation] \" \n \t ex: java Calculator solve-quadratic \"x^(2) - 1 = 0\" \n\n"
-                + "add-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator add-pp \"(4x^(2) - 3x)(5x + 4)\" \n\n"
-                + "subtract-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator subtract-pp \"(4x^(2) - 3x)(5x^(3) + 4x)\" \n\n"
-                + "multiply-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator multiply-pp \"(x - 1)(x + 1)\" \n\n"
-                + "power-pp \" ([polynomial])([int]) \" \n \t ex: java Calculator power-pp \"(x - 1)(3)\" \n\n"
-                + "four_function-mono [expression(with one variable)] \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
-                + "sub \" [polynomial/monomial] \" [int] \" \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
-                + "singleVar-equation \" [single variable equation] \" \n \t ex: java Calculator singleVar \"4x - 5 = 2\" \n\n\n\n"
-                + "graph \" [polynomial/monomial(with one variable)] \" OR graph \" [polyomial/monomial(with one variable)] \" [int(X min)] [int(X max)] [int(Y min)] [int(Y max)] \n \t ex: java Calculator graph \" 4x^(2) + 2x + 2 \" -5 5 -10 10 \n\n";
-    String m1 = "\n\nTo write a polynomial/monomial (nomial for both), please note the following: \n\nVariables to a degree are encapsulated in parenthesis: x^(5)\nPlease place quotation marks with one space from either end around your nomial(s) \" [nomial(s)] \" \nTo have multiply nomials, please place a '_' in between them: \" [nomial]_[nomial] \"";
-    String p = "\n\nsolve-quadratic \" [quadratic polynomial] \" \n\nadd-pp \" [polynomial]_[polynomial] \" \n\nsubtract-pp \" [polynomial]_[polynomial] \" \n\nmultiply-pp \" [polynomial]_[polynomial] \" \n\n";
-    String m = "add-mm \" [monomial]_[monomial]  \" \n\nsubtract-mm \" [monomial]_[monomial]  \" \n\nmultiply-mm \" [monomial]_[monomial] ] \" \n\ndivide-mm \" [monomial]_[monomial] \"";
+                + "add-pp \"([polynomial])([polynomial]) \" \n \t ex: java Calculator add-pp \"(4x^(2) - 3x)(5x + 4)\" \n\n"
+                + "subtract-pp \"([polynomial])([polynomial])\" \n \t ex: java Calculator subtract-pp \"(4x^(2) - 3x)(5x^(3) + 4x)\" \n\n"
+                + "multiply-pp \"([polynomial])([polynomial])\" \n \t ex: java Calculator multiply-pp \"(x - 1)(x + 1)\" \n\n"
+                + "power-pp \"([polynomial])([int])\" \n \t ex: java Calculator power-pp \"(x - 1)(3)\" \n\n"
+                + "four_function-mono \"[expression(with one variable)]\" \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
+                + "sub \"[polynomial/monomial]\" [int] \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
+                + "singleVar-equation \"[single variable equation]\" \n \t ex: java Calculator singleVar-equation \"4x - 5 = 2\" \n\n"
+                + "graph \"[polynomial/monomial(with one variable)]\" OR graph \"[polyomial/monomial(with one variable)]\" [int(X min)] [int(X max)] [int(Y min)] [int(Y max)] \n \t ex: java Calculator graph \" 4x^(2) + 2x + 2 \" -5 5 -10 10 \n\n";
     try {
       ArrayList<String> input = new ArrayList<>();
       if (args.length > 0 && args[0].equals("PEMDAS")){

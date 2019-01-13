@@ -138,7 +138,7 @@ public class Calculator{
    * @return The resulting Polynomial after the operation
    */
   public static Polynomial factor(String input, String method){
-    String[] out = input.split("_");
+    String[] out = input.split("\\)\\(");
     Polynomial a = Polynomial.parsePoly(out[0].substring(1));
     Polynomial b = Polynomial.parsePoly(out[1].substring(0, out[1].length() - 1));
     if (method.equals("multiply-pp")) {

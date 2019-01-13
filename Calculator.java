@@ -2,6 +2,13 @@ import java.util.*;
 
 
 public class Calculator{
+  /**
+   * Simplifies the List by performing the specified
+   * operations(power, addition, subtraction, multiplication, division) on the
+   * numbers(stored as a String) in the List.
+   * @param input List of String being simplified
+   * @return String of the simplified double
+   */
   private static String asolve(List<String> input){
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("^")){
@@ -43,6 +50,11 @@ public class Calculator{
     return input.get(0);
   }
 
+  /**
+   * Simplifies the expression(given as a List of Strings) completely.
+   * @param input The expression written as a List of String
+   * @return the answer of the expression
+   */
   public static double solve(List<String> input){
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("sin(")){
@@ -96,6 +108,11 @@ public class Calculator{
     return Double.parseDouble(asolve(input));
   }
 
+  /**
+   * Parses a String input of a quadratic equation and finds its real roots
+   * @param input The quadratic equation written as a String
+   * @return A Fraction array that contains the real roots of the quadratic equation
+   */
   public static Fraction[] Quad(String input){
     String[] in = input.split(" = ");
     Polynomial ans = Polynomial.parsePoly(in[0]);
@@ -103,13 +120,23 @@ public class Calculator{
     return ans.solveQuad();
   }
 
-
+  /**
+   * Draws a horizontal line
+   * @param len The length of the horizontal line
+   * @return A String of a horizontal line
+   */
   private static String drwl(int len){
     String a = "-";
     String l = String.join("", Collections.nCopies(len, a));
     return l;
   }
 
+  /**
+   * Performs either addition, subtraction, or multiplication on two Polynomials
+   * @param input String consisting of the two Polynomials
+   * @param method the operation to be done on the Polynomials
+   * @return The resulting Polynomial after the operation
+   */
   public static Polynomial factor(String input, String method){
     String[] out = input.split("\\)\\(");
     Polynomial a = Polynomial.parsePoly(out[0].substring(1));
@@ -131,6 +158,11 @@ public class Calculator{
     return a;
   }
 
+  /**
+   * Calculates the mean of an array of doubles
+   * @param input An array of Doubles
+   * @return the mean of the Doubles
+   */
   public static double mean(Double[] input){
     double ans = 0.0;
     for (int i = 0; i < input.length; i++) {
@@ -139,6 +171,11 @@ public class Calculator{
     return ans / input.length;
   }
 
+  /**
+   * Calculates the median of an array of doubles
+   * @param input An array of Doubles
+   * @return the median of the Doubles
+   */
   public static double median(Double[] input){
     int center = input.length / 2;
     if (input.length % 2 == 0) {

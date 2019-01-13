@@ -97,7 +97,9 @@ public class Calculator{
   }
 
   public static Fraction[] Quad(String input){
-    Polynomial ans = Polynomial.parsePoly(input);
+    String[] in = input.split(" = ");
+    Polynomial ans = Polynomial.parsePoly(in[0]);
+    ans.subtract(Polynomial.parsePoly(in[1]));
     return ans.solveQuad();
   }
 
@@ -137,20 +139,20 @@ public class Calculator{
     return ans / input.length;
   }
 
-  public static double median(List<String> input){
-    int center = input.size() / 2;
-    if (input.size() % 2 == 0) {
+  public static double median(Double[] input){
+    int center = input.length / 2;
+    if (input.length % 2 == 0) {
       center--;
-      ArrayList<String> inTween = new ArrayList<>();
-      inTween.add(input.get(center));
-      inTween.add(input.get(center + 1));
+      Double[] inTween = new Double[2];
+      inTween[0] = input[center];
+      inTween[1] = input[center + 1];
       return mean(inTween);
     }
-    return input.get(center);
+    return input[center];
   }
 
   public static void main(String[] args) {
-    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic polynomial] \" \nadd-pp \" [polynomial])([polynomial] \" \nsubtract-pp \" [polynomial])([polynomial] \" \nmultiply-pp \" [polynomial])([polynomial] \" \nfour_function-poly [expression(with one variable)] \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
+    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic equation] \" \nadd-pp \" [polynomial])([polynomial] \" \nsubtract-pp \" [polynomial])([polynomial] \" \nmultiply-pp \" [polynomial])([polynomial] \" \nfour_function-poly [expression(with one variable)] \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
     String needTest = "linear \" [monomial] \" \n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
     try {
       ArrayList<String> input = new ArrayList<>();
@@ -164,15 +166,17 @@ public class Calculator{
       else if (args.length > 0 && args[0].equals("mean")) {
         Double[] in = new Double[args.length - 1];
         for (int i = 1; i < args.length; i++){
-          in[i-1] = args[i];
+          in[i-1] = Double.parseDouble(args[i]);
         }
-        System.out.println("Mean: " + mean(input));
+        System.out.println("Mean: " + mean(in));
       }
       else if (args.length > 0 && args[0].equals("median")) {
-        for (int i = 1; i < args.length; i++) {
-          input.add(args[i]);
+        Double[] in = new Double[args.length - 1];
+        for (int i = 1; i < args.length; i++){
+          in[i-1] = Double.parseDouble(args[i]);
         }
-        System.out.println("Median: " + median(input));
+        Arrays.sort(in);
+        System.out.println("Median: " + median(in));
       }
       else if (args.length > 0 && args[0].equals("solve-quadratic")){
         System.out.println("Real Roots Found: " + Arrays.toString(Quad(args[1])));

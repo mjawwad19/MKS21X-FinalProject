@@ -189,7 +189,17 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic equation] \" \nadd-pp \" ([polynomial])([polynomial]) \" \nsubtract-pp \" ([polynomial])([polynomial]) \" \nmultiply-pp \" ([polynomial])([polynomial]) \" \nfour_function-poly [expression(with one variable)] \nsub \" [polynomial/monomial] \" [int] \" \nlinear \" [linear equation with one variable] \" ";
+    String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
+                + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n\n"
+                + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
+                + "median [num1] [num2]... \n \t ex: java Calculator median 39 48 49 37 28 12\n\n"
+                + "solve-quadratic \" [quadratic equation] \" \n \t ex: java Calculator solve-quadratic \"x^(2) - 1 = 0\" \n\n"
+                + "add-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator add-pp \"(4x^(2) - 3x)(5x + 4)\" \n\n"
+                + "subtract-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator subtract-pp \"(4x^(2) - 3x)(5x^(3) + 4x)\" \n\n"
+                + "multiply-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator multiply-pp \"(x - 1)(x + 1)\" \n\n"
+                + "four_function-mono [expression(with one variable)] \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
+                + "sub \" [polynomial/monomial] \" [int] \" \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
+                + "linear \" [linear equation with one variable] \" \n \t ex: java Calculator linear \"4x - 5 = 2\" \n\n\n\n";
     String needTest = "\n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
     try {
       ArrayList<String> input = new ArrayList<>();

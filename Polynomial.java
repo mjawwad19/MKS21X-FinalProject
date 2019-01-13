@@ -219,6 +219,11 @@ public class Polynomial{
     String[] arg = input.split(" = ");
     Polynomial left = Polynomial.parsePoly(arg[0]);
     Polynomial right = Polynomial.parsePoly(arg[1]);
+    for (Monomial term: left.getMonos()){
+      for (Monomial t: right.getMonos()){
+        if (term.getVar() != t.getVar() && (term.getDeg() != 0 || t.getDeg() != 0)) throw new IllegalArgumentException("The linear equation cannot have more than one variable");
+      }
+    }
     left.subtract(right);
     if (left.toString().equals(Monomial.parseMono("0").toString())) throw new IllegalArgumentException("The variable can be any number");
     boolean hasVar = false;

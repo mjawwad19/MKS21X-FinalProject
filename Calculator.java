@@ -228,7 +228,7 @@ public class Calculator{
           Graph g1 = new Graph(Polynomial.parsePoly(args[1]));
           System.out.println(g1);
         }
-        if (args.length == 6) {
+        else if (args.length == 6) {
           Graph g1 = new Graph(Integer.parseInt(args[2]), Integer.parseInt(args[3]),
                                Integer.parseInt(args[4]), Integer.parseInt(args[5]), Polynomial.parsePoly(args[1]));
           System.out.println(g1);

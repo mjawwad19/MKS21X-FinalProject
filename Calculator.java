@@ -102,7 +102,7 @@ public class Calculator{
   }
 
 
-  private static String drwl(int len){ 
+  private static String drwl(int len){
     String a = "-";
     String l = String.join("", Collections.nCopies(len, a));
     return l;
@@ -129,35 +129,12 @@ public class Calculator{
     return a;
   }
 
-  public static Monomial factorM(String input, String method){
-    String[] out = input.split("\\)\\(");
-    Monomial a = Monomial.parseMono(out[0].substring(1));
-    Monomial b = Monomial.parseMono(out[1].substring(0, out[1].length() - 1));
-    if (method.equals("multiply-mm")) {
-      System.out.println("  " + a + "\n*(" + b + ")\n" + drwl(out[0].length()+ 2));
-      return a.multiply(b);
-    }
-    else if (method.equals("divide-mm")) {
-        System.out.println("  " + a + "\n/(" + b + ")\n" + drwl(out[0].length()+ 2));
-        return a.divide(b);
-    }
-    else if (method.equals("subtract-mm")) {
-        System.out.println("  " + a + "\n-(" + b + ")\n" + drwl(out[0].length()+ 2));
-        return a.subtract(b);
-    }
-    else if (method.equals("add-mm")) {
-        System.out.println("  " + a + "\n+(" + b + ")\n" + drwl(out[0].length() + 2));
-        return a.add(b);
-    }
-    else return b;
-  }
-
-  public static double mean(List<String> input){
+  public static double mean(Double[] input){
     double ans = 0.0;
-    for (int i = 0; i < input.size(); i++) {
-      ans += Integer.parseInt(input.get(i));
+    for (int i = 0; i < input.length; i++) {
+      ans += input[i];
     }
-    return (ans / input.size());
+    return ans / input.length;
   }
 
   public static double median(List<String> input){
@@ -169,11 +146,11 @@ public class Calculator{
       inTween.add(input.get(center + 1));
       return mean(inTween);
     }
-    return (double) Integer.parseInt(input.get(center));
+    return input.get(center);
   }
 
   public static void main(String[] args) {
-    String msg = "If you would like to use this calculator, please use the following format:  \n\nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic polynomial] \" \nadd-pp \" [polynomial])([polynomial] \" \nsubtract-pp \" [polynomial])([polynomial] \" \nmultiply-pp \" [polynomial])([polynomial] \" \nadd-mm \" [monomial])([monomial]  \" \nsubtract-mm \" [monomial])([monomial]  \" \nmultiply-mm \" [monomial])([monomial] ] \" \ndivide-mm \" [monomial])([monomial] \" \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
+    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic polynomial] \" \nadd-pp \" [polynomial])([polynomial] \" \nsubtract-pp \" [polynomial])([polynomial] \" \nmultiply-pp \" [polynomial])([polynomial] \" \nfour_function-poly [expression(with one variable)] \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
     String needTest = "linear \" [monomial] \" \n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
     try {
       ArrayList<String> input = new ArrayList<>();
@@ -185,8 +162,9 @@ public class Calculator{
         System.out.println(solve(input));
       }
       else if (args.length > 0 && args[0].equals("mean")) {
+        Double[] in = new Double[args.length - 1];
         for (int i = 1; i < args.length; i++){
-          input.add(args[i]);
+          in[i-1] = args[i];
         }
         System.out.println("Mean: " + mean(input));
       }
@@ -199,24 +177,18 @@ public class Calculator{
       else if (args.length > 0 && args[0].equals("solve-quadratic")){
         System.out.println("Real Roots Found: " + Arrays.toString(Quad(args[1])));
       }
-      else if (args.length > 0 && args[0].equals("sub-p")){
+      else if (args.length > 0 && args[0].equals("sub")){
         System.out.println(Polynomial.parsePoly(args[1]).sub(Integer.parseInt(args[2])));
-      }
-      else if (args.length > 0 && args[0].equals("sub-m")){
-        System.out.println(Monomial.parseMono(args[1]).sub(Integer.parseInt(args[2])));
       }
       else if (args.length > 0 && (args[0].equals("multiply-pp") ||
                                    args[0].equals("add-pp") ||
                                    args[0].equals("subtract-pp"))){
         System.out.println(factor(args[1],args[0]));
       }
-      else if (args.length > 0 && (args[0].equals("multiply-mm") ||
-                                   args[0].equals("add-mm") ||
-                                   args[0].equals("subtract-mm") ||
-                                   args[0].equals("divide-mm"))){
-        System.out.println(factorM(args[1],args[0]));
-                                   }
-      /*else if (args.length > 0 && args[0].equals("linear")){
+      else if (args.length > 0 && (args[0].equals("four_function-poly"))){
+        System.out.println(Polynomial.parsePoly(args[1]));
+      }
+      else if (args.length > 0 && args[0].equals("linear")){
         System.out.println(Polynomial.linear(args[1]));
       }
       else if (args.length > 0 && args[0].equals("graph")){
@@ -229,7 +201,7 @@ public class Calculator{
                                Integer.parseInt(args[4]), Integer.parseInt(args[5]), Polynomial.parsePoly(args[1]));
           System.out.println(g1);
         }
-      }*/
+      }
       else System.out.println(msg);
     }catch(Exception e) {
       System.out.println(msg);

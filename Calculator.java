@@ -63,7 +63,7 @@ public class Calculator{
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j));
             input.remove(i);
-            input.set(i, "" + Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))));
+            input.set(i, "" + (double) Math.round(Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) /100.0);
             input.remove(i + 1);
             swap = true;
           }
@@ -75,7 +75,7 @@ public class Calculator{
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j));
             input.remove(i);
-            input.set(i, "" + Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))));
+            input.set(i, "" + (double) Math.round(Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
             input.remove(i + 1);
             swap = true;
           }
@@ -87,7 +87,7 @@ public class Calculator{
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j));
             input.remove(i);
-            input.set(i, "" + Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))));
+            input.set(i, "" + (double) Math.round(Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
             input.remove(i + 1);
             swap = true;
           }
@@ -193,7 +193,7 @@ public class Calculator{
 
   public static void main(String[] args) {
     String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
-                + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n\n"
+                + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
                 + "median [num1] [num2]... \n \t ex: java Calculator median 39 48 49 37 28 12\n\n"
                 + "solve-quadratic \" [quadratic equation] \" \n \t ex: java Calculator solve-quadratic \"x^(2) - 1 = 0\" \n\n"

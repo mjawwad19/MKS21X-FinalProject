@@ -36,6 +36,7 @@ public class Polynomial{
   }
 
   public void subtract(Monomial other){
+    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new IllegalArgumentException("Polynomial can only have one variable");
     this.add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 
@@ -156,6 +157,12 @@ public class Polynomial{
     Polynomial left = Polynomial.parsePoly(arg[0]);
     Polynomial right = Polynomial.parsePoly(arg[1]);
     left.subtract(right);
+    if (left.toString().equals(Monomial.parseMono("0").toString())) throw new IllegalArgumentException("The variable can be any number");
+    boolean hasVar = false;
+    for (int i = 0; i < left.toString().length(); i++){
+      if (Character.isLetter(left.toString().charAt(i))) hasVar = true;
+    }
+    if (!hasVar) throw new IllegalArgumentException("There is no real solution");
     char vari = ' ';
     Fraction ans = new Fraction(0);
     Fraction c = new Fraction(0);

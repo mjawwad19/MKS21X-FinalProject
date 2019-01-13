@@ -203,6 +203,7 @@ public class Calculator{
                 + "power-pp \" ([polynomial])([int]) \" \n \t ex: java Calculator power-pp \"(x - 1)(3)\" \n\n"
                 + "four_function-mono [expression(with one variable)] \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
                 + "sub \" [polynomial/monomial] \" [int] \" \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
+                + "graph \" [polynomial/monomial(with one variable)] \" OR graph \" [polyomial/monomial(with one variable)] \" [int(X min)] [int(X max)] [int(Y min)] [int(Y max)] \n \t ex: java Calculator graph \" 4x^(2) + 2x + 2 \" -5 5 -10 10 \n\n"
                 + "linear \" [linear equation with one variable] \" \n \t ex: java Calculator linear \"4x - 5 = 2\" \n\n\n\n";
     String m1 = "\n\nTo write a polynomial/monomial (nomial for both), please note the following: \n\nVariables to a degree are encapsulated in parenthesis: x^(5)\nPlease place quotation marks with one space from either end around your nomial(s) \" [nomial(s)] \" \nTo have multiply nomials, please place a '_' in between them: \" [nomial]_[nomial] \"";
     String p = "\n\nsolve-quadratic \" [quadratic polynomial] \" \n\nadd-pp \" [polynomial]_[polynomial] \" \n\nsubtract-pp \" [polynomial]_[polynomial] \" \n\nmultiply-pp \" [polynomial]_[polynomial] \" \n\n";

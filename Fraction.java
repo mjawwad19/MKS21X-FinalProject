@@ -65,7 +65,7 @@ public class Fraction{
   }
 
   public Fraction divide(Fraction other){
-    if (other.getNum() == 0) throw new IllegalArgumentException("cannot divide" + this + "by 0");
+    if (other.getNum() == 0) throw new IllegalArgumentException("cannot divide " + this + " by 0");
     return new Fraction(getNum() * other.getDeno(), getDeno() * other.getNum());
   }
 

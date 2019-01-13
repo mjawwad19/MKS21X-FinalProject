@@ -204,10 +204,8 @@ public class Calculator{
                 + "four_function-mono [expression(with one variable)] \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
                 + "sub \" [polynomial/monomial] \" [int] \" \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
                 + "linear \" [linear equation with one variable] \" \n \t ex: java Calculator linear \"4x - 5 = 2\" \n\n\n\n";
-    String needTest = "\n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
     String m1 = "\n\nTo write a polynomial/monomial (nomial for both), please note the following: \n\nVariables to a degree are encapsulated in parenthesis: x^(5)\nPlease place quotation marks with one space from either end around your nomial(s) \" [nomial(s)] \" \nTo have multiply nomials, please place a '_' in between them: \" [nomial]_[nomial] \"";
     String p = "\n\nsolve-quadratic \" [quadratic polynomial] \" \n\nadd-pp \" [polynomial]_[polynomial] \" \n\nsubtract-pp \" [polynomial]_[polynomial] \" \n\nmultiply-pp \" [polynomial]_[polynomial] \" \n\n";
-    String needTest = "linear \"[nomial equation]\"";
     String m = "add-mm \" [monomial]_[monomial]  \" \n\nsubtract-mm \" [monomial]_[monomial]  \" \n\nmultiply-mm \" [monomial]_[monomial] ] \" \n\ndivide-mm \" [monomial]_[monomial] \"";
     try {
       ArrayList<String> input = new ArrayList<>();

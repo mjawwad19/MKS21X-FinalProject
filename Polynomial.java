@@ -231,6 +231,7 @@ public class Polynomial{
     Fraction c = new Fraction(0);
     Fraction d = new Fraction(1);
     for (Monomial term: left.getMonos()){
+      if (term.getDeg() > 1 || term.getDeg() < 1) throw new IllegalArgumentException("The variable cannot have a degree higher than 1 or less than -1, or else the equation is not linear");
       if (term.getDeg() == 0) c = term.getCoef();
       if (term.getDeg() == 1){
         d = term.getCoef();
@@ -292,5 +293,5 @@ public class Polynomial{
     4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
     Polynomial c = Polynomial.parsePoly("4x * 4 / 2");
     System.out.println(c);
-  }*/
+  }
 }

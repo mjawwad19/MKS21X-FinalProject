@@ -47,19 +47,23 @@ public class Monomial{
     else return "" + getVar() + "^" + "(" + getDeg() + ")";
   }
 
+  /**
+   * Converts the Monomial into a String
+   * @return A String of the Monomial
+   */
   public String toString(){
     if ((getCoef() + "").equals("0")) return "0";
     if (getDeg() == 0) return "" + getCoef(); //will have to be updated when we have multivariable monomials.
     if (getDeg() < 0) return coString() + "/(" + degString() + ")";
     else return coString() + degString();
   }
-/*method likeTerms compares Monomials and returns a boolean if they are combinable
+/**method likeTerms compares Monomials and returns a boolean if they are combinable
 *@param other is the Monomial being compared. */
   public boolean likeTerms(Monomial other) {
     if (getVar() == other.getVar() && getDeg() == other.getDeg()) return true;
     return false;
   }
-/*method add adds monomials that are combinable together into a single monomial.
+/**method add adds monomials that are combinable together into a single monomial.
 Note this add feature does not have functionality when the bases or degrees do
 not match as that would result in a polynomial answer.
 *@param other is the Monomial being added.*/
@@ -82,7 +86,7 @@ not match as that would result in a polynomial answer.
   }
   return out;
 }
-/*method subtract subtracts a monomial only if it is compatible with the monomial
+/**method subtract subtracts a monomial only if it is compatible with the monomial
 calling the method, thus resulting in a single monomial.
 Note this subtract feature does not have functionality when the bases or degrees
 do not match as that would result in a polynomial answer.
@@ -97,7 +101,7 @@ do not match as that would result in a polynomial answer.
     return out;*/
     return add(other.multiply(new Monomial(new Fraction(-1,1), 'x', 0)));
   }
-/*method multiply takes two monomials and multiplies them into a single monomial.
+/**method multiply takes two monomials and multiplies them into a single monomial.
 Note this multiply feature is currently bound to monomials of the same base---
 if we have time we will alow monomials to be multivariable.
 *@param other is the monomial being multiplied with.*/
@@ -110,7 +114,7 @@ if we have time we will alow monomials to be multivariable.
     //else we're going to need to allow Monomials to have multiple variables
     return out;
   }
-/*method divide takes two monomials and divides them into a single monomial.
+/**method divide takes two monomials and divides them into a single monomial.
 Note this divide feature does not work when the bases are of different variable.
 To be honest, graphing calculators usually have only x and y as variables so...
 *@param other is the monomial that we divide with.*/
@@ -123,7 +127,7 @@ To be honest, graphing calculators usually have only x and y as variables so...
     //else we're going to need to allow Monomials to have multiple variables
     return out;
   }
-/*method sub (short for subsitute) subsitutes the variable and performs algebra to
+/**method sub (short for subsitute) subsitutes the variable and performs algebra to
 yield a fraction result aka a tangible number. Although graphing calculators don't
 have this concept viewable for the user, this will be very important for graphing
 via plotting purposes.

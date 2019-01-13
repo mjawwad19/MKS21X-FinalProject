@@ -210,12 +210,12 @@ public class Polynomial{
   }
 
   /**
-   * Solves a linear equation that has only one variable
-   * @param input the linear Polynomial equation as a String
-   * @return a String that contains the answer of the linear equation and the variable that corresponds to imt
+   * Solves a single variable equation that has only one variable
+   * @param input the single variable Polynomial equation as a String
+   * @return a String that contains the answer of the equation and the variable that corresponds to imt
    * @throws IllegalArgumentException if the variable can be anything or if there is no solution
    */
-  public static String linear(String input){
+  public static String singleVar(String input){
     String[] arg = input.split(" = ");
     Polynomial left = Polynomial.parsePoly(arg[0]);
     Polynomial right = Polynomial.parsePoly(arg[1]);

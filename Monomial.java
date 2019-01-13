@@ -116,7 +116,7 @@ To be honest, graphing calculators usually have only x and y as variables so...
 *@param other is the monomial that we divide with.*/
   public Monomial divide(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
-    if (getVar() == other.getVar()) {
+    if (getVar() == other.getVar() || other.getDeg() == 0) {
       out.setCoef(getCoef().divide(other.getCoef()));
       out.setDeg(getDeg() - other.getDeg());
     }

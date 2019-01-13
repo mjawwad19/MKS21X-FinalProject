@@ -132,7 +132,7 @@ public class Polynomial{
         input.remove(i - 1);
         input.remove(i);
       }
-      else if(input.get(i).equals("/")){
+      if(input.get(i).equals("/")){
         input.set(i, "" + Monomial.parseMono(input.get(i-1)).divide(Monomial.parseMono(input.get(i + 1))));
         input.remove(i - 1);
         input.remove(i);
@@ -214,8 +214,7 @@ public class Polynomial{
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
     System.out.println(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
     4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
-    Polynomial c = Polynomial.parsePoly("x^(2) - 1");
+    Polynomial c = Polynomial.parsePoly("4x * 4 / 2");
     System.out.println(c);
-    System.out.println(Arrays.toString(c.solveQuad()));
   }
 }

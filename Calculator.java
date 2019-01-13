@@ -152,7 +152,7 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic equation] \" \nadd-pp \" [polynomial])([polynomial] \" \nsubtract-pp \" [polynomial])([polynomial] \" \nmultiply-pp \" [polynomial])([polynomial] \" \nfour_function-poly [expression(with one variable)] \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
+    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic equation] \" \nadd-pp \" ([polynomial])([polynomial]) \" \nsubtract-pp \" ([polynomial])([polynomial]) \" \nmultiply-pp \" ([polynomial])([polynomial]) \" \nfour_function-poly [expression(with one variable)] \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
     String needTest = "linear \" [monomial] \" \n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
     try {
       ArrayList<String> input = new ArrayList<>();
@@ -189,7 +189,7 @@ public class Calculator{
                                    args[0].equals("subtract-pp"))){
         System.out.println(factor(args[1],args[0]));
       }
-      else if (args.length > 0 && (args[0].equals("four_function-poly"))){
+      else if (args.length > 0 && (args[0].equals("four_function-mono"))){
         System.out.println(Polynomial.parsePoly(args[1]));
       }
       else if (args.length > 0 && args[0].equals("linear")){

@@ -132,7 +132,7 @@ public class Calculator{
   }
 
   /**
-   * Performs either addition, subtraction, or multiplication on two Polynomials
+   * Performs either addition, subtraction, multiplication, or power function on two Polynomials
    * @param input String consisting of the two Polynomials
    * @param method the operation to be done on the Polynomials
    * @return The resulting Polynomial after the operation
@@ -154,6 +154,9 @@ public class Calculator{
       System.out.println("  " + a + "\n+(" + b + ")\n" + drwl(out[0].length() + 2));
       a.add(b);
       return a;
+    }
+    else if (method.equals("power-pp")) {
+      return a.power(Integer.parseInt(out[1].substring(0, out[1].length() - 1)));
     }
     return a;
   }
@@ -197,6 +200,7 @@ public class Calculator{
                 + "add-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator add-pp \"(4x^(2) - 3x)(5x + 4)\" \n\n"
                 + "subtract-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator subtract-pp \"(4x^(2) - 3x)(5x^(3) + 4x)\" \n\n"
                 + "multiply-pp \" ([polynomial])([polynomial]) \" \n \t ex: java Calculator multiply-pp \"(x - 1)(x + 1)\" \n\n"
+                + "power-pp \" ([polynomial])([int]) \" \n \t ex: java Calculator power-pp \"(x - 1)(3)\" \n\n"
                 + "four_function-mono [expression(with one variable)] \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
                 + "sub \" [polynomial/monomial] \" [int] \" \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
                 + "linear \" [linear equation with one variable] \" \n \t ex: java Calculator linear \"4x - 5 = 2\" \n\n\n\n";
@@ -233,6 +237,7 @@ public class Calculator{
       }
       else if (args.length > 0 && (args[0].equals("multiply-pp") ||
                                    args[0].equals("add-pp") ||
+                                   args[0].equals("power-pp") ||
                                    args[0].equals("subtract-pp"))){
         System.out.println(factor(args[1],args[0]));
       }

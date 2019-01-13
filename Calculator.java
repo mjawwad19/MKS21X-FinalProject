@@ -120,14 +120,11 @@ public class Calculator{
     return ans.solveQuad();
   }
 
-<<<<<<< HEAD
   /**
    * Draws a horizontal line
    * @param len The length of the horizontal line
    * @return A String of a horizontal line
    */
-=======
->>>>>>> 455c0c533139a851df795e7ab6ed474d1e228506
   private static String drwl(int len){
     String a = "-";
     String l = String.join("", Collections.nCopies(len, a));
@@ -158,25 +155,8 @@ public class Calculator{
       a.add(b);
       return a;
     }
-<<<<<<< HEAD
     else if (method.equals("power-pp")) {
       return a.power(Integer.parseInt(out[1].substring(0, out[1].length() - 1)));
-=======
-    return a;
-  }
-
-  public static Monomial factorM(String input, String method){
-    String[] out = input.split("_");
-    Monomial a = Monomial.parseMono(out[0].substring(1));
-    Monomial b = Monomial.parseMono(out[1].substring(0, out[1].length() - 1));
-    if (method.equals("multiply-mm")) {
-      System.out.println("  " + a + "\n*(" + b + ")\n" + drwl(out[0].length()+ 2));
-      return a.multiply(b);
-    }
-    else if (method.equals("divide-mm")) {
-        System.out.println("  " + a + "\n/(" + b + ")\n" + drwl(out[0].length()+ 2));
-        return a.divide(b);
->>>>>>> 455c0c533139a851df795e7ab6ed474d1e228506
     }
     return a;
   }
@@ -212,7 +192,6 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-<<<<<<< HEAD
     String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
@@ -226,13 +205,10 @@ public class Calculator{
                 + "sub \" [polynomial/monomial] \" [int] \" \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
                 + "linear \" [linear equation with one variable] \" \n \t ex: java Calculator linear \"4x - 5 = 2\" \n\n\n\n";
     String needTest = "\n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
-=======
     String m1 = "\n\nTo write a polynomial/monomial (nomial for both), please note the following: \n\nVariables to a degree are encapsulated in parenthesis: x^(5)\nPlease place quotation marks with one space from either end around your nomial(s) \" [nomial(s)] \" \nTo have multiply nomials, please place a '_' in between them: \" [nomial]_[nomial] \"";
     String p = "\n\nsolve-quadratic \" [quadratic polynomial] \" \n\nadd-pp \" [polynomial]_[polynomial] \" \n\nsubtract-pp \" [polynomial]_[polynomial] \" \n\nmultiply-pp \" [polynomial]_[polynomial] \" \n\n";
     String needTest = "linear \"[nomial equation]\"";
     String m = "add-mm \" [monomial]_[monomial]  \" \n\nsubtract-mm \" [monomial]_[monomial]  \" \n\nmultiply-mm \" [monomial]_[monomial] ] \" \n\ndivide-mm \" [monomial]_[monomial] \"";
-    String msg = m1 + "\n\nIf you would like to use this calculator, please use the following format:  \n\n\nmean [num1] [num2]...  \n\nmedian [num1] [num2]...\n\nsub-p \" [polynomial] \" [int] \n\nsub-m \" [monomial] \" [int]\n\ngraph \" [nomial] \" [xbound1] [xbound2] [ybound1] [ybound2] or graph \" [nomial] \"\n\n" + needTest + p + m;
->>>>>>> 455c0c533139a851df795e7ab6ed474d1e228506
     try {
       ArrayList<String> input = new ArrayList<>();
       if (args.length > 0 && args[0].equals("PEMDAS")){
@@ -269,21 +245,10 @@ public class Calculator{
                                    args[0].equals("subtract-pp"))){
         System.out.println(factor(args[1],args[0]));
       }
-<<<<<<< HEAD
       else if (args.length > 0 && (args[0].equals("four_function-mono"))){
         System.out.println(Polynomial.parsePoly(args[1]));
       }
       else if (args.length > 0 && args[0].equals("linear")){
-=======
-      else if (args.length > 0 && (args[0].equals("multiply-mm") ||
-                                   args[0].equals("add-mm") ||
-                                   args[0].equals("subtract-mm") ||
-                                   args[0].equals("divide-mm"))){
-        System.out.println(factorM(args[1],args[0]));
-                                   }
-      else if (args.length > 0 && args[0].equals("linear")){
-        //System.out.println(args[1]);
->>>>>>> 455c0c533139a851df795e7ab6ed474d1e228506
         System.out.println(Polynomial.linear(args[1]));
       }
       else if ((args.length == 2 || args.length == 6) && args[0].equals("graph")){
@@ -297,10 +262,7 @@ public class Calculator{
                                Integer.parseInt(args[4]), Integer.parseInt(args[5]), Polynomial.parsePoly(args[1]));
           System.out.println(g1);
         }
-<<<<<<< HEAD
-=======
         else System.out.println("Too many bounds/Too little, refer to instructions!");
->>>>>>> 455c0c533139a851df795e7ab6ed474d1e228506
       }
       else System.out.println(msg);
     }catch(IllegalArgumentException e){

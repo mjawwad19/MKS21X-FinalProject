@@ -84,6 +84,7 @@ public class Polynomial{
   }
 
   public String toString(){
+    if (getMonos().size() == 1) return getMonos().get(0).toString();
     String ans = "";
     for (Monomial term: monos){
       if (term.toString().equals("0"));
@@ -99,6 +100,7 @@ public class Polynomial{
     Fraction b = new Fraction(0, 1);
     Fraction c = new Fraction(0, 1);
     for (Monomial term: monos){
+      if (term.getDeg() > 2) throw new IllegalArgumentException("The polynomial is not a quadratic, the highest degree of " + term.getVar() + " is " + term.getDeg());
       if (term.getDeg() == 2) a = term.getCoef();
       if (term.getDeg() == 1) b = term.getCoef();
       if (term.getDeg() == 0) c = term.getCoef();
@@ -112,19 +114,39 @@ public class Polynomial{
   }
 
   public static Polynomial parsePoly(String poly){
-    String[] p = poly.split(" ");
     Polynomial ans = new Polynomial();
-    if (p.length > 0) ans.add(Monomial.parseMono(p[0]));
-    for (int i = 1; i < p.length; i += 2){
-      if (p[i].equals("+")){
-        ans.add(Monomial.parseMono(p[i+1]));
+    String[] p = poly.split(" ");
+    if (p.length == 0) return ans;
+    if (p.length == 1){
+      Monomial a = Monomial.parseMono(p[0]);
+      ans.add(a);
+      return ans;
+    }
+    ArrayList<String> input = new ArrayList<>();
+    for (int i = 0; i < input.size(); i++){
+      if (input.get(i).equals("*")){
+        input.set(i, "" + Monomial.parseMono(input.get(i-1)).multiply(Monomial.parseMono(input.get(i + 1))));
+        input.remove(i - 1);
+        input.remove(i);
       }
-      if (p[i].equals("-")){
-        ans.add(Monomial.parseMono("-1").multiply(Monomial.parseMono(p[i+1])));
+      else if(input.get(i).equals("/")){
+        input.set(i, "" + Monomial.parseMono(input.get(i-1)).divide(Monomial.parseMono(input.get(i + 1))));
+        input.remove(i - 1);
+        input.remove(i);
+      }
+    }
+    if (input.size() > 0) ans.add(Monomial.parseMono(input.get(0)));
+    for (int i = 1; i < input.size(); i += 2){
+      if (input.get(i).equals("+")){
+        ans.add(Monomial.parseMono(input.get(i+1)));
+      }
+      if (input.get(i).equals("-")){
+        ans.subtract(Monomial.parseMono(input.get(i+1)));
       }
     }
     return ans;
   }
+
 
   public static String linear(String input){
     String[] arg = input.split(" = ");
@@ -146,6 +168,11 @@ public class Polynomial{
   }
 
   public Polynomial power(int p){
+    if (p == 0) {
+      ArrayList<Monomial> ans = new ArrayList<>();
+      ans.add(Monomial.parseMono("1"));
+      return new Polynomial(ans);
+    }
     Polynomial temp = Polynomial.parsePoly(this.toString());
     for(int i = 1; i < p; i++){
       temp = temp.multiply(this);
@@ -154,6 +181,7 @@ public class Polynomial{
   }
 
   public static void main(String[] args) {
+    /*
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(4, 1), 'x', 2));
     a.add(new Monomial(new Fraction(-6, 1), 'x', 5));
@@ -183,9 +211,7 @@ public class Polynomial{
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
     System.out.println(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
     4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5*/
-    Polynomial c = Polynomial.parsePoly("x + 1");
-    System.out.println(c);
-    System.out.println(c.power(3));
+    Polynomial c = Polynomial.parsePoly("-3x");
     System.out.println(c);
   }
 }

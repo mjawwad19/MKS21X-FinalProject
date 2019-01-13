@@ -152,8 +152,8 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic equation] \" \nadd-pp \" ([polynomial])([polynomial]) \" \nsubtract-pp \" ([polynomial])([polynomial]) \" \nmultiply-pp \" ([polynomial])([polynomial]) \" \nfour_function-poly [expression(with one variable)] \nsub-p \" [polynomial] \" [int] \nsub-m \" [monomial] \" [int]";
-    String needTest = "linear \" [monomial] \" \n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
+    String msg = "If you would like to use this calculator, please use the following format:  \n\nPEMDAS [expression(no variable)] \nmean [num1] [num2]...  \nmedian [num1] [num2]... \nsolve-quadratic \" [quadratic equation] \" \nadd-pp \" ([polynomial])([polynomial]) \" \nsubtract-pp \" ([polynomial])([polynomial]) \" \nmultiply-pp \" ([polynomial])([polynomial]) \" \nfour_function-poly [expression(with one variable)] \nsub \" [polynomial/monomial] \" [int] \" \nlinear \" [linear equation with one variable] \" ";
+    String needTest = "\n\ngraph [polynomial] [xbound1] [xbound2] [ybound1] [ybound2] or graph [polynomial]";
     try {
       ArrayList<String> input = new ArrayList<>();
       if (args.length > 0 && args[0].equals("PEMDAS")){
@@ -207,6 +207,8 @@ public class Calculator{
         }
       }
       else System.out.println(msg);
+    }catch(IllegalArgumentException e){
+      System.out.println(e);
     }catch(Exception e) {
       System.out.println(msg);
       //e.printStackTrace();

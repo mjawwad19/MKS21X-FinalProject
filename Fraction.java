@@ -138,8 +138,7 @@ public class Fraction{
 
   /**
     * rounds a Fraction class instance to int. (Will be helpful for graphing)[helper]
-    * @param term is what is being converted
-    * @return the nearest int. 
+    * @return the nearest int.
     */
   public int round() {
     return (int) Double.parseDouble(this.toString());

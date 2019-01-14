@@ -92,6 +92,7 @@ public class Polynomial{
   /**
    * Multiplies the Polynomial by a Polynomial
    * @param other the Polynomial to be multiplied
+   * @return a new polynomial which is the product of the invoker and other.
    */
   public Polynomial multiply(Polynomial other){
     Polynomial out = new Polynomial();
@@ -119,6 +120,7 @@ public class Polynomial{
   /**
    * Substitutes the variable in the Polynomial with a given integer
    * @param v the value to substitute the variable with
+   * @return the evalulation after subsituting the variable with v
    */
   public Fraction sub(int v) {
     Fraction ans = new Fraction(0, 1);
@@ -249,7 +251,8 @@ public class Polynomial{
   /**
    * Raises the Polynomial to a certain nonnegative integer power
    * @param p the integer power to which the Polynomial will be raised to
-   * @throws IllegalArgumentException if the power is a negative number (p < 0)
+   * @throws IllegalArgumentException if the power is a negative number
+   * @return a new polynomial which is equivalent to the invoker to power p.
    */
   public Polynomial power(int p){
     if (p == 0) {

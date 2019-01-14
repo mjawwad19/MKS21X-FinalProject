@@ -60,7 +60,10 @@ public class Graph{
   /**
     * Initializes a graph with the plotting of the equation given, using user given bounds
     * @param eq is the equation to be graphed within default Bounds
-    * @param minX, @param maxY, @param minY, @param maxY are the bounds specified by the user for the graph
+    * @param minX is the left bound of the graph/grid
+    * @param maxX is the right bound of the graph/grid
+    * @param minY is the bottom bound of the graph/grid
+    * @param maxY is the top bound of the graph/grid
     */
   public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq) {
     startX = minX;

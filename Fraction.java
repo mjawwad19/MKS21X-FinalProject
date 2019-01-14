@@ -44,6 +44,7 @@ public class Fraction{
 
   /**
    * Simplifies the Fraction to lowest terms
+   * @return the simplified Fraction
    */
   private void simplify(){
     int g = gcf(Math.abs(getNum()),Math.abs(getDeno()));
@@ -136,8 +137,9 @@ public class Fraction{
   }
 
   /**
-    *rounds a Fraction class instance to int. (Will be helpful for graphing)[helper]
-    *@param term is what is being converted
+    * rounds a Fraction class instance to int. (Will be helpful for graphing)[helper]
+    * @param term is what is being converted
+    * @return the nearest int. 
     */
   public int round() {
     return (int) Double.parseDouble(this.toString());

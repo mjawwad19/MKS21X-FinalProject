@@ -8,7 +8,13 @@ public class Graph{
   public static final String ANSI_RESET = "\u001B[0m";
   public static final String ANSI_RED = "\u001B[31m";
   public static final String WHITE = "\033[107m\033[30m";
-  // creates empty graph grid (2D array) [helper]
+  /**
+    * creates empty graph grid (2D array) [helper]
+    * @param minX is the left bound of the graph/grid
+    * @param maxX is the right bound of the graph/grid
+    * @param minY is the bottom bound of the graph/grid
+    * @param maxY is the top bound of the graph/grid
+    */
   private void setGraph(int minX, int maxX, int minY, int maxY) {
     int c = Math.abs(maxX- minX) + 1;
     int r = Math.abs(maxY - minY)+ 1;
@@ -26,29 +32,36 @@ public class Graph{
       }
     }
   }
-
-
-  //graphs the equation [helper]
+  /**
+    * plots the equation into the graph/grid
+    * @param Eq is the equation that will be plotted
+    */
   private void setEq(Polynomial Eq) {
-  for (int i = startX; i <= endX; i++) {
-    int y = Eq.sub(i).round();
-    //System.out.println(y); may be used later on for Table command
-    int x = i + Math.abs(startX);
-    if (y >= startY && y <= endY) {
-      y = Math.abs(endY - y);
-      grid[y][x] = 'O';
-    //  System.out.println("" + x + " " + y); debug
+    for (int i = startX; i <= endX; i++) {
+      int y = Eq.sub(i).round();
+      //System.out.println(y); may be used later on for Table command
+      int x = i + Math.abs(startX);
+      if (y >= startY && y <= endY) {
+        y = Math.abs(endY - y);
+        grid[y][x] = 'O';
+      //  System.out.println("" + x + " " + y); debug
+      }
     }
   }
-}
-  //graphs the equation given on default bounds
+  /**
+    * Initializes a graph with the plotting of the equation given, using default bounds
+    * @param eq is the equation to be graphed within default Bounds
+    */
   public Graph(Polynomial eq) {
     setGraph(startX, endX, startY, endY);
     setEq(eq);
     System.out.println(WHITE + eq);
   }
-
-  //graphs the equation given and the bounds specified
+  /**
+    * Initializes a graph with the plotting of the equation given, using user given bounds
+    * @param eq is the equation to be graphed within default Bounds
+    * @param minX, @param maxY, @param minY, @param maxY are the bounds specified by the user for the graph
+    */
   public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq) {
     startX = minX;
     startY = minY;
@@ -58,7 +71,10 @@ public class Graph{
     setEq(eq);
     System.out.println(WHITE + ANSI_RED + eq + ANSI_RESET + WHITE);
   }
-  //output for user to see
+  /**
+    * Returns a String (viewable in terminal) of the graph, changing the background color to white to easily see the equation, which is plotted in red.
+    * @return a String of the graph.
+    */
   public String toString() {
     System.out.println("\033[107m\033[30m");
     String out = "";
@@ -72,11 +88,11 @@ public class Graph{
     return out + "\n\nX Bounds: " + startX + " to " + endX +
                         "\nY Bounds: " + startY + " to " + endY + ANSI_RESET;
   }
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(1,1), 'x', 2));
     Graph g1 = new Graph(-10, 15, -20, 20, a);
     System.out.println(g1);
 
-  }
+  }*/
 }

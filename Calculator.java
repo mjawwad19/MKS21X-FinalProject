@@ -192,7 +192,19 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-    String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
+    System.out.println("Enter the required arguments");
+    Scanner scan = new Scanner(System.in);
+    String equa = scan.nextLine();
+    ArrayList<String> input = new ArrayList<>();
+    if (args[0].equals("PEMDAS")){
+      String[] temp = equa.split(" ");
+      System.out.println(Arrays.toString(temp));
+      for (String arg: temp){
+        input.add(arg);
+      }
+      System.out.println(solve(input));
+    }
+    /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
                 + "median [num1] [num2]... \n \t ex: java Calculator median 39 48 49 37 28 12\n\n"
@@ -266,6 +278,6 @@ public class Calculator{
     }catch(Exception e) {
       System.out.println(msg);
       //e.printStackTrace();
-    }
+    }*/
   }
 }

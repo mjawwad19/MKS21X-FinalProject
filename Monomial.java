@@ -90,6 +90,7 @@ public class Monomial{
   /**
     * compares Monomials and returns a boolean if they are combinable (same var and degree)
     * @param other is the Monomial being compared.
+    * @return true or false
     */
   public boolean likeTerms(Monomial other) {
     if (getVar() == other.getVar() && getDeg() == other.getDeg()) return true;
@@ -99,6 +100,7 @@ public class Monomial{
     * adds monomials that are combinable together into a single monomial.
     * Note this add feature does not have functionality when the bases or degrees do not match as that would result in a polynomial answer.
     * @param other is the Monomial being added.
+    * @return the Monomial that invoked it, now modified
     */
   public Monomial add(Monomial other) {
     if (this.likeTerms(other)) {
@@ -124,6 +126,7 @@ public class Monomial{
   * subtracts a monomial only if it is compatible with the monomial resulting in a single monomial.
   * Note this subtract feature does not have functionality when the bases or degree do not match as that would result in a polynomial answer.
   * @param other is the Monomial being subtracted.
+  * @return the Monomial that invoked it, now modified
   */
   public Monomial subtract(Monomial other) {
     return add(other.multiply(new Monomial(new Fraction(-1,1), 'x', 0)));
@@ -132,6 +135,7 @@ public class Monomial{
   * takes two monomials and multiplies them into a single monomial.
   * Note this multiply feature is currently bound to monomials of the same base--_if we have time we will alow monomials to be multivariable.
   * @param other is the monomial being multiplied with.
+  * @return a new Monomial which is the product of the invoking Monomial and other
   */
   public Monomial multiply(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
@@ -146,6 +150,7 @@ public class Monomial{
   * takes two monomials and divides them into a single monomial.
   * Note this divide feature does not work when the bases are of different variable.
   * @param other is the monomial that we divide with.
+  * @return a new Monomial which is the quotient of the invoking Monomial and other
   */
   public Monomial divide(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
@@ -159,6 +164,7 @@ public class Monomial{
   /**
    * subsitutes a value for the variable and evaluates expression
    * @param v is the integer we are subsituting our variable for.
+   * @return the evaluated expression with the subsitution
    */
   public Fraction sub(int v) {
     return  getCoef().multiply(new Fraction((int)Math.pow(v, getDeg()), 1));
@@ -166,6 +172,7 @@ public class Monomial{
   /**
   * Converts a String to a Monomial
   * @param mono is the String to be converted
+  * @return a parsed Monomial from String mono
   */
   public static Monomial parseMono(String mono){
     Fraction c = new Fraction(0.0);

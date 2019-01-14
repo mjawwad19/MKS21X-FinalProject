@@ -2,51 +2,81 @@ public class Monomial{
   private Fraction coef;
   private char var;
   private int degree;
-
+  /**
+  * Initializes a Monomial given a Fraction, character, and in
+  * @param co is the coefficient of the Monomial
+  * @param v is the variable of the Monomial
+  * @param deg is the degree of the variable of the Monomial
+  */
   public Monomial(Fraction co, char v, int deg){
     coef = co;
     var = v;
     degree = deg;
   }
 //--------get methods--------
+  /**
+    * Retrieves the coefficient of a Monomial.
+    * @return the coefficient of the invoking Monomial
+    */
   public Fraction getCoef(){
     return coef;
   }
-
+  /**
+    * Retrieves the variable of a Monomial.
+    * @return the variable of the invoking Monomial
+    */
   public char getVar(){
     return var;
   }
-
+  /**
+    * Retrieves the degree of a variable in a  Monomial.
+    * @return the degree of the invoking Monomial's variable
+    */
   public int getDeg(){
     return degree;
   }
 //---------set methods--------
+  /**
+    * Changes the coefficient of a Monomial.
+    * @param co is the coefficient that will replace the original coefficient of the Monomial.
+    */
   public void setCoef(Fraction co) {
     coef = co;
   }
-
+  /**
+    * Changes the variable in a Monomial.
+    * @param v is the variable that will replace the original variable of the Monomial.
+    */
   public void setVar(char v) {
     var = v;
   }
-
+  /**
+    * Changes the degree of a variable in a Monomial.
+    * @param deg is the degree that will replace the original degree of the Monomial.
+    */
   public void setDeg(int deg) {
     degree = deg;
   }
 //--------toString---------
-  //helper
+  /**
+    * Converts the coefficient of a monomial to a String [helper]
+    * @return A String of the coefficient
+    */
   private String coString(){
     if ((getCoef() + "").equals("1")) return "";
     if ((getCoef() + "").equals("-1")) return "-";
     else return "" + getCoef();
   }
-  //helper
+  /**
+    * Converts the degree of a Monomial into a String [helper]
+    * @return A String of the Monomial without it's coefficient
+    */
   private String degString(){
     if ((getDeg() == 1)) return "" + getVar();
     if ((getDeg() == -1)) return "" + getVar();
     if ((getDeg() < -1)) return  "" + getVar() + "^" + "(" + getDeg()*-1 + ")";
     else return "" + getVar() + "^" + "(" + getDeg() + ")";
   }
-
   /**
    * Converts the Monomial into a String
    * @return A String of the Monomial
@@ -57,16 +87,19 @@ public class Monomial{
     if (getDeg() < 0) return coString() + "/(" + degString() + ")";
     else return coString() + degString();
   }
-/**method likeTerms compares Monomials and returns a boolean if they are combinable
-*@param other is the Monomial being compared. */
+  /**
+    * compares Monomials and returns a boolean if they are combinable (same var and degree)
+    * @param other is the Monomial being compared.
+    */
   public boolean likeTerms(Monomial other) {
     if (getVar() == other.getVar() && getDeg() == other.getDeg()) return true;
     return false;
   }
-/**method add adds monomials that are combinable together into a single monomial.
-Note this add feature does not have functionality when the bases or degrees do
-not match as that would result in a polynomial answer.
-*@param other is the Monomial being added.*/
+  /**
+    * adds monomials that are combinable together into a single monomial.
+    * Note this add feature does not have functionality when the bases or degrees do not match as that would result in a polynomial answer.
+    * @param other is the Monomial being added.
+    */
   public Monomial add(Monomial other) {
     if (this.likeTerms(other)) {
       this.setCoef(getCoef().add(other.getCoef()));
@@ -77,7 +110,7 @@ not match as that would result in a polynomial answer.
       return new Monomial(new Fraction(-1, 1), 'x', 0);
     }
   }
-
+/*
   public Polynomial addP(Monomial other) {
     Polynomial out = new Polynomial();
     if (!likeTerms(other)) {
@@ -86,25 +119,20 @@ not match as that would result in a polynomial answer.
   }
   return out;
 }
-/**method subtract subtracts a monomial only if it is compatible with the monomial
-calling the method, thus resulting in a single monomial.
-Note this subtract feature does not have functionality when the bases or degrees
-do not match as that would result in a polynomial answer.
-*@param other is the Monomial being subtracted.*/
+*/
+  /**
+  * subtracts a monomial only if it is compatible with the monomial resulting in a single monomial.
+  * Note this subtract feature does not have functionality when the bases or degree do not match as that would result in a polynomial answer.
+  * @param other is the Monomial being subtracted.
+  */
   public Monomial subtract(Monomial other) {
-  /*  Monomial out = new Monomial(new Fraction(0, 1), 'x', 0);
-    if (likeTerms(other)) {
-      out.setCoef(getCoef().subtract(other.getCoef()));
-      out.setVar(getVar());
-      out.setDeg(getDeg());
-    }
-    return out;*/
     return add(other.multiply(new Monomial(new Fraction(-1,1), 'x', 0)));
   }
-/**method multiply takes two monomials and multiplies them into a single monomial.
-Note this multiply feature is currently bound to monomials of the same base---
-if we have time we will alow monomials to be multivariable.
-*@param other is the monomial being multiplied with.*/
+  /**
+  * takes two monomials and multiplies them into a single monomial.
+  * Note this multiply feature is currently bound to monomials of the same base--_if we have time we will alow monomials to be multivariable.
+  * @param other is the monomial being multiplied with.
+  */
   public Monomial multiply(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
     if (getVar() == other.getVar() || getDeg() == 0 || other.getDeg() == 0) {
@@ -114,10 +142,11 @@ if we have time we will alow monomials to be multivariable.
     //else we're going to need to allow Monomials to have multiple variables
     return out;
   }
-/**method divide takes two monomials and divides them into a single monomial.
-Note this divide feature does not work when the bases are of different variable.
-To be honest, graphing calculators usually have only x and y as variables so...
-*@param other is the monomial that we divide with.*/
+  /**
+  * takes two monomials and divides them into a single monomial.
+  * Note this divide feature does not work when the bases are of different variable.
+  * @param other is the monomial that we divide with.
+  */
   public Monomial divide(Monomial other) {
     Monomial out = new Monomial(new Fraction(0,1), getVar(), 0);
     if (getVar() == other.getVar() || other.getDeg() == 0) {
@@ -127,15 +156,17 @@ To be honest, graphing calculators usually have only x and y as variables so...
     //else we're going to need to allow Monomials to have multiple variables
     return out;
   }
-/**method sub (short for subsitute) subsitutes the variable and performs algebra to
-yield a fraction result aka a tangible number. Although graphing calculators don't
-have this concept viewable for the user, this will be very important for graphing
-via plotting purposes.
-*@param v is the integer we are subsituting our variable for.*/
+  /**
+   * subsitutes a value for the variable and evaluates expression
+   * @param v is the integer we are subsituting our variable for.
+   */
   public Fraction sub(int v) {
     return  getCoef().multiply(new Fraction((int)Math.pow(v, getDeg()), 1));
   }
-
+  /**
+  * Converts a String to a Monomial
+  * @param mono is the String to be converted
+  */
   public static Monomial parseMono(String mono){
     Fraction c = new Fraction(0.0);
     char v = 'x';
@@ -160,7 +191,7 @@ via plotting purposes.
     return new Monomial(c,v,d);
   }
 
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
     Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
     Monomial c = new Monomial(new Fraction(3,5), 'q', 0);
@@ -184,5 +215,5 @@ via plotting purposes.
     System.out.println(e.sub(3)); //2.5* 3^2 = 22.5
     System.out.println(parseMono("4.8x^(1)"));
     System.out.println(c.multiply(a));
-  }
+  }*/
 }

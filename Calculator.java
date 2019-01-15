@@ -213,14 +213,19 @@ public class Calculator{
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode")){
-        String[] temp = equa.split(" ");
-        for (String arg: temp){
-          input.add(arg);
+        if (equa.equals("help")){
+          System.out.println("Examples: \n\t 4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2");
         }
-        double a = solve(input, ahh);
-        ahh.setAns(a);
-        System.out.println(a);
-        input = new ArrayList<>();
+        else{
+          String[] temp = equa.split(" ");
+          for (String arg: temp){
+            input.add(arg);
+          }
+          double a = solve(input, ahh);
+          ahh.setAns(a);
+          System.out.println("= " + a);
+          input = new ArrayList<>();
+        }
         System.out.println();
         equa = scan.nextLine();
       }

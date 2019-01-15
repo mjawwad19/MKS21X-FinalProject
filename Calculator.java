@@ -212,7 +212,7 @@ public class Calculator{
       System.out.println();
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
-      while (!equa.equals("exit")){
+      while (!equa.equals("exit mode")){
         String[] temp = equa.split(" ");
         for (String arg: temp){
           input.add(arg);
@@ -223,6 +223,9 @@ public class Calculator{
         input = new ArrayList<>();
         System.out.println();
         equa = scan.nextLine();
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
       }
     }
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"

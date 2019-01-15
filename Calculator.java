@@ -305,7 +305,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30\n");
+          System.out.println("Example: \n\tx^(2) - 1 = 0\n\tReal Roots Found: [1, -1]\n");
           equa = scan.nextLine();
         }
         else{
@@ -324,6 +324,33 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+
+    if (equa.equals("sub")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t5x^(4) - 4x + 2\t1\n\t= 11\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] temp = equa.split("\t");
+            System.out.println(Polynomial.parsePoly(temp[0]).sub(Integer.parseInt(temp[1])));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"

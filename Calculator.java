@@ -182,7 +182,7 @@ public class Calculator{
     for (int i = 0; i < input.length; i++) {
       ans += input[i];
     }
-    return ans / input.length;
+    return Math.round(ans / input.length * 1000.0) / 1000.0;
   }
 
   /**
@@ -214,17 +214,23 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23");
+          System.out.println("Example: \n\t4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23\n");
+          equa = scan.nextLine();
         }
         else{
-          String[] temp = equa.split(" ");
-          for (String arg: temp){
-            input.add(arg);
+          try{
+            String[] temp = equa.split(" ");
+            for (String arg: temp){
+              input.add(arg);
+            }
+            double a = solve(input, ahh);
+            ahh.setAns(a);
+            System.out.println("= " + a);
+            input = new ArrayList<>();
+          }catch(Exception e){
+            System.out.println();
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }
-          double a = solve(input, ahh);
-          ahh.setAns(a);
-          System.out.println("= " + a);
-          input = new ArrayList<>();
         }
         System.out.println();
         equa = scan.nextLine();
@@ -240,16 +246,21 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30");
+          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30\n");
+          equa = scan.nextLine();
+
         }
         else{
-          String[] aaa = equa.split(" ");
-          Double[] in = new Double[aaa.length];
-          for (int i = 0; i < aaa.length; i++){
-            in[i] = Double.parseDouble(aaa[i]);
+          try{
+            String[] aaa = equa.split(" ");
+            Double[] in = new Double[aaa.length];
+            for (int i = 0; i < aaa.length; i++){
+              in[i] = Double.parseDouble(aaa[i]);
+            }
+            System.out.println("Mean: " + mean(in));
+          }catch(Exception e){
+          System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }
-          System.out.println("Mean: " + mean(in));
-        }
         System.out.println();
         equa = scan.nextLine();
       }
@@ -257,6 +268,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+  }
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"

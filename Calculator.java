@@ -2,6 +2,16 @@ import java.util.*;
 
 
 public class Calculator{
+  private double ans;
+
+  public double getAns(){
+    return ans;
+  }
+
+  public void setAns(double a){
+    ans = a;
+  }
+
   /**
    * Simplifies the List by performing the specified
    * operations(power, addition, subtraction, multiplication, division) on the
@@ -9,8 +19,9 @@ public class Calculator{
    * @param input List of String being simplified
    * @return String of the simplified double
    */
-  private static String asolve(List<String> input){
+  private static String asolve(List<String> input, Calculator ahh){
     for (int i = 0; i < input.size(); i++){
+      if (input.get(i).equals("ans")) input.set(i, "" + ahh.getAns());
       if (input.get(i).equals("^")){
         input.set(i, "" + Math.pow(Double.parseDouble(input.get(i - 1)),Double.parseDouble(input.get(i + 1))));
         input.remove(i - 1);
@@ -55,13 +66,13 @@ public class Calculator{
    * @param input The expression written as a List of String
    * @return the answer of the expression
    */
-  public static double solve(List<String> input){
+  public static double solve(List<String> input, Calculator ahh){
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("sin(")){
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
             input.set(i, "" + (double) Math.round(Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) /100.0);
             input.remove(i + 1);
@@ -73,7 +84,7 @@ public class Calculator{
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
             input.set(i, "" + (double) Math.round(Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
             input.remove(i + 1);
@@ -85,7 +96,7 @@ public class Calculator{
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
             input.set(i, "" + (double) Math.round(Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
             input.remove(i + 1);
@@ -97,7 +108,7 @@ public class Calculator{
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j),ahh);
             input.remove(i);
             input.remove(i + 1);
             swap = true;
@@ -105,7 +116,7 @@ public class Calculator{
         }
       }
     }
-    return Double.parseDouble(asolve(input));
+    return Double.parseDouble(asolve(input, ahh));
   }
 
   /**
@@ -192,17 +203,24 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-    System.out.println("Enter the required arguments");
+    System.out.println();
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
     if (args[0].equals("PEMDAS")){
-      String[] temp = equa.split(" ");
-      System.out.println(Arrays.toString(temp));
-      for (String arg: temp){
-        input.add(arg);
+      Calculator ahh = new Calculator();
+      while (!equa.equals("exit")){
+        String[] temp = equa.split(" ");
+        for (String arg: temp){
+          input.add(arg);
+        }
+        double a = solve(input, ahh);
+        ahh.setAns(a);
+        System.out.println(a);
+        input = new ArrayList<>();
+        System.out.println();
+        equa = scan.nextLine();
       }
-      System.out.println(solve(input));
     }
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"

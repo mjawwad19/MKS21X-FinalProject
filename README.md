@@ -88,3 +88,6 @@ Development Log:
 1/13/2019
 - Went around all of classes debugging and testing the functionality of the Calculator (making sure that the right Exceptions are thrown and the right messages are printed). Also went around trying to simplify code and made the Calculator easy to use. Also added comments to the classes that don't already have them. (Peihua)
 - Ditto (Jawwad), and catching each other's mistakes/ guide typos.
+
+1/14/2019
+- Worked on implementing an option for the users to use the previous answer in their new PEMDAS expression to be solved. Also used Scanner class on PEMDAS to allow for an interactive terminals where the user does not have to call java Calculator every time. Updates are still not merged with master branch because we still have to convert the other functionalities of the Calculator. (Peihua)

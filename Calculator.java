@@ -301,7 +301,28 @@ public class Calculator{
     }
 
     if (equa.equals("solve-quadratic")){
-      
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println("Real Roots Found: " + Arrays.toString(Quad(equa)));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
     }
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"

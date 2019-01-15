@@ -212,9 +212,9 @@ public class Calculator{
       System.out.println();
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
-      while (!equa.equals("exit mode")){
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Examples: \n\t 4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2");
+          System.out.println("Example: \n\t4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23");
         }
         else{
           String[] temp = equa.split(" ");
@@ -225,6 +225,30 @@ public class Calculator{
           ahh.setAns(a);
           System.out.println("= " + a);
           input = new ArrayList<>();
+        }
+        System.out.println();
+        equa = scan.nextLine();
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("mean")){
+      System.out.println();
+      equa = scan.nextLine();
+      Calculator ahh = new Calculator();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30");
+        }
+        else{
+          String[] aaa = equa.split(" ");
+          Double[] in = new Double[aaa.length];
+          for (int i = 0; i < aaa.length; i++){
+            in[i] = Double.parseDouble(aaa[i]);
+          }
+          System.out.println("Mean: " + mean(in));
         }
         System.out.println();
         equa = scan.nextLine();

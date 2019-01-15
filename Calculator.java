@@ -261,14 +261,48 @@ public class Calculator{
           }catch(Exception e){
           System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }
-        System.out.println();
-        equa = scan.nextLine();
+          System.out.println();
+          equa = scan.nextLine();
+        }
       }
       if (equa.equals("exit mode")){
         Calculator.main(args);
       }
     }
-  }
+
+    if (equa.equals("median")){
+      System.out.println();
+      equa = scan.nextLine();
+      Calculator ahh = new Calculator();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t20 30 50 40 10 \n\tMedian: 30\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] aaa = equa.split(" ");
+            Double[] in = new Double[aaa.length];
+            for (int i = 0; i < aaa.length; i++){
+              in[i] = Double.parseDouble(aaa[i]);
+            }
+            Arrays.sort(in);
+            System.out.println("Median: " + median(in));
+          }catch(Exception e){
+          System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("solve-quadratic")){
+      
+    }
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"

@@ -204,10 +204,13 @@ public class Calculator{
 
   public static void main(String[] args) {
     System.out.println();
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t singleVar-equation \n\t graph");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
-    if (args[0].equals("PEMDAS")){
+    if (equa.equals("PEMDAS")){
+      System.out.println();
+      equa = scan.nextLine();
       Calculator ahh = new Calculator();
       while (!equa.equals("exit")){
         String[] temp = equa.split(" ");

@@ -91,3 +91,6 @@ Development Log:
 
 1/14/2019
 - Worked on implementing an option for the users to use the previous answer in their new PEMDAS expression to be solved. Also used Scanner class on PEMDAS to allow for an interactive terminals where the user does not have to call java Calculator every time. Updates are still not merged with master branch because we still have to convert the other functionalities of the Calculator. (Peihua)
+
+1/15/2019
+- Finished implementing all the modes of the calculator into the new main. Will work on making help and error messages more detailed later. (Peihua)

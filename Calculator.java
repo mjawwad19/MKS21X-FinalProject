@@ -204,7 +204,7 @@ public class Calculator{
 
   public static void main(String[] args) {
     System.out.println();
-    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph");
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
@@ -457,6 +457,11 @@ public class Calculator{
       if (equa.equals("exit mode")){
         Calculator.main(args);
       }
+    }
+
+    else if (!equa.equals("exit")){
+      System.out.println("Please choose a valid mode");
+      Calculator.main(args);
     }
 
     /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"

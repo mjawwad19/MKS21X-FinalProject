@@ -204,7 +204,7 @@ public class Calculator{
 
   public static void main(String[] args) {
     System.out.println();
-    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t singleVar-equation \n\t graph");
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
@@ -365,6 +365,88 @@ public class Calculator{
             System.out.println(factor(equa, mm));
           }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("four_function-mono")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t4x^(5) / 2x^(2) + 8x^(3) - 2\t1\n\t= 10x^(3) - 2\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println(Polynomial.parsePoly(equa));
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("singleVar-equation")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t4x - 4 = 8\t1\n\tx = 3\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println(Polynomial.singleVar(equa));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("graph")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t5x^(4) - 4x + 2 \nor \t 4x + 4\t-10\t10\t-10\t10\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] temp = equa.split("\t");
+            if (temp.length == 1){
+              System.out.println(temp[0]);
+              Graph g = new Graph(Polynomial.parsePoly(temp[0]));
+              System.out.println(g);
+            }
+            else if(temp.length == 5){
+              System.out.println(temp[0]);
+              Graph g = new Graph(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Polynomial.parsePoly(temp[0]));
+              System.out.println(g);
+            }
+            else System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }

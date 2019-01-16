@@ -228,8 +228,8 @@ public class Calculator{
             System.out.println("= " + a);
             input = new ArrayList<>();
           }catch(Exception e){
-            System.out.println();
-            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+            e.printStackTrace();
+            //System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }
         }
         System.out.println();

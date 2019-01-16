@@ -2,6 +2,16 @@ import java.util.*;
 
 
 public class Calculator{
+  private double ans;
+
+  public double getAns(){
+    return ans;
+  }
+
+  public void setAns(double a){
+    ans = a;
+  }
+
   /**
    * Simplifies the List by performing the specified
    * operations(power, addition, subtraction, multiplication, division) on the
@@ -9,8 +19,9 @@ public class Calculator{
    * @param input List of String being simplified
    * @return String of the simplified double
    */
-  private static String asolve(List<String> input){
+  private static String asolve(List<String> input, Calculator ahh){
     for (int i = 0; i < input.size(); i++){
+      if (input.get(i).equals("ans")) input.set(i, "" + ahh.getAns());
       if (input.get(i).equals("^")){
         input.set(i, "" + Math.pow(Double.parseDouble(input.get(i - 1)),Double.parseDouble(input.get(i + 1))));
         input.remove(i - 1);
@@ -55,13 +66,13 @@ public class Calculator{
    * @param input The expression written as a List of String
    * @return the answer of the expression
    */
-  public static double solve(List<String> input){
+  public static double solve(List<String> input, Calculator ahh){
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("sin(")){
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
             input.set(i, "" + (double) Math.round(Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) /100.0);
             input.remove(i + 1);
@@ -73,7 +84,7 @@ public class Calculator{
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
             input.set(i, "" + (double) Math.round(Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
             input.remove(i + 1);
@@ -85,7 +96,7 @@ public class Calculator{
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
             input.set(i, "" + (double) Math.round(Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
             input.remove(i + 1);
@@ -97,7 +108,7 @@ public class Calculator{
         boolean swap = false;
         for (int j = 0; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j));
+            asolve(input.subList(i + 1, j),ahh);
             input.remove(i);
             input.remove(i + 1);
             swap = true;
@@ -105,7 +116,7 @@ public class Calculator{
         }
       }
     }
-    return Double.parseDouble(asolve(input));
+    return Double.parseDouble(asolve(input, ahh));
   }
 
   /**
@@ -171,7 +182,7 @@ public class Calculator{
     for (int i = 0; i < input.length; i++) {
       ans += input[i];
     }
-    return ans / input.length;
+    return Math.round(ans / input.length * 1000.0) / 1000.0;
   }
 
   /**
@@ -192,7 +203,263 @@ public class Calculator{
   }
 
   public static void main(String[] args) {
-    String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
+    System.out.println();
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph");
+    Scanner scan = new Scanner(System.in);
+    String equa = scan.nextLine();
+    ArrayList<String> input = new ArrayList<>();
+    if (equa.equals("PEMDAS")){
+      System.out.println();
+      equa = scan.nextLine();
+      Calculator ahh = new Calculator();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] temp = equa.split(" ");
+            for (String arg: temp){
+              input.add(arg);
+            }
+            double a = solve(input, ahh);
+            ahh.setAns(a);
+            System.out.println("= " + a);
+            input = new ArrayList<>();
+          }catch(Exception e){
+            System.out.println();
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+        }
+        System.out.println();
+        equa = scan.nextLine();
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("mean")){
+      System.out.println();
+      equa = scan.nextLine();
+      Calculator ahh = new Calculator();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30\n");
+          equa = scan.nextLine();
+
+        }
+        else{
+          try{
+            String[] aaa = equa.split(" ");
+            Double[] in = new Double[aaa.length];
+            for (int i = 0; i < aaa.length; i++){
+              in[i] = Double.parseDouble(aaa[i]);
+            }
+            System.out.println("Mean: " + mean(in));
+          }catch(Exception e){
+          System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("median")){
+      System.out.println();
+      equa = scan.nextLine();
+      Calculator ahh = new Calculator();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t20 30 50 40 10 \n\tMedian: 30\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] aaa = equa.split(" ");
+            Double[] in = new Double[aaa.length];
+            for (int i = 0; i < aaa.length; i++){
+              in[i] = Double.parseDouble(aaa[i]);
+            }
+            Arrays.sort(in);
+            System.out.println("Median: " + median(in));
+          }catch(Exception e){
+          System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("solve-quadratic")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\tx^(2) - 1 = 0\n\tReal Roots Found: [1, -1]\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println("Real Roots Found: " + Arrays.toString(Quad(equa)));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("sub")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t5x^(4) - 4x + 2\t1\n\t= 11\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] temp = equa.split("\t");
+            System.out.println(Polynomial.parsePoly(temp[0]).sub(Integer.parseInt(temp[1])));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("multiply-pp") || equa.equals("subtract-pp") || equa.equals("power-pp") || equa.equals("add-pp")){
+      String mm = equa;
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t(4x^(2) - 3x)(5x + 4)\t1\n\t= 11\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println(factor(equa, mm));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("four_function-mono")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t4x^(5) / 2x^(2) + 8x^(3) - 2\t1\n\t= 10x^(3) - 2\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println(Polynomial.parsePoly(equa));
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("singleVar-equation")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t4x - 4 = 8\t1\n\tx = 3\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            System.out.println(Polynomial.singleVar(equa));
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    if (equa.equals("graph")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t5x^(4) - 4x + 2 \nor \t 4x + 4\t-10\t10\t-10\t10\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] temp = equa.split("\t");
+            if (temp.length == 1){
+              System.out.println(temp[0]);
+              Graph g = new Graph(Polynomial.parsePoly(temp[0]));
+              System.out.println(g);
+            }
+            else if(temp.length == 5){
+              System.out.println(temp[0]);
+              Graph g = new Graph(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Polynomial.parsePoly(temp[0]));
+              System.out.println(g);
+            }
+            else System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+
+    /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
                 + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
                 + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
                 + "median [num1] [num2]... \n \t ex: java Calculator median 39 48 49 37 28 12\n\n"
@@ -266,6 +533,6 @@ public class Calculator{
     }catch(Exception e) {
       System.out.println(msg);
       //e.printStackTrace();
-    }
+    }*/
   }
 }

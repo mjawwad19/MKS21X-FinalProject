@@ -2,50 +2,16 @@
 APCS Project ;) : Calculator
 
 
-Instructions:
-- Put expressions/equations in quotation marks!
-- If you would like to use this calculator, please use the following format:
-  - PEMDAS " [expression(no variable)] "
-    - *ex: java Calculator PEMDAS "4 ^ 2 + 5 * 3 - 6 / 2 "*
-    - Can be used with trig fxns: sin/cos/tan:
-    - *ex: PEMDAS "4 ^ 2 + 5sin( 30 )"*
+**Instructions:**
+- java Calculator
+- type a mode to work with (displayed after typing java Calculator)
+  - modes are the types of functions you can do on our Calculator.
+- use help if in trouble for examples on how to use each mode
+  - note, the separation is based by *tabbing* instead of generic every white space
+- use exit to escape the program, and exit mode to choose another mode.
+  - note, some modes allow the saving of the previous answer to keep working with. When you exit a mode, this is lost!
 
-  - mean [num1] [num2]...
-    - *ex: java Calculator mean 10 20 30 40 92*
-
-  - median [num1] [num2]...
-    - *ex: java Calculator median 39 48 49 37 28 12*
-
-  - solve-quadratic " [quadratic equation] "
-    - *ex: java Calculator solve-quadratic "x^(2) - 1 = 0"*
-
-  - add-pp "([polynomial])([polynomial]) "
-    - *ex: java Calculator add-pp "(4x^(2) - 3x)(5x + 4)"*
-
-  - subtract-pp "([polynomial])([polynomial])"
-    - *ex: java Calculator subtract-pp "(4x^(2) - 3x)(5x^(3) + 4x)"*
-
-  - multiply-pp "([polynomial])([polynomial])"
-    - *ex: java Calculator multiply-pp "(x - 1)(x + 1)"*
-
-  - power-pp "([polynomial])([int])"
-    - *ex: java Calculator power-pp "(x - 1)(3)"*
-
-  - four_function-mono "[expression(with one variable)]"
-    - *ex: java Calculator four_function-mono "4x^(2) * 5x^(3) - 3x^(6) + 4x"*
-
-  - sub "[polynomial/monomial]" [int]
-    - *ex: java Calculator sub "4x^(2) + 3" 8*
-
-  - singleVar-equation "[single variable equation]"
-    - *ex: java Calculator singleVar-equation "4x - 5 = 2"*
-
-  - graph "[polynomial/monomial(with one variable)]" OR
-  - graph "[polyomial/monomial(with one variable)]" [int(X min)] [int(X max)] [int(Y min)] [int(Y max))
-    - *ex: java Calculator graph " 4x^(2) + 2x + 2 " -5 5 -10 10*
-
-
-Development Log:
+**Development Log:**
 1/3/2019
 - Worked on Fraction class, mostly done with all the methods in there; also added extra methods needed. (Peihua)
 - Worked on the foundation for the Graph class: a graph with axis can be made with specified or non specified bounds. (Jawwad)
@@ -88,3 +54,15 @@ Development Log:
 1/13/2019
 - Went around all of classes debugging and testing the functionality of the Calculator (making sure that the right Exceptions are thrown and the right messages are printed). Also went around trying to simplify code and made the Calculator easy to use. Also added comments to the classes that don't already have them. (Peihua)
 - Ditto (Jawwad), and catching each other's mistakes/ guide typos.
+- Updated comments to work with java docs (Jawwad)
+
+1/14/2019
+- Worked on implementing an option for the users to use the previous answer in their new PEMDAS expression to be solved. Also used Scanner class on PEMDAS to allow for an interactive terminals where the user does not have to call java Calculator every time. Updates are still not merged with master branch because we still have to convert the other functionalities of the Calculator. (Peihua)
+- Updated Prototype for Friday (Jawwad)
+
+1/15/2019
+- Finished implementing all the modes of the calculator into the new main. Will work on making help and error messages more detailed later. (Peihua)
+
+1/16/2019
+- Added List functionality to graphs, though negatives < -9 regardless of how the conditions are placed will shift an extra 1. Fixed this by changing the List table string layout from horizontal to vertical. (methods List + ALToString). Updated calculator to match/played around with new modes to make sure they work. Updated instructions(Jawwad)
+- Started debugging the new interface. Fixed a bug in PEMDAS where entering an invalid argument broke the code. Will continue working on PEMDAS to provide better help messages. (Peihua)

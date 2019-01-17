@@ -446,7 +446,7 @@ public class Calculator{
             else if(temp.length == 6){
               boolean x = false;
               if (temp[5].equals("yes")) x = true;
-              System.out.println(temp[5]);
+              //System.out.println(temp[5]);
               Graph g = new Graph(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Polynomial.parsePoly(temp[0]), x);
               System.out.println(g);
             }

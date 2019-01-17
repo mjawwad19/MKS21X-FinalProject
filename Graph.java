@@ -1,3 +1,4 @@
+import java.util.*;
 public class Graph{
   private char[][] grid;
   private Polynomial equation;
@@ -32,6 +33,47 @@ public class Graph{
       }
     }
   }
+  private ArrayList<ArrayList<Integer>> List(Polynomial eq) {
+  ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
+   for (int i = startX; i <= endX; i++){
+     ArrayList<Integer> inner = new ArrayList<>();
+     for (int j = 0; j < 2; j++){
+       if (j == 0) inner.add(i);
+       if (j == 1) inner.add(eq.sub(i).round());
+     }
+     list.add(inner);
+   }
+   //System.out.println(list);
+   return list;
+ }
+  /*
+   * Converts a double ArrayList into an XY table (vertical)
+   * @param l is the arraylist to be converted
+   * @return a string that looks like a vertical Table
+   */
+  public String ALToString(ArrayList<ArrayList<Integer>> l) {
+    String out = "| X | Y |\n|___|___|\n";
+    for (int i = 0; i < l.size(); i++) {
+      for (int j = 0; j < 1; j++) {
+        String x = "|";
+        String y = "|";
+        //x vals
+        int x0 = l.get(i).get(j);
+        int y0 = l.get(i).get(j+1);
+        if (x0 < 10 && x0 >= 0) x += " " +x0 + " ";
+        else if (x0 < 100 ||x0>-10 && x0 < 0) x += "" + x0 + " ";
+        else if (x0 < 1000 || x0<-9 && x0 >-100) x += x0;
+        //y vals
+        if (y0 < 10 && y0 >= 0)  y += " " +y0 + " |";
+        else if (y0 < 100 || y0 > -10 && y0 < 0) y += " " + y0 + "|";
+        else if (y0 < 1000 || y0 <-9 -100 && y0 < -9) y +=  y0 + "|";
+        out += x + y + "\n";
+      }
+    }
+    out += "---------";
+    //System.out.println(x);
+    return out;
+  }
   /**
     * plots the equation into the graph/grid
     * @param Eq is the equation that will be plotted
@@ -52,10 +94,11 @@ public class Graph{
     * Initializes a graph with the plotting of the equation given, using default bounds
     * @param eq is the equation to be graphed within default Bounds
     */
-  public Graph(Polynomial eq) {
+  public Graph(Polynomial eq, boolean l) {
     setGraph(startX, endX, startY, endY);
     setEq(eq);
     System.out.println(WHITE + eq);
+    if (l) System.out.println(List(eq));
   }
   /**
     * Initializes a graph with the plotting of the equation given, using user given bounds
@@ -65,7 +108,7 @@ public class Graph{
     * @param minY is the bottom bound of the graph/grid
     * @param maxY is the top bound of the graph/grid
     */
-  public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq) {
+  public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq, boolean l) {
     startX = minX;
     startY = minY;
     endX = maxX;
@@ -73,6 +116,7 @@ public class Graph{
     setGraph(startX, endX, startY, endY);
     setEq(eq);
     System.out.println(WHITE + ANSI_RED + eq + ANSI_RESET + WHITE);
+    if (l) System.out.println(ALToString(List(eq)));
   }
   /**
     * Returns a String (viewable in terminal) of the graph, changing the background color to white to easily see the equation, which is plotted in red.
@@ -91,11 +135,11 @@ public class Graph{
     return out + "\n\nX Bounds: " + startX + " to " + endX +
                         "\nY Bounds: " + startY + " to " + endY + ANSI_RESET;
   }
-  /*public static void main(String[] args) {
+  public static void main(String[] args) {
     Polynomial a = new Polynomial();
     a.add(new Monomial(new Fraction(1,1), 'x', 2));
-    Graph g1 = new Graph(-10, 15, -20, 20, a);
+    Graph g1 = new Graph(-10, 15, -20, 20, a, true);
     System.out.println(g1);
 
-  }*/
+  }
 }

@@ -56,6 +56,7 @@ public class Calculator{
         input.remove(i);
         i--;
       }
+      else Double.parseDouble(input.get(i));
     }
 
     return input.get(0);
@@ -228,8 +229,9 @@ public class Calculator{
             System.out.println("= " + a);
             input = new ArrayList<>();
           }catch(Exception e){
-            System.out.println();
+            //e.printStackTrace();
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+            input = new ArrayList<>();
           }
         }
         System.out.println();

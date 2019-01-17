@@ -158,11 +158,7 @@ public class Graph{
     a.add(new Monomial(new Fraction(1,1), 'x', 2));
     Graph g1 = new Graph(-10, 15, -20, 20, a, true);
     System.out.println(g1);
-<<<<<<< HEAD
-    int b = g1.endX - g1.startX;
+    //int b = g1.endX - g1.startX;
     //System.out.println(b); //shows 25
-=======
-
->>>>>>> f04ecaa069e734206e88a8ca92ee0d4c4d89aae5
   }
 }

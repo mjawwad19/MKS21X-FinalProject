@@ -98,7 +98,7 @@ public class Graph{
     setGraph(startX, endX, startY, endY);
     setEq(eq);
     System.out.println(WHITE + eq);
-    if (l) System.out.println(List(eq));
+    if (l) System.out.println(ALToString(List(eq));
   }
   /**
     * Initializes a graph with the plotting of the equation given, using user given bounds

@@ -430,20 +430,24 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t5x^(4) - 4x + 2 \nor \t 4x + 4\t-10\t10\t-10\t10\n");
+          System.out.println("Example: \n\t5x^(4) - 4x + 2\tno \nor \t4x + 4\t-10\t10\t-10\t10\tyes\n");
           equa = scan.nextLine();
         }
         else{
           try{
             String[] temp = equa.split("\t");
-            if (temp.length == 1){
-              System.out.println(temp[0]);
-              Graph g = new Graph(Polynomial.parsePoly(temp[0]));
+            if (temp.length == 2){
+              //System.out.println(temp[0]);
+              boolean x = false;
+              if (temp[1].equals("yes")) x = true;
+              Graph g = new Graph(Polynomial.parsePoly(temp[0]), x);
               System.out.println(g);
             }
-            else if(temp.length == 5){
-              System.out.println(temp[0]);
-              Graph g = new Graph(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Polynomial.parsePoly(temp[0]));
+            else if(temp.length == 6){
+              boolean x = false;
+              if (temp[5].equals("yes")) x = true;
+              System.out.println(temp[5]);
+              Graph g = new Graph(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Polynomial.parsePoly(temp[0]), x);
               System.out.println(g);
             }
             else System.out.println("\nPlease enter proper arguments. Type help for an example\n");

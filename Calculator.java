@@ -142,8 +142,9 @@ public class Calculator{
     return l;
   }
 
-  private static String summSym() {
-    String sym = "___\n\\\n/\n" +	"\u203E" + "\u203E" + "\u203E";
+  private static String summSym(String f, String n, Polynomial eq) {
+    String sym =   " " + f +" \n___\n\\\n/" + "  =  " + eq.toString() +
+    "\n\u203E\u203E\u203E\n" +  eq.getMonos().get(0).getVar() + "=" + f  + "\n" + drwl(20) + "\n";
     return sym;
   }
 
@@ -222,7 +223,7 @@ public class Calculator{
   n.add(new Monomial(new Fraction(2, 1), 'x', 1));
   System.out.println(n);
   System.out.println(summ(2,5,n));*/
-    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n");
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n\t summation\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
@@ -486,14 +487,16 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t2\t5\t2x -1\n\t\n");
+          System.out.println("Example: \n\t2\t5\t2x\n\t=28.0\n");
           equa = scan.nextLine();
         }
         else{
           try{
             String[] temp = equa.split("\t");
             if (temp.length == 3){
-              System.out.println(temp[1] + "\n" + summSym + "\nn = " + temp[0] + "   =  " + temp[2]+ "\n\n=" + summ(temp[0],temp[1],temp[2]));
+              System.out.println("\n" + summSym(temp[0],temp[1], Polynomial.parsePoly(temp[2])) +
+               summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2])));
+             }
             else System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
@@ -506,8 +509,6 @@ public class Calculator{
         Calculator.main(args);
       }
     }
-
-
     else if (!equa.equals("exit")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);

@@ -75,7 +75,7 @@ public class Calculator{
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + (double) Math.round(Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) /100.0);
+            input.set(i, "" + (double) Math.round(Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))) * 1000.0) /1000.0);
             input.remove(i + 1);
             swap = true;
           }
@@ -87,7 +87,7 @@ public class Calculator{
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + (double) Math.round(Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
+            input.set(i, "" + (double) Math.round(Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))) * 1000.0) / 1000.0);
             input.remove(i + 1);
             swap = true;
           }
@@ -99,7 +99,7 @@ public class Calculator{
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + (double) Math.round(Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))) * 100.0) / 100.0);
+            input.set(i, "" + (double) Math.round(Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))) * 1000.0) / 1000.0);
             input.remove(i + 1);
             swap = true;
           }
@@ -208,7 +208,6 @@ public class Calculator{
     System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
-    ArrayList<String> input = new ArrayList<>();
     if (equa.equals("PEMDAS")){
       System.out.println();
       equa = scan.nextLine();
@@ -220,6 +219,7 @@ public class Calculator{
         }
         else{
           try{
+            ArrayList<String> input = new ArrayList<>();
             String[] temp = equa.split(" ");
             for (String arg: temp){
               input.add(arg);
@@ -227,11 +227,9 @@ public class Calculator{
             double a = solve(input, ahh);
             ahh.setAns(a);
             System.out.println("= " + a);
-            input = new ArrayList<>();
           }catch(Exception e){
             //e.printStackTrace();
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
-            input = new ArrayList<>();
           }
         }
         System.out.println();
@@ -242,7 +240,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("mean")){
+    else if (equa.equals("mean")){
       System.out.println();
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
@@ -272,7 +270,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("median")){
+    else if (equa.equals("median")){
       System.out.println();
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
@@ -302,7 +300,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("solve-quadratic")){
+    else if (equa.equals("solve-quadratic")){
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
@@ -313,7 +311,7 @@ public class Calculator{
         else{
           try{
             System.out.println("Real Roots Found: " + Arrays.toString(Quad(equa)));
-          }catch (IllegalArgumentException e){
+          }catch (ArithmeticException e){
             System.out.println(e.getMessage());
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
@@ -327,7 +325,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("sub")){
+    else if (equa.equals("sub")){
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
@@ -339,7 +337,7 @@ public class Calculator{
           try{
             String[] temp = equa.split("\t");
             System.out.println(Polynomial.parsePoly(temp[0]).sub(Integer.parseInt(temp[1])));
-          }catch (IllegalArgumentException e){
+          }catch (ArithmeticException e){
             System.out.println(e.getMessage());
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
@@ -353,7 +351,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("multiply-pp") || equa.equals("subtract-pp") || equa.equals("power-pp") || equa.equals("add-pp")){
+    else if (equa.equals("multiply-pp") || equa.equals("subtract-pp") || equa.equals("power-pp") || equa.equals("add-pp")){
       String mm = equa;
       System.out.println();
       equa = scan.nextLine();
@@ -365,7 +363,7 @@ public class Calculator{
         else{
           try{
             System.out.println(factor(equa, mm));
-          }catch (IllegalArgumentException e){
+          }catch (ArithmeticException e){
             System.out.println(e.getMessage());
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
@@ -379,7 +377,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("four_function-mono")){
+    else if (equa.equals("four_function-mono")){
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
@@ -402,7 +400,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("singleVar-equation")){
+    else if (equa.equals("singleVar-equation")){
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
@@ -413,7 +411,7 @@ public class Calculator{
         else{
           try{
             System.out.println(Polynomial.singleVar(equa));
-          }catch (IllegalArgumentException e){
+          }catch (ArithmeticException e){
             System.out.println(e.getMessage());
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
@@ -427,7 +425,7 @@ public class Calculator{
       }
     }
 
-    if (equa.equals("graph")){
+    else if (equa.equals("graph")){
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
@@ -539,7 +537,7 @@ public class Calculator{
         else System.out.println("Too many bounds/Too little, refer to instructions!");
       }
       else System.out.println(msg);
-    }catch(IllegalArgumentException e){
+    }catch(ArithmeticException e){
       System.out.println(e);
     }catch(Exception e) {
       System.out.println(msg);

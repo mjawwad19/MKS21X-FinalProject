@@ -362,7 +362,9 @@ public class Calculator{
         }
         else{
           try{
-            System.out.println(factor(equa, mm));
+            Polynomial ans = factor(equa, mm);
+            if (ans.toString().equals("")) System.out.println("0");
+            else System.out.println(ans);
           }catch (ArithmeticException e){
             System.out.println(e.getMessage());
           }catch (Exception e){

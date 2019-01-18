@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Graph{
   private char[][] grid;
   private Polynomial equation;
@@ -90,6 +91,21 @@ public class Graph{
       }
     }
   }
+
+  private ArrayList<ArrayList<Integer>> List(Polynomial Eq) {
+    ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
+    for (int i = 0; i < endX-startX; i++){
+      ArrayList<Integer> inner = new ArrayList<>();
+      for (int j = 0; j < 2; j++){
+        if (j == 0) inner.add(i);
+        if (j == 1) inner.add(Eq.sub(i).round());
+      }
+      list.add(inner);
+    }
+    //System.out.println(list);
+    return list;
+  }
+
   /**
     * Initializes a graph with the plotting of the equation given, using default bounds
     * @param eq is the equation to be graphed within default Bounds
@@ -97,6 +113,7 @@ public class Graph{
   public Graph(Polynomial eq, boolean l) {
     setGraph(startX, endX, startY, endY);
     setEq(eq);
+    if (l)   System.out.println(List(eq));
     System.out.println(WHITE + eq);
     if (l) System.out.println(ALToString(List(eq)));
   }
@@ -115,6 +132,7 @@ public class Graph{
     endY = maxY;
     setGraph(startX, endX, startY, endY);
     setEq(eq);
+    if (l) System.out.println(List(eq));
     System.out.println(WHITE + ANSI_RED + eq + ANSI_RESET + WHITE);
     if (l) System.out.println(ALToString(List(eq)));
   }
@@ -140,6 +158,7 @@ public class Graph{
     a.add(new Monomial(new Fraction(1,1), 'x', 2));
     Graph g1 = new Graph(-10, 15, -20, 20, a, true);
     System.out.println(g1);
-
+    //int b = g1.endX - g1.startX;
+    //System.out.println(b); //shows 25
   }
 }

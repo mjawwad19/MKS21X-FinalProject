@@ -53,7 +53,7 @@ public class Graph{
    * @return a string that looks like a vertical Table
    */
   public String ALToString(ArrayList<ArrayList<Integer>> l) {
-    String out = "| X | Y |\n|___|___|\n";
+    String out = "| X | Y |\n"+"\u203E" + "\u203E" + "\u203E" + "\u203E" + "\u203E" +	"\u203E" + "\u203E" + "\u203E" + "\u203E" + "\n";
     for (int i = 0; i < l.size(); i++) {
       for (int j = 0; j < 1; j++) {
         String x = "|";
@@ -71,7 +71,7 @@ public class Graph{
         out += x + y + "\n";
       }
     }
-    out += "---------";
+    out += "\u203E" + "\u203E" + "\u203E" + "\u203E" + "\u203E" +	"\u203E" + "\u203E" + "\u203E" + "\u203E";
     //System.out.println(x);
     return out;
   }

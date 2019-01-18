@@ -12,6 +12,7 @@ APCS Project ;) : Calculator
   - note, some modes allow the saving of the previous answer to keep working with. When you exit a mode, this is lost!
 
 **Development Log:**
+
 1/3/2019
 - Worked on Fraction class, mostly done with all the methods in there; also added extra methods needed. (Peihua)
 - Worked on the foundation for the Graph class: a graph with axis can be made with specified or non specified bounds. (Jawwad)
@@ -69,3 +70,6 @@ APCS Project ;) : Calculator
 
 1/17/2019
 - Continued debugging today. Fixed the issue where adding/subtracting/multiplying polynomial would not display anything if the answer is zero. Also changed the type of some exceptions so that the right error messages are displayed. (Peihua)
+
+1/18/2019
+- Added summation (with the aid of helpers to display). It is now possible to find the sum of all the numbers given the start, end, optional scale, and equation. Helped find issues with help messages. (Jawwad)

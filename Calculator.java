@@ -142,16 +142,23 @@ public class Calculator{
     return l;
   }
 
-  private static String summSym(String f, String n, Polynomial eq) {
+  private static String summSym(String f, String n, Polynomial eq,String inc) {
     String sym =   " " + f +" \n___\n\\\n/" + "  =  " + eq.toString() +
-    "\n\u203E\u203E\u203E\n" +  eq.getMonos().get(0).getVar() + "=" + f  + "\n" + drwl(20) + "\n";
+    "\n\u203E\u203E\u203E\n" +  eq.getMonos().get(0).getVar() + "=" + f  + ", increment by: " + inc + "\n" + drwl(20) + "\n";
     return sym;
   }
 
-  public static double summ(int f, int n, Polynomial eq) {
+  public static double summ(int f, int n, Polynomial eq, int k) {
     double sum = 0.0;
-    for (int i = f; i <= n; i++) {
-      sum+=  Double.parseDouble(eq.sub(i).toString());
+    if (k == 0) {
+      for (int i = f; i <= n; i++) {
+        sum+=  Double.parseDouble(eq.sub(i).toString());
+      }
+    }
+    else {
+      for (int i = f; i <= n; i+= k) {
+        sum+=  Double.parseDouble(eq.sub(i).toString());
+      }
     }
     return sum;
   }
@@ -487,15 +494,19 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t2\t5\t2x\n\t=28.0\n");
+          System.out.println("Example: \n\t2\t5\t2x\n\t=28.0\nOR: \t2\t5\t2x\t2\n\t=12.0\n");
           equa = scan.nextLine();
         }
         else{
           try{
             String[] temp = equa.split("\t");
-            if (temp.length == 3){
-              System.out.println("\n" + summSym(temp[0],temp[1], Polynomial.parsePoly(temp[2])) +
-               summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2])));
+            if (temp.length == 3) {
+              System.out.println("\n" + summSym(temp[0],temp[1], Polynomial.parsePoly(temp[2]), "1") +
+               summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2]), 1));
+             }
+             else if (temp.length == 4) {
+               System.out.println("\n" + summSym(temp[0],temp[1], Polynomial.parsePoly(temp[2]), temp[3]) +
+                summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2]), Integer.parseInt(temp[3])));
              }
             else System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }catch (Exception e){

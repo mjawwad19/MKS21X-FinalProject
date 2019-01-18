@@ -71,11 +71,11 @@ public class Calculator{
     for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("sin(")){
         boolean swap = false;
-        for (int j = 0; j < input.size(); j++){
+        for (int j = i; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + (double) Math.round(Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))) * 1000.0) /1000.0);
+            input.set(i, "" + Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))));
             input.remove(i + 1);
             swap = true;
           }
@@ -83,11 +83,11 @@ public class Calculator{
       }
       if (input.get(i).equals("cos(")){
         boolean swap = false;
-        for (int j = 0; j < input.size(); j++){
+        for (int j = i; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + (double) Math.round(Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))) * 1000.0) / 1000.0);
+            input.set(i, "" + Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))));
             input.remove(i + 1);
             swap = true;
           }
@@ -95,19 +95,21 @@ public class Calculator{
       }
       if (input.get(i).equals("tan(")){
         boolean swap = false;
-        for (int j = 0; j < input.size(); j++){
+        for (int j = i; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + (double) Math.round(Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))) * 1000.0) / 1000.0);
+            input.set(i, "" + Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))));
             input.remove(i + 1);
             swap = true;
           }
         }
       }
+    }
+    for (int i = 0; i < input.size(); i++){
       if (input.get(i).equals("(")){
         boolean swap = false;
-        for (int j = 0; j < input.size(); j++){
+        for (int j = i; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j),ahh);
             input.remove(i);
@@ -117,7 +119,7 @@ public class Calculator{
         }
       }
     }
-    return Double.parseDouble(asolve(input, ahh));
+    return Math.round(Double.parseDouble(asolve(input, ahh)) * 1000.0) / 1000.0;
   }
 
   /**
@@ -208,14 +210,17 @@ public class Calculator{
     System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
+    if (equa.equals("help")){
+      System.out.println("Choose a mode by typing the word and pressing enter. Type exit in order to exit the Calculator \nExample: If you want to go into the mode PEMDAS, type PEMDAS and press enter");
+      Calculator.main(args);
+    }
     if (equa.equals("PEMDAS")){
       System.out.println();
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t4 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23\n");
-          equa = scan.nextLine();
+          System.out.println("Format: Separate doubles and operation symbols with a space. For trigonometry functions it should be formated like this: sin( [degrees] ) \nNote: Answers are rounded to the thousandth place \nExamples: \n\t4 ^ 1 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23.0\n \n\tsin( 30 ) + 4 \n\t= 4.5");
         }
         else{
           try{
@@ -407,7 +412,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t4x - 4 = 8\t1\n\tx = 3\n");
+          System.out.println("Example: \n\t4x - 4 = 8\n\tx = 4\n");
           equa = scan.nextLine();
         }
         else{
@@ -465,7 +470,7 @@ public class Calculator{
       }
     }
 
-    else if (!equa.equals("exit")){
+    else if (!equa.equals("exit") && !equa.equals("help") && !equa.equals("menu")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);
     }

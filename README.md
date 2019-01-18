@@ -66,3 +66,6 @@ APCS Project ;) : Calculator
 1/16/2019
 - Added List functionality to graphs, though negatives < -9 regardless of how the conditions are placed will shift an extra 1. Fixed this by changing the List table string layout from horizontal to vertical. (methods List + ALToString). Updated calculator to match/played around with new modes to make sure they work. Updated instructions(Jawwad)
 - Started debugging the new interface. Fixed a bug in PEMDAS where entering an invalid argument broke the code. Will continue working on PEMDAS to provide better help messages. (Peihua)
+
+1/17/2019
+- Continued debugging today. Fixed the issue where adding/subtracting/multiplying polynomial would not display anything if the answer is zero. Also changed the type of some exceptions so that the right error messages are displayed. (Peihua)

@@ -92,20 +92,6 @@ public class Graph{
     }
   }
 
-  private ArrayList<ArrayList<Integer>> List(Polynomial Eq) {
-    ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
-    for (int i = 0; i < endX-startX; i++){
-      ArrayList<Integer> inner = new ArrayList<>();
-      for (int j = 0; j < 2; j++){
-        if (j == 0) inner.add(i);
-        if (j == 1) inner.add(Eq.sub(i).round());
-      }
-      list.add(inner);
-    }
-    //System.out.println(list);
-    return list;
-  }
-
   /**
     * Initializes a graph with the plotting of the equation given, using default bounds
     * @param eq is the equation to be graphed within default Bounds

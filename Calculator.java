@@ -260,7 +260,7 @@ public class Calculator{
             System.out.println("= " + a);
           }catch(Exception e){
             //e.printStackTrace();
-            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+            System.out.println("\nPlease enter proper input values. Type help for example and format\n");
           }
         }
         System.out.println();
@@ -277,7 +277,7 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t20 30 50 40 10 \n\tMean: 30\n");
+          System.out.println("Format: Separate each double of the list with a space. \nExample: \n\t20 30 50 40 10 \n\tMean: 30\n");
           equa = scan.nextLine();
 
         }
@@ -290,7 +290,7 @@ public class Calculator{
             }
             System.out.println("Mean: " + mean(in));
           }catch(Exception e){
-          System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+            System.out.println("\nPlease enter proper input values. Type help for example and format\n");
           }
           System.out.println();
           equa = scan.nextLine();
@@ -307,7 +307,7 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t20 30 50 40 10 \n\tMedian: 30\n");
+          System.out.println("Format: Separate each double of the list with a space.\n Example: \n\t20 30 50 40 10 \n\tMedian: 30\n");
           equa = scan.nextLine();
         }
         else{
@@ -320,7 +320,7 @@ public class Calculator{
             Arrays.sort(in);
             System.out.println("Median: " + median(in));
           }catch(Exception e){
-          System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+            System.out.println("\nPlease enter proper input values. Type help for example and format\n");
           }
           System.out.println();
           equa = scan.nextLine();

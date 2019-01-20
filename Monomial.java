@@ -64,8 +64,9 @@ public class Monomial{
     */
   private String coString(){
     if ((getCoef() + "").equals("1")) return "";
+    //System.out.println(getCoef());
     if ((getCoef() + "").equals("-1")) return "-";
-    else return "" + getCoef();
+    else return getCoef().toString();
   }
   /**
     * Converts the degree of a Monomial into a String [helper]
@@ -197,10 +198,32 @@ public class Monomial{
     return prime;
   }
 
+  public Monomial integrate() {
+    Monomial in = new Monomial(this.getCoef(), this.getVar(), this.getDeg());
+    if (this.getDeg() != -1) {
+      in.setCoef(this.getCoef().divide(new Fraction(this.getDeg() + 1, 1)));
+      in.setDeg(this.getDeg() + 1);
+    }
+    else {
+      in.setCoef(new Fraction(0,1)); //for now 1/x has nothing, I have to figure out how to do ln x
+    }
+    return in;
+  }
 
   public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
-    System.out.println(a.derive().derive().derive()); //8x, 8, 0
+    System.out.println(a.derive().derive().derive().integrate()); //8x, 8(x^0), 0(x^-1), 0...
+    System.out.println(a); // should not be modified
+    System.out.println(a.derive().integrate());// a
+    System.out.println(a.derive().derive().integrate()); //8x
+    System.out.println(a.derive().derive().integrate().integrate()); //a
+    Monomial b = new Monomial(new Fraction(8,1), 'x', -1);
+    System.out.println(b);
+    System.out.println(b.derive()); // -8/x^2
+    System.out.println(b.integrate()); //should be 8lnx but for now 0;
+    Monomial c = new Monomial(new Fraction(1, 1), 'x', 2);
+    System.out.println(c.integrate()); // x^3/3
+    System.out.println(c.derive()); // 2x
   }
     /*Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
     Monomial c = new Monomial(new Fraction(3,5), 'q', 0);

@@ -221,44 +221,4 @@ public class Monomial{
     }
     return in;
   }
-
-  public static void main(String[] args) {
-    Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
-    System.out.println(a.derive().derive().derive().integrate()); //8x, 8(x^0), 0(x^-1), 0...
-    System.out.println(a); // should not be modified
-    System.out.println(a.integrate()); //(4/3)x^3
-    System.out.println(a.derive().integrate());// a
-    System.out.println(a.derive().derive().integrate()); //8x
-    System.out.println(a.derive().derive().integrate().integrate()); //a
-    Monomial b = new Monomial(new Fraction(8,1), 'x', -1);
-    System.out.println(b);
-    System.out.println(b.derive()); // -8/x^2
-    System.out.println(b.integrate()); //should be 8lnx but for now 0;
-    Monomial c = new Monomial(new Fraction(1, 1), 'x', 2);
-    System.out.println(c.integrate()); // x^3/3
-    System.out.println(c.derive()); // 2x
-  }
-    /*Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
-    Monomial c = new Monomial(new Fraction(3,5), 'q', 0);
-    Monomial d = new Monomial(new Fraction(0,1), 'x', 1);
-    Monomial e = new Monomial(new Fraction(5,2), 'x', 2);
-    Monomial x = new Monomial((a.subtract(e)).getCoef(), a.getVar(), a.getDeg());
-    System.out.println(a); //4x^2
-    System.out.println(b); //0
-    System.out.println(c); //0.6
-    System.out.println(x); //1.5x^2
-    System.out.println(a.likeTerms(b)); //false;
-    System.out.println(a.likeTerms(d)); //false;
-    System.out.println(a.likeTerms(e)); //true;
-    System.out.println(a.add(e)); // 6.5 x^2
-    System.out.println(x.subtract(e)); // -x^2
-    System.out.println(a.multiply(e)); // 10x^4
-    System.out.println(a.divide(e)); // 1.6
-    System.out.println(a.sub(2)); // 4 * 2^2 = 16
-    System.out.println(b.sub(2));//0
-    System.out.println(c.sub(3)); //0.6
-    System.out.println(e.sub(3)); //2.5* 3^2 = 22.5
-    System.out.println(parseMono("4.8x^(1)"));
-    System.out.println(c.multiply(a));
-  }*/
 }

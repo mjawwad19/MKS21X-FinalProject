@@ -297,41 +297,4 @@ public class Polynomial{
     }
     return i;
   }
-
-  public static void main(String[] args) {
-    Polynomial a = new Polynomial();
-    a.add(new Monomial(new Fraction(4, 1), 'x', 2));
-    a.add(new Monomial(new Fraction(-6, 1), 'x', 5));
-    a.add(new Monomial(new Fraction(9, 1), 'x', 5));
-    a.subtract(new Monomial(new Fraction(6, 1), 'x', 5));
-    System.out.println(a); //4x^2 - 3x^5
-    System.out.println(a.derive().derive().derive().derive().derive().derive().derive());
-    //8x - 15x^4, 8 - 60x^3, -180x^2, -360x, -360, 0, 0...
-    System.out.println(a.integrate()); //(4/3) x^ 3 - (1/2)x^6
-    System.out.println(a.sub(2)); //16/1 - 96/1 = -80/1 or - 80
-    System.out.println();
-    Polynomial b = new Polynomial();
-    b.add(new Monomial(new Fraction(1, 1), 'x', 2));
-    b.add(new Monomial(new Fraction(-1, 1), 'x', 1));
-    b.add(new Monomial(new Fraction(-6, 1), 'x', 0));
-    System.out.println(b.solveQuad()[0]); //3
-    System.out.println(b.solveQuad()[1]); //-2
-    System.out.println(b); //x^2 - x - 6
-    System.out.println(b.sub(3)); //0
-    System.out.println();
-    b.multiply(new Monomial(new Fraction(4, 1), 'x', 2));
-    System.out.println(b); //4x^2 - 4x - 24
-    b.divide(new Monomial(new Fraction(4, 1), 'x', 2));
-    System.out.println(b); // x^2 - x - 6
-    b.add(a);
-    System.out.println(b); // 5x^2 - x - 6 -3x^5
-    b.subtract(a);
-    System.out.println(b);
-    System.out.println(a);
-    System.out.println(parsePoly("5x^(2) - 4x + 5"));
-    System.out.println(a.multiply(b)); //(4x^2 - 3x^5) (x^2 - x - 6) =
-    //4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 + 18x^5
-    Polynomial c = Polynomial.parsePoly("4x * 4 / 2");
-    System.out.println(c);
-  }
 }

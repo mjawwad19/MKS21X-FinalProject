@@ -143,24 +143,4 @@ public class Fraction{
   public int round() {
     return (int) Double.parseDouble(this.toString());
   }
-
-/*  public static void main(String[]args){
-    Fraction a = new Fraction(30,15);
-    Fraction b = new Fraction(1,2);
-    System.out.println(a + " : " + a.getNum() +"/" + a.getDeno());
-    System.out.println(b + " : " + b.getNum() +"/" + b.getDeno());
-    Fraction c = a.add(b);
-    System.out.println(c + " : " + c.getNum() +"/" + c.getDeno());
-    Fraction d = c.subtract(b);
-    System.out.println(d + " : " + d.getNum() +"/" + d.getDeno());
-    Fraction e = a.multiply(c);
-    System.out.println(e + " : " + e.getNum() +"/" + e.getDeno());
-    Fraction f = b.divide(c);
-    System.out.println(f + " : " + f.getNum() +"/" + f.getDeno());
-    Fraction g = a.power(2);
-    System.out.println(g + " : " + g.getNum() +"/" + g.getDeno());
-    Fraction h = new Fraction(4.5);
-    System.out.println(h + " : " + h.getNum() +"/" + h.getDeno());
-  }*/
-
 }

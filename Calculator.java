@@ -148,7 +148,7 @@ public class Calculator{
   }
 
   private static String summSym(String f, String n, Polynomial eq,String inc) {
-    String sym =   " " + f +" \n___\n\\\n/" + "  =  " + eq.toString() +
+    String sym =   " " + n +" \n___\n\\\n/" + "  =  " + eq.toString() +
     "\n\u203E\u203E\u203E\n" +  eq.getMonos().get(0).getVar() + "=" + f  + ", increment by: " + inc + "\n" + drwl(20) + "\n";
     return sym;
   }
@@ -250,7 +250,7 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Format: Separate doubles and operation symbols with a space. Type ans in order to reference the previous answer and use it again. For trigonometry functions it should be formated like this: sin( [degrees] ) \nNote: Answers are rounded to the thousandth place \nExamples: \n\t4 ^ 1 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23.0\n \n\tsin( 30 ) + 4 \n\t= 4.5\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          System.out.println("Format: Separate doubles and operation symbols with a space. Type ans in order to reference the previous answer and use it again.\nNote: Answers are rounded to the thousandth place \n\n List of symbols: \t* :multiplication\n\t\t\t/ :division \n\t\t\t+ :addition\n\t\t\t- :subtraction\n\t\t\t^ :exponent\n\t\t\t( [stuff] ) :parentheses\n\t\t\tsin/cos/tan( [angle in degrees] ) :trig functions\nExamples: \n\t4 ^ 1 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23.0\n \n\tsin( 30 ) + 4 \n\t= 4.5\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
         }
         else{
           try{
@@ -486,7 +486,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Format: Enter the expression in terms of the variable x. \n\tIf you want to decide the dimensions of the graph, use the format: \n\t\t[expression] [x-min] [x-max] [y-min] [y-max] yes\n\tElse, use the format: \n\t\t[expresion] no\nExample: \n\t5x^(4) - 4x + 2\tno \nor \t4x + 4\t-10\t10\t-10\t10\tyes\n");
+          System.out.println("Format: Enter the expression in terms of the variable x. \n\tIf you want to decide the dimensions of the graph, use the format: \n\t\t[expression] [x-min] [x-max] [y-min] [y-max] yes\n\tElse, use the format: \n\t\t[expresion] no\nExample: \n\t5x^(4) - 4x + 2\tno \nor \t4x + 4\t-10\t10\t-10\t10\tyes\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
@@ -523,7 +523,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t2\t5\t2x\n\t=28.0\nOR: \t2\t5\t2x\t2\n\t=12.0\n");
+          System.out.println("Format: [f]\t[n]\t[poly]      [increment(optional)]\n\tThe arguments are separated by tabs. \n\tIntegers f and n and Polynomial poly correspond to the following diagram: \n\t n\n\t___\n\t\\\n\t/  = poly\n\t\u203E\u203E\u203E\n\tx = f (Note: x is the variable in poly and poly is limited to one variable. \n\t\tDefault increment is 1)\nExample: \n\t2\t5\t2x\n\t= 28.0\nOR: \t2\t5\t2x\t2\n\t= 12.0\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{

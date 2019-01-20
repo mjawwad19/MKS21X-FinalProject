@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
-resize 50 85
+#!/bin/bash
+printf '\e[8;50;85t'
 javac Calculator.java
 java Calculator

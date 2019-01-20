@@ -230,7 +230,7 @@ public class Calculator{
   n.add(new Monomial(new Fraction(2, 1), 'x', 1));
   System.out.println(n);
   System.out.println(summ(2,5,n));*/
-    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n\t summation\n");
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n\t summation\n\t derive\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
@@ -520,85 +520,36 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+    if (equa.equals("derive")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t\"5x^(4) - 4x + 2\"\n");
+          equa = scan.nextLine();
+        }
+        else{
+          //System.out.println(args[0]);
+          try{
+            String[] temp = equa.split("\""); //first should be [, ______];
+            //System.out.println(Arrays.toString(temp));
+            System.out.println(Polynomial.parsePoly(temp[1]).derive());
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
     else if (!equa.equals("exit")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);
     }
-
-    /*String msg = "\n\n\n\nIf you would like to use this calculator, please use the following format:  \n\n"
-                + "PEMDAS \" [expression(no variable)] \" \n \t ex: java Calculator PEMDAS \"4 ^ 2 + 5 * 3 - 6 / 2 \" \n \t Can be used with trig fxns: sin/cos/tan: \n \t ex: PEMDAS \"4 ^ 2 + 5sin( 30 )\" \n\n"
-                + "mean [num1] [num2]... \n \t ex: java Calculator mean 10 20 30 40 92 \n\n"
-                + "median [num1] [num2]... \n \t ex: java Calculator median 39 48 49 37 28 12\n\n"
-                + "solve-quadratic \" [quadratic equation] \" \n \t ex: java Calculator solve-quadratic \"x^(2) - 1 = 0\" \n\n"
-                + "add-pp \"([polynomial])([polynomial]) \" \n \t ex: java Calculator add-pp \"(4x^(2) - 3x)(5x + 4)\" \n\n"
-                + "subtract-pp \"([polynomial])([polynomial])\" \n \t ex: java Calculator subtract-pp \"(4x^(2) - 3x)(5x^(3) + 4x)\" \n\n"
-                + "multiply-pp \"([polynomial])([polynomial])\" \n \t ex: java Calculator multiply-pp \"(x - 1)(x + 1)\" \n\n"
-                + "power-pp \"([polynomial])([int])\" \n \t ex: java Calculator power-pp \"(x - 1)(3)\" \n\n"
-                + "four_function-mono \"[expression(with one variable)]\" \n \t ex: java Calculator four_function-mono \"4x^(2) * 5x^(3) - 3x^(6) + 4x\" \n\n"
-                + "sub \"[polynomial/monomial]\" [int] \n \t ex: java Calculator sub \"4x^(2) + 3\" 8 \n\n"
-                + "singleVar-equation \"[single variable equation]\" \n \t ex: java Calculator singleVar-equation \"4x - 5 = 2\" \n\n"
-                + "graph \"[polynomial/monomial(with one variable)]\" OR graph \"[polyomial/monomial(with one variable)]\" [int(X min)] [int(X max)] [int(Y min)] [int(Y max)] \n \t ex: java Calculator graph \" 4x^(2) + 2x + 2 \" -5 5 -10 10 \n\n";
-    try {
-      ArrayList<String> input = new ArrayList<>();
-      if (args.length > 0 && args[0].equals("PEMDAS")){
-        String[] temp = args[1].split(" ");
-        for (String arg: temp){
-          input.add(arg);
-        }
-        System.out.println(solve(input));
-      }
-      else if (args.length > 0 && args[0].equals("mean")) {
-        Double[] in = new Double[args.length - 1];
-        for (int i = 1; i < args.length; i++){
-          in[i-1] = Double.parseDouble(args[i]);
-        }
-        System.out.println("Mean: " + mean(in));
-      }
-      else if (args.length > 0 && args[0].equals("median")) {
-        Double[] in = new Double[args.length - 1];
-        for (int i = 1; i < args.length; i++){
-          in[i-1] = Double.parseDouble(args[i]);
-        }
-        Arrays.sort(in);
-        System.out.println("Median: " + median(in));
-      }
-      else if (args.length > 0 && args[0].equals("solve-quadratic")){
-        System.out.println("Real Roots Found: " + Arrays.toString(Quad(args[1])));
-      }
-      else if (args.length > 0 && args[0].equals("sub")){
-        System.out.println(Polynomial.parsePoly(args[1]).sub(Integer.parseInt(args[2])));
-      }
-      else if (args.length > 0 && (args[0].equals("multiply-pp") ||
-                                   args[0].equals("add-pp") ||
-                                   args[0].equals("power-pp") ||
-                                   args[0].equals("subtract-pp"))){
-        System.out.println(factor(args[1],args[0]));
-      }
-      else if (args.length > 0 && (args[0].equals("four_function-mono"))){
-        System.out.println(Polynomial.parsePoly(args[1]));
-      }
-      else if (args.length > 0 && args[0].equals("singleVar-equation")){
-        System.out.println(Polynomial.singleVar(args[1]));
-      }
-      else if ((args.length == 2 || args.length == 6) && args[0].equals("graph")){
-        if (args.length == 2) {
-          //System.out.println(args[1]);
-          Graph g1 = new Graph(Polynomial.parsePoly(args[1]));
-          System.out.println(g1);
-        }
-        else if (args.length == 6) {
-          Graph g1 = new Graph(Integer.parseInt(args[2]), Integer.parseInt(args[3]),
-                               Integer.parseInt(args[4]), Integer.parseInt(args[5]), Polynomial.parsePoly(args[1]));
-          System.out.println(g1);
-        }
-        else System.out.println("Too many bounds/Too little, refer to instructions!");
-      }
-      else System.out.println(msg);
-    }catch(IllegalArgumentException e){
-      System.out.println(e);
-    }catch(Exception e) {
-      System.out.println(msg);
-      //e.printStackTrace();
-    }*/
   }
 }

@@ -129,7 +129,12 @@ public class Polynomial{
     }
     return ans;
   }
-
+  /**
+    * Creates the derivative of the caller as a new Polynomial
+    * Still a WIP since not all derivative rules have been layed out.
+    * Will probably be a secret mode
+    * @return first derivate of this as new Polynomial
+    */
   public Polynomial derive(){
     Polynomial d = new Polynomial();
     for (Monomial term: monos) {
@@ -276,7 +281,12 @@ public class Polynomial{
     return temp;
   }
 
-  /***/
+  /**
+    * Creates the antiderivative of the caller as a new Polynomial
+    * Still a WIP since not all integral rules have been layed out.
+    * Will probably be a secret mode
+    * @return antiderivate/integal of this as new Polynomial
+    */
   public Polynomial integrate(){
     Polynomial i = new Polynomial();
     for (Monomial term: monos) {

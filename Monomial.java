@@ -189,6 +189,12 @@ public class Monomial{
     if (!added) c = new Fraction(Double.parseDouble(mono));
     return new Monomial(c,v,d);
   }
+  /**
+    * Creates the derivative of the caller as a new Monomial
+    * Still a WIP since not all derivative rules have been layed out.
+    * Will probably be a secret mode
+    * @return first derivate of this as new Monomial
+    */
   public Monomial derive() {
     Monomial prime = new Monomial(this.getCoef(), this.getVar(), this.getDeg());
     if (this.getDeg() != 0) {
@@ -198,7 +204,12 @@ public class Monomial{
     else prime.setCoef(new Fraction(0,1));
     return prime;
   }
-
+  /**
+    * Creates the antiderivative of the caller as a new Monomial
+    * Still a WIP since not all integral rules have been layed out.
+    * Will probably be a secret mode
+    * @return antiderivate/integral of this as new Monomial
+    */
   public Monomial integrate() {
     Monomial in = new Monomial(this.getCoef(), this.getVar(), this.getDeg());
     if (this.getDeg() != -1) {

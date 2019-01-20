@@ -3,7 +3,7 @@ APCS Project ;) : Calculator
 
 
 **Instructions:**
-- java Calculator
+- run the startCalc.sh file
 - type a mode to work with (displayed after typing java Calculator)
   - modes are the types of functions you can do on our Calculator.
 - use help if in trouble for examples on how to use each mode
@@ -77,3 +77,4 @@ APCS Project ;) : Calculator
 
 1/19/2019
 - Added derive and integration. These are secret modes that won't show up on the modes to choose from, as these are still experimental! (They work to some extent but there are some rules that we can't implement into unless we rework the system... and only one of us knows Calculus.) Instead of placing them into a branch, I've decided to keep them hidden from official input modes, since they work in general. (Jawwad)
+- Wrote the .sh file to make running it easier for the user to start the Calculator. Write mode specific help messages for the modes. (Peihua)

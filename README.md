@@ -9,7 +9,7 @@ APCS Project ;) : Calculator
 - use help if in trouble for examples on how to use each mode
   - note, the separation is based by *tabbing* instead of generic every white space
 - use exit to escape the program, and exit mode to choose another mode.
-  - note, some modes allow the saving of the previous answer to keep working with. When you exit a mode, this is lost!
+  - note, some modes (specifically PEMDAS, mean, median, and the polynomial operations) allow the saving of the previous answer to keep working with. When you exit a mode, this is lost!
 
 **Development Log:**
 
@@ -78,3 +78,6 @@ APCS Project ;) : Calculator
 1/19/2019
 - Added derive and integration. These are secret modes that won't show up on the modes to choose from, as these are still experimental! (They work to some extent but there are some rules that we can't implement into unless we rework the system... and only one of us knows Calculus.) Instead of placing them into a branch, I've decided to keep them hidden from official input modes, since they work in general. (Jawwad)
 - Wrote the .sh file to make running it easier for the user to start the Calculator. Write mode specific help messages for the modes. (Peihua)
+
+1/20/2019
+- Finished making help messages specific for each mode. Fixed small bugs in Calculator and Polynomial classes. Also implemented the option to use the previous answer in the polynomial operation methods. (Peihua)

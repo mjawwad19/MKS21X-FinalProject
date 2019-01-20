@@ -74,3 +74,6 @@ APCS Project ;) : Calculator
 1/18/2019
 - Added summation (with the aid of helpers to display). It is now possible to find the sum of all the numbers given the start, end, optional scale, and equation. Helped find issues with help messages. (Jawwad)
 - Continued debugging and began changing the help messages for the interface. Included the format for PEMDAS, mean, and median modes. (Peihua)
+
+1/19/2019
+- Added derive and integration. These are secret modes that won't show up on the modes to choose from, as these are still experimental! (They work to some extent but there are some rules that we can't implement into unless we rework the system... and only one of us knows Calculus.) Instead of placing them into a branch, I've decided to keep them hidden from official input modes, since they work in general. (Jawwad)

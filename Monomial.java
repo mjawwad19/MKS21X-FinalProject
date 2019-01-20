@@ -214,6 +214,7 @@ public class Monomial{
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
     System.out.println(a.derive().derive().derive().integrate()); //8x, 8(x^0), 0(x^-1), 0...
     System.out.println(a); // should not be modified
+    System.out.println(a.integrate()); //(4/3)x^3
     System.out.println(a.derive().integrate());// a
     System.out.println(a.derive().derive().integrate()); //8x
     System.out.println(a.derive().derive().integrate().integrate()); //a

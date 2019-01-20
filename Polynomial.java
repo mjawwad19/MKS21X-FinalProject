@@ -130,6 +130,14 @@ public class Polynomial{
     return ans;
   }
 
+  public Polynomial derive(){
+    Polynomial d = new Polynomial();
+    for (Monomial term: monos) {
+      d.add(term.derive());
+    }
+    return d;
+  }
+
   /**
    * Converts the Polynomial to a String
    * @return A String of the Polynomial
@@ -275,6 +283,8 @@ public class Polynomial{
     a.add(new Monomial(new Fraction(9, 1), 'x', 5));
     a.subtract(new Monomial(new Fraction(6, 1), 'x', 5));
     System.out.println(a); //4x^2 - 3x^5
+    System.out.println(a.derive().derive().derive().derive().derive().derive().derive());
+    //8x - 15x^4, 8 - 60x^3, -180x^2, -360x, -360, 0, 0...
     System.out.println(a.sub(2)); //16/1 - 96/1 = -80/1 or - 80
     System.out.println();
     Polynomial b = new Polynomial();
@@ -296,8 +306,8 @@ public class Polynomial{
     System.out.println(b);
     System.out.println(a);
     System.out.println(parsePoly("5x^(2) - 4x + 5"));
-    System.out.println(a.multiply(b)); /*(4x^2 - 3x^5) (x^2 - x - 6) =
-    4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 - 18x^5
+    System.out.println(a.multiply(b)); //(4x^2 - 3x^5) (x^2 - x - 6) =
+    //4x^4 - 4x^3 - 24x^2 - 3x^7 - 3x^6 + 18x^5
     Polynomial c = Polynomial.parsePoly("4x * 4 / 2");
     System.out.println(c);
   }*/

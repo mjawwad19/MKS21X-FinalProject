@@ -112,16 +112,6 @@ public class Monomial{
       return new Monomial(new Fraction(-1, 1), 'x', 0);
     }
   }
-/*
-  public Polynomial addP(Monomial other) {
-    Polynomial out = new Polynomial();
-    if (!likeTerms(other)) {
-    out.add(this);
-    out.add(other);
-  }
-  return out;
-}
-*/
   /**
   * subtracts a monomial only if it is compatible with the monomial resulting in a single monomial.
   * Note this subtract feature does not have functionality when the bases or degree do not match as that would result in a polynomial answer.
@@ -197,10 +187,22 @@ public class Monomial{
     if (!added) c = new Fraction(Double.parseDouble(mono));
     return new Monomial(c,v,d);
   }
+  public Monomial derive() {
+    Monomial prime = new Monomial(this.getCoef(), this.getVar(), this.getDeg());
+    if (this.getDeg() != 0) {
+      prime.setCoef(this.getCoef().multiply(new Fraction(this.getDeg(), 1)));
+      prime.setDeg(this.getDeg() - 1);
+    }
+    else prime.setCoef(new Fraction(0,1));
+    return prime;
+  }
 
-  /*public static void main(String[] args) {
+
+  public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
-    Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
+    System.out.println(a.derive().derive().derive()); //8x, 8, 0
+  }
+    /*Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
     Monomial c = new Monomial(new Fraction(3,5), 'q', 0);
     Monomial d = new Monomial(new Fraction(0,1), 'x', 1);
     Monomial e = new Monomial(new Fraction(5,2), 'x', 2);

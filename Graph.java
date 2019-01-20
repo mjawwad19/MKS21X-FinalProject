@@ -95,6 +95,7 @@ public class Graph{
   /**
     * Initializes a graph with the plotting of the equation given, using default bounds
     * @param eq is the equation to be graphed within default Bounds
+    * @param l is a boolean if the user wants a list of the values or not
     */
   public Graph(Polynomial eq, boolean l) {
     setGraph(startX, endX, startY, endY);
@@ -110,6 +111,7 @@ public class Graph{
     * @param maxX is the right bound of the graph/grid
     * @param minY is the bottom bound of the graph/grid
     * @param maxY is the top bound of the graph/grid
+    * @param l is a boolean if the user wants a list of the values or not
     */
   public Graph (int minX, int maxX, int minY, int maxY, Polynomial eq, boolean l) {
     startX = minX;

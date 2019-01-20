@@ -17,6 +17,7 @@ public class Calculator{
    * operations(power, addition, subtraction, multiplication, division) on the
    * numbers(stored as a String) in the List.
    * @param input List of String being simplified
+   * @param ahh aids in getting calculator methods like answers
    * @return String of the simplified double
    */
   private static String asolve(List<String> input, Calculator ahh){
@@ -65,6 +66,7 @@ public class Calculator{
   /**
    * Simplifies the expression(given as a List of Strings) completely.
    * @param input The expression written as a List of String
+   * @param ahh aids in getting calculator methods like answers
    * @return the answer of the expression
    */
   public static double solve(List<String> input, Calculator ahh){

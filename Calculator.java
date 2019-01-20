@@ -399,19 +399,19 @@ public class Calculator{
       Polynomial answer = Polynomial.parsePoly("0");
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help") && mm.equals("add-pp")){
-          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) + 2x + 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\n\n\tNote: If you want to use the previous answer as one of the polynomial inputs, type ans.\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) + 2x + 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else if (equa.equals("help") && mm.equals("subtract-pp")){
-          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) - 8x - 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\n\n\tNote: If you want to use the previous answer as one of the polynomial inputs, type ans.\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) - 8x - 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else if (equa.equals("help") && mm.equals("multiply-pp")){
-          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 20x^(3) + x^(2) - 12x\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\n\n\tNote: If you want to use the previous answer as one of the polynomial inputs, type ans.\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 20x^(3) + x^(2) - 12x\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else if (equa.equals("help") && mm.equals("power-pp")){
-          System.out.println("Format: Enter the expression and integer exponent in the following format:\n\t(poly1)(int)\nExample: \n\t(x - 1)(3)\n\t= x^(3) - 3x^(2) + 3x - 1\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          System.out.println("Format: Enter the expression and integer exponent in the following format:\n\t(poly1)(int)\n\n\tNote: If you want to use the previous answer as one of the polynomial inputs, type ans.\nExample: \n\t(x - 1)(3)\n\t= x^(3) - 3x^(2) + 3x - 1\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{

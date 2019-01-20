@@ -191,7 +191,8 @@ public class Calculator{
       return a;
     }
     else if (method.equals("power-pp")) {
-      return a.power(Integer.parseInt(out[1].substring(0, out[1].length() - 1)));
+      System.out.print("= ");
+      a = a.power(Integer.parseInt(out[1].substring(0, out[1].length() - 1)));
     }
     return a;
   }
@@ -237,16 +238,17 @@ public class Calculator{
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     if (equa.equals("help")){
-      System.out.println("Choose a mode by typing the word and pressing enter. Type exit in order to exit the Calculator \nExample: If you want to go into the mode PEMDAS, type PEMDAS and press enter");
+      System.out.println("Choose a mode by typing the word and pressing enter. Type exit in order to exit the Calculator \nExample: If you want to go into the mode PEMDAS, type PEMDAS and press enter.\n");
       Calculator.main(args);
     }
-    if (equa.equals("PEMDAS")){
+
+    else if (equa.equals("PEMDAS")){
       System.out.println();
       equa = scan.nextLine();
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Format: Separate doubles and operation symbols with a space. For trigonometry functions it should be formated like this: sin( [degrees] ) \nNote: Answers are rounded to the thousandth place \nExamples: \n\t4 ^ 1 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23.0\n \n\tsin( 30 ) + 4 \n\t= 4.5");
+          System.out.println("Format: Separate doubles and operation symbols with a space. Type ans in order to reference the previous answer and use it again. For trigonometry functions it should be formated like this: sin( [degrees] ) \nNote: Answers are rounded to the thousandth place \nExamples: \n\t4 ^ 1 + 5 * 4 - ( 4 * cos( 60 ) ) / 2 \n\t= 23.0\n \n\tsin( 30 ) + 4 \n\t= 4.5\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
         }
         else{
           try{
@@ -277,7 +279,7 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Format: Separate each double of the list with a space. \nExample: \n\t20 30 50 40 10 \n\tMean: 30\n");
+          System.out.println("Format: Separate each double of the list with a space. If you want to reference the previous answer and use it as an input, type ans. \nExample: \n\t20 30 50 40 10 \n\tMean: 30\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
 
         }
@@ -286,9 +288,12 @@ public class Calculator{
             String[] aaa = equa.split(" ");
             Double[] in = new Double[aaa.length];
             for (int i = 0; i < aaa.length; i++){
-              in[i] = Double.parseDouble(aaa[i]);
+              if (aaa[i].equals("ans")) in[i] = ahh.getAns();
+              else in[i] = Double.parseDouble(aaa[i]);
             }
-            System.out.println("Mean: " + mean(in));
+            double a = mean(in);
+            ahh.setAns(a);
+            System.out.println("Mean: " + a);
           }catch(Exception e){
             System.out.println("\nPlease enter proper input values. Type help for example and format\n");
           }
@@ -307,7 +312,7 @@ public class Calculator{
       Calculator ahh = new Calculator();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Format: Separate each double of the list with a space.\n Example: \n\t20 30 50 40 10 \n\tMedian: 30\n");
+          System.out.println("Format: Separate each double of the list with a space. If you want to reference previous ans and use it as an input, tpye ans. \n Example: \n\t20 30 50 40 10 \n\tMedian: 30\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
@@ -315,10 +320,13 @@ public class Calculator{
             String[] aaa = equa.split(" ");
             Double[] in = new Double[aaa.length];
             for (int i = 0; i < aaa.length; i++){
-              in[i] = Double.parseDouble(aaa[i]);
+              if (aaa[i].equals("ans")) in[i] = ahh.getAns();
+              else in[i] = Double.parseDouble(aaa[i]);
             }
             Arrays.sort(in);
-            System.out.println("Median: " + median(in));
+            double a = median(in);
+            ahh.setAns(a);
+            System.out.println("Median: " + a);
           }catch(Exception e){
             System.out.println("\nPlease enter proper input values. Type help for example and format\n");
           }
@@ -336,7 +344,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\tx^(2) - 1 = 0\n\tReal Roots Found: [1, -1]\n");
+          System.out.println("Format: Enter the quadratic equation with spaces separating each term and symbol.\n\tThe terms with a variable should be formated like this: CV^(e) \n\t\twhere C = coefficient, \n\t\t      V = variable, \n\t\t      and e = integer exponent. \n\tExample: \n\tx^(2) - 1 = 0\n\tReal Roots Found: [1, -1]\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
@@ -361,7 +369,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t5x^(4) - 4x + 2\t1\n\t= 11\n");
+          System.out.println("Format: Enter the polynomial expression and the value of the variable, separated by a tab. \n\tNote: this mode is limited to polynomials with one variable\nExample: \n\t5x^(4) - 4x + 2 - 6x^(2) + 6x\t1\n\t= 3\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
@@ -387,15 +395,28 @@ public class Calculator{
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
-        if (equa.equals("help")){
-          System.out.println("Example: \n\t(4x^(2) - 3x)(5x + 4)\t1\n\t= 11\n");
+        if (equa.equals("help") && mm.equals("add-pp")){
+          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) + 2x + 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          equa = scan.nextLine();
+        }
+        else if (equa.equals("help") && mm.equals("subtract-pp")){
+          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) - 8x - 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          equa = scan.nextLine();
+        }
+        else if (equa.equals("help") && mm.equals("multiply-pp")){
+          System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 20x^(3) + x^(2) - 12x\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          equa = scan.nextLine();
+        }
+        else if (equa.equals("help") && mm.equals("power-pp")){
+          System.out.println("Format: Enter the expression and integer exponent in the following format:\n\t(poly1)(int)\nExample: \n\t(x - 1)(3)\n\t= x^(3) - 3x^(2) + 3x - 1\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
           try{
             Polynomial ans = factor(equa, mm);
-            if (ans.toString().equals("")) System.out.println("0");
-            else System.out.println(ans);
+            if (ans.toString().equals("")) System.out.print("0");
+            else System.out.print(ans);
+            System.out.println();
           }catch (ArithmeticException e){
             System.out.println(e.getMessage());
           }catch (Exception e){
@@ -415,7 +436,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t4x^(5) / 2x^(2) + 8x^(3) - 2\t1\n\t= 10x^(3) - 2\n");
+          System.out.println("Format: Enter the monomial terms separated by spaces. \n\tNote: All terms must contain the same variable and parentheses are not supported. \nExample: \n\t4x^(5) / 2x^(2) + 8x^(3) - 2\n\t= 10x^(3) - 2\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
@@ -438,7 +459,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t4x - 4 = 8\n\tx = 3\n");
+          System.out.println("Format: Enter a polynomial equation, with the terms and symbols separated by spaces.\nExample: \n\t4x - 4 = 8\n\tx = 3\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{
@@ -463,7 +484,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t5x^(4) - 4x + 2\tno \nor \t4x + 4\t-10\t10\t-10\t10\tyes\n");
+          System.out.println("Format: Enter the expression in terms of the variable x. \n\tIf you want to decide the dimensions of the graph, use the format: \n\t\t[expression] [x-min] [x-max] [y-min] [y-max] yes\n\tElse, use the format: \n\t\t[expresion] no\nExample: \n\t5x^(4) - 4x + 2\tno \nor \t4x + 4\t-10\t10\t-10\t10\tyes\n");
           equa = scan.nextLine();
         }
         else{
@@ -495,7 +516,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
-    if (equa.equals("summation")){
+    else if (equa.equals("summation")){
       System.out.println();
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
@@ -526,7 +547,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
-    else if (!equa.equals("exit") && !equa.equals("help") && !equa.equals("menu")){
+    else if (!equa.equals("exit") && !equa.equals("help")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);
     }

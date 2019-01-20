@@ -174,6 +174,7 @@ public class Monomial{
       if (Character.isLetter(mono.charAt(i))){
         d = 1;
         if (i == 0) c = new Fraction(1);
+        else if (mono.charAt(i - 1) == '-') c = new Fraction(-1);
         else c = new Fraction(Double.parseDouble(mono.substring(0,i)));
         v = mono.charAt(i);
         added = true;

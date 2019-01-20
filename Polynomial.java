@@ -57,10 +57,10 @@ public class Polynomial{
   /**
    * Subtracts a Monomial from the Polynomial
    * @param other the Monomial to be subtracted
-   * @throws IllegalArgumentException if the Monomial has a different variable than the Polynomial
+   * @throws ArithmeticException if the Monomial has a different variable than the Polynomial
    */
   public void subtract(Monomial other){
-    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new IllegalArgumentException("Polynomial can only have one variable");
+    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new ArithmeticException("Polynomial can only have one variable");
     this.add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 
@@ -157,21 +157,21 @@ public class Polynomial{
   /**
    * Solves the quadratic Polynomial expression assuming it is equal to 0
    * @return An array of the two roots of the quadratic expression
-   * @throws IllegalArgumentException if the Polynomial is not a quadratic or if there are no real roots to the quadratic
+   * @throws ArithmeticException if the Polynomial is not a quadratic or if there are no real roots to the quadratic
    */
   public Fraction[] solveQuad(){
     Fraction a = new Fraction(0, 1);
     Fraction b = new Fraction(0, 1);
     Fraction c = new Fraction(0, 1);
     for (Monomial term: getMonos()){
-      if (term.getDeg() > 2) throw new IllegalArgumentException("The polynomial is not a quadratic, the highest degree of " + term.getVar() + " is " + term.getDeg());
+      if (term.getDeg() > 2) throw new ArithmeticException("The polynomial is not a quadratic, the highest degree of " + term.getVar() + " is " + term.getDeg());
       if (term.getDeg() == 2) a = term.getCoef();
       if (term.getDeg() == 1) b = term.getCoef();
       if (term.getDeg() == 0) c = term.getCoef();
     }
     Fraction[] ans = new Fraction[2];
     Fraction discrim = b.power(2).subtract(a.multiply(c).multiply(new Fraction(4, 1)));
-    if (Double.parseDouble(discrim.toString()) < 0) throw new IllegalArgumentException("There are no real roots, the discriminant is " + discrim);
+    if (Double.parseDouble(discrim.toString()) < 0) throw new ArithmeticException("There are no real roots, the discriminant is " + discrim);
     ans[0] = ((new Fraction(0, 1)).subtract(b).add(discrim.power(0.5))).divide(a.multiply(new Fraction(2,1)));
     ans[1] = ((new Fraction(0, 1)).subtract(b).subtract(discrim.power(0.5))).divide(a.multiply(new Fraction(2,1)));
     return ans;
@@ -223,7 +223,7 @@ public class Polynomial{
    * Solves a single variable equation that has only one variable
    * @param input the single variable Polynomial equation as a String
    * @return a String that contains the answer of the equation and the variable that corresponds to imt
-   * @throws IllegalArgumentException if the variable can be anything or if there is no solution
+   * @throws ArithmeticException if the variable can be anything or if there is no solution
    */
   public static String singleVar(String input){
     String[] arg = input.split(" = ");
@@ -231,22 +231,22 @@ public class Polynomial{
     Polynomial right = Polynomial.parsePoly(arg[1]);
     for (Monomial term: left.getMonos()){
       for (Monomial t: right.getMonos()){
-        if (term.getVar() != t.getVar() && (term.getDeg() != 0 || t.getDeg() != 0)) throw new IllegalArgumentException("The linear equation cannot have more than one variable");
+        if (term.getVar() != t.getVar() && (term.getDeg() != 0 || t.getDeg() != 0)) throw new ArithmeticException("The linear equation cannot have more than one variable");
       }
     }
     left.subtract(right);
-    if (left.toString().equals(Monomial.parseMono("0").toString())) throw new IllegalArgumentException("The variable can be any number");
+    if (left.toString().equals(Monomial.parseMono("0").toString())) throw new ArithmeticException("The variable can be any number");
     boolean hasVar = false;
     for (int i = 0; i < left.toString().length(); i++){
       if (Character.isLetter(left.toString().charAt(i))) hasVar = true;
     }
-    if (!hasVar) throw new IllegalArgumentException("There is no solution");
+    if (!hasVar) throw new ArithmeticException("There is no solution");
     char vari = ' ';
     Fraction ans = new Fraction(0);
     Fraction c = new Fraction(0);
     Fraction d = new Fraction(1);
     for (Monomial term: left.getMonos()){
-      if (term.getDeg() > 1 || term.getDeg() < 0) throw new IllegalArgumentException("The variable cannot have a degree higher than 1 or less than -1, or else the equation is not linear");
+      if (term.getDeg() > 1 || term.getDeg() < 0) throw new ArithmeticException("The variable cannot have a degree higher than 1 or less than -1, or else the equation is not linear");
       if (term.getDeg() == 0) c = term.getCoef();
       if (term.getDeg() == 1){
         d = term.getCoef();
@@ -259,7 +259,7 @@ public class Polynomial{
   /**
    * Raises the Polynomial to a certain nonnegative integer power
    * @param p the integer power to which the Polynomial will be raised to
-   * @throws IllegalArgumentException if the power is a negative number
+   * @throws ArithmeticException if the power is a negative number
    * @return a new polynomial which is equivalent to the invoker to power p.
    */
   public Polynomial power(int p){
@@ -268,7 +268,7 @@ public class Polynomial{
       ans.add(Monomial.parseMono("1"));
       return new Polynomial(ans);
     }
-    if (p < 0) throw new IllegalArgumentException("The Polynomial cannot be raised to a negative power (functionality not supported)");
+    if (p < 0) throw new ArithmeticException("The Polynomial cannot be raised to a negative power (functionality not supported)");
     Polynomial temp = Polynomial.parsePoly(this.toString());
     for(int i = 1; i < p; i++){
       temp = temp.multiply(this);

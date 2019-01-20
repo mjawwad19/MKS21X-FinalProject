@@ -142,6 +142,27 @@ public class Calculator{
     return l;
   }
 
+  private static String summSym(String f, String n, Polynomial eq,String inc) {
+    String sym =   " " + f +" \n___\n\\\n/" + "  =  " + eq.toString() +
+    "\n\u203E\u203E\u203E\n" +  eq.getMonos().get(0).getVar() + "=" + f  + ", increment by: " + inc + "\n" + drwl(20) + "\n";
+    return sym;
+  }
+
+  public static double summ(int f, int n, Polynomial eq, int k) {
+    double sum = 0.0;
+    if (k == 0) {
+      for (int i = f; i <= n; i++) {
+        sum+=  Double.parseDouble(eq.sub(i).toString());
+      }
+    }
+    else {
+      for (int i = f; i <= n; i+= k) {
+        sum+=  Double.parseDouble(eq.sub(i).toString());
+      }
+    }
+    return sum;
+  }
+
   /**
    * Performs either addition, subtraction, multiplication, or power function on two Polynomials
    * @param input String consisting of the two Polynomials
@@ -204,7 +225,12 @@ public class Calculator{
 
   public static void main(String[] args) {
     System.out.println();
-    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n");
+  /*  System.out.println(summSym());
+  Polynomial n = new Polynomial();
+  n.add(new Monomial(new Fraction(2, 1), 'x', 1));
+  System.out.println(n);
+  System.out.println(summ(2,5,n));*/
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n\t summation\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
@@ -405,7 +431,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t4x - 4 = 8\t1\n\tx = 3\n");
+          System.out.println("Example: \n\t4x - 4 = 8\n\tx = 3\n");
           equa = scan.nextLine();
         }
         else{
@@ -463,6 +489,37 @@ public class Calculator{
       }
     }
 
+    if (equa.equals("summation")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("Example: \n\t2\t5\t2x\n\t=28.0\nOR: \t2\t5\t2x\t2\n\t=12.0\n");
+          equa = scan.nextLine();
+        }
+        else{
+          try{
+            String[] temp = equa.split("\t");
+            if (temp.length == 3) {
+              System.out.println("\n" + summSym(temp[0],temp[1], Polynomial.parsePoly(temp[2]), "1") +
+               summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2]), 1));
+             }
+             else if (temp.length == 4) {
+               System.out.println("\n" + summSym(temp[0],temp[1], Polynomial.parsePoly(temp[2]), temp[3]) +
+                summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2]), Integer.parseInt(temp[3])));
+             }
+            else System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
     else if (!equa.equals("exit")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);

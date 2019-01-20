@@ -396,6 +396,7 @@ public class Calculator{
       String mm = equa;
       System.out.println();
       equa = scan.nextLine();
+      Polynomial answer = Polynomial.parsePoly("0");
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help") && mm.equals("add-pp")){
           System.out.println("Format: Enter the two polynomial expressions in the following format:\n\t(poly1)(poly2)\nExample: \n\t(4x^(2) - 3x)(5x + 4)\n\t= 4x^(2) + 2x + 4\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
@@ -415,7 +416,13 @@ public class Calculator{
         }
         else{
           try{
+            if (equa.contains("ans")){
+              for (int i = 0; i < equa.length() - 3; i++){
+                if (equa.substring(i, i+3).equals("ans")) equa = equa.substring(0,i) + answer + equa.substring(i + 3);
+              }
+            }
             Polynomial ans = factor(equa, mm);
+            answer = ans;
             if (ans.toString().equals("")) System.out.print("0");
             else System.out.print(ans);
             System.out.println();

@@ -71,37 +71,16 @@ public class Calculator{
    */
   public static double solve(List<String> input, Calculator ahh){
     for (int i = 0; i < input.size(); i++){
-      if (input.get(i).equals("sin(")){
+      if (input.get(i).equals("sin(") || input.get(i).equals("cos(") || input.get(i).equals("cos(")){
+        String mode = input.get(i);
         boolean swap = false;
         for (int j = i; j < input.size(); j++){
           if (input.get(j).equals(")") && swap == false){
             asolve(input.subList(i + 1, j), ahh);
             input.remove(i);
-            input.set(i, "" + Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))));
-            input.remove(i + 1);
-            swap = true;
-          }
-        }
-      }
-      if (input.get(i).equals("cos(")){
-        boolean swap = false;
-        for (int j = i; j < input.size(); j++){
-          if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j), ahh);
-            input.remove(i);
-            input.set(i, "" + Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))));
-            input.remove(i + 1);
-            swap = true;
-          }
-        }
-      }
-      if (input.get(i).equals("tan(")){
-        boolean swap = false;
-        for (int j = i; j < input.size(); j++){
-          if (input.get(j).equals(")") && swap == false){
-            asolve(input.subList(i + 1, j), ahh);
-            input.remove(i);
-            input.set(i, "" + Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))));
+            if (mode.equals("sin(")) input.set(i, "" + Math.sin(Math.toRadians(Double.parseDouble(input.get(i)))));
+            else if (mode.equals("cos(")) input.set(i, "" + Math.cos(Math.toRadians(Double.parseDouble(input.get(i)))));
+            else if (mode.equals("tan(")) input.set(i, "" + Math.tan(Math.toRadians(Double.parseDouble(input.get(i)))));
             input.remove(i + 1);
             swap = true;
           }

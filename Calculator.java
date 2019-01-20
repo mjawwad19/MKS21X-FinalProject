@@ -230,7 +230,7 @@ public class Calculator{
   n.add(new Monomial(new Fraction(2, 1), 'x', 1));
   System.out.println(n);
   System.out.println(summ(2,5,n));*/
-    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n\t summation\n\t derive\n");
+    System.out.println("Please choose an input mode: \n\t PEMDAS \n\t mean \n\t median \n\t solve-quadratic \n\t add-pp \n\t subtract-pp \n\t multiply-pp \n\t power-pp \n\t sub \n\t four_function-mono \n\t singleVar-equation \n\t graph\n\t summation\n");
     Scanner scan = new Scanner(System.in);
     String equa = scan.nextLine();
     ArrayList<String> input = new ArrayList<>();
@@ -525,7 +525,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Example: \n\t\"5x^(4) - 4x + 2\"\n");
+          System.out.println("THIS MODE IS A WORK IN PROGRESS. WE ARE NOT LIABLE. \nExample: \n\t\"5x^(4) - 4x + 2\"\n = 20x^(3) - 4\n");
           equa = scan.nextLine();
         }
         else{
@@ -534,6 +534,33 @@ public class Calculator{
             String[] temp = equa.split("\""); //first should be [, ______];
             //System.out.println(Arrays.toString(temp));
             System.out.println(Polynomial.parsePoly(temp[1]).derive());
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+    if (equa.equals("integrate")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("THIS MODE IS A WORK IN PROGRESS. WE ARE NOT LIABLE. \nExample: \n\t\"5x^(4) - 4x + 2\"\n = x^(5) - 2x^(2) + 2x");
+          equa = scan.nextLine();
+        }
+        else{
+          //System.out.println(args[0]);
+          try{
+            String[] temp = equa.split("\""); //first should be [, ______];
+            //System.out.println(Arrays.toString(temp));
+            System.out.println(Polynomial.parsePoly(temp[1]).integrate());
           }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
           }catch (Exception e){

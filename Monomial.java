@@ -64,8 +64,9 @@ public class Monomial{
     */
   private String coString(){
     if ((getCoef() + "").equals("1")) return "";
+    //System.out.println(getCoef());
     if ((getCoef() + "").equals("-1")) return "-";
-    else return "" + getCoef();
+    else return getCoef().toString();
   }
   /**
     * Converts the degree of a Monomial into a String [helper]
@@ -112,16 +113,6 @@ public class Monomial{
       return new Monomial(new Fraction(-1, 1), 'x', 0);
     }
   }
-/*
-  public Polynomial addP(Monomial other) {
-    Polynomial out = new Polynomial();
-    if (!likeTerms(other)) {
-    out.add(this);
-    out.add(other);
-  }
-  return out;
-}
-*/
   /**
   * subtracts a monomial only if it is compatible with the monomial resulting in a single monomial.
   * Note this subtract feature does not have functionality when the bases or degree do not match as that would result in a polynomial answer.
@@ -198,10 +189,56 @@ public class Monomial{
     if (!added) c = new Fraction(Double.parseDouble(mono));
     return new Monomial(c,v,d);
   }
+  /**
+    * Creates the derivative of the caller as a new Monomial
+    * Still a WIP since not all derivative rules have been layed out.
+    * Will probably be a secret mode
+    * @return first derivate of this as new Monomial
+    */
+  public Monomial derive() {
+    Monomial prime = new Monomial(this.getCoef(), this.getVar(), this.getDeg());
+    if (this.getDeg() != 0) {
+      prime.setCoef(this.getCoef().multiply(new Fraction(this.getDeg(), 1)));
+      prime.setDeg(this.getDeg() - 1);
+    }
+    else prime.setCoef(new Fraction(0,1));
+    return prime;
+  }
+  /**
+    * Creates the antiderivative of the caller as a new Monomial
+    * Still a WIP since not all integral rules have been layed out.
+    * Will probably be a secret mode
+    * @return antiderivate/integral of this as new Monomial
+    */
+  public Monomial integrate() {
+    Monomial in = new Monomial(this.getCoef(), this.getVar(), this.getDeg());
+    if (this.getDeg() != -1) {
+      in.setCoef(this.getCoef().divide(new Fraction(this.getDeg() + 1, 1)));
+      in.setDeg(this.getDeg() + 1);
+    }
+    else {
+      in.setCoef(new Fraction(0,1)); //for now 1/x has nothing, I have to figure out how to do ln x
+    }
+    return in;
+  }
 
-  /*public static void main(String[] args) {
+  public static void main(String[] args) {
     Monomial a = new Monomial(new Fraction(4, 1), 'x', 2);
-    Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
+    System.out.println(a.derive().derive().derive().integrate()); //8x, 8(x^0), 0(x^-1), 0...
+    System.out.println(a); // should not be modified
+    System.out.println(a.integrate()); //(4/3)x^3
+    System.out.println(a.derive().integrate());// a
+    System.out.println(a.derive().derive().integrate()); //8x
+    System.out.println(a.derive().derive().integrate().integrate()); //a
+    Monomial b = new Monomial(new Fraction(8,1), 'x', -1);
+    System.out.println(b);
+    System.out.println(b.derive()); // -8/x^2
+    System.out.println(b.integrate()); //should be 8lnx but for now 0;
+    Monomial c = new Monomial(new Fraction(1, 1), 'x', 2);
+    System.out.println(c.integrate()); // x^3/3
+    System.out.println(c.derive()); // 2x
+  }
+    /*Monomial b = new Monomial(new Fraction(0, 4), 'w', 5);
     Monomial c = new Monomial(new Fraction(3,5), 'q', 0);
     Monomial d = new Monomial(new Fraction(0,1), 'x', 1);
     Monomial e = new Monomial(new Fraction(5,2), 'x', 2);

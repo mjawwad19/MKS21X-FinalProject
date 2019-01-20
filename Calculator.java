@@ -17,6 +17,7 @@ public class Calculator{
    * operations(power, addition, subtraction, multiplication, division) on the
    * numbers(stored as a String) in the List.
    * @param input List of String being simplified
+   * @param ahh aids in getting calculator methods like answers
    * @return String of the simplified double
    */
   private static String asolve(List<String> input, Calculator ahh){
@@ -65,6 +66,7 @@ public class Calculator{
   /**
    * Simplifies the expression(given as a List of Strings) completely.
    * @param input The expression written as a List of String
+   * @param ahh aids in getting calculator methods like answers
    * @return the answer of the expression
    */
   public static double solve(List<String> input, Calculator ahh){
@@ -536,6 +538,60 @@ public class Calculator{
                 summ(Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Polynomial.parsePoly(temp[2]), Integer.parseInt(temp[3])));
              }
             else System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+    else if (equa.equals("derive")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("THIS MODE IS A WORK IN PROGRESS. WE ARE NOT LIABLE. \nExample: \n\t\"5x^(4) - 4x + 2\"\n = 20x^(3) - 4\n");
+          equa = scan.nextLine();
+        }
+        else{
+          //System.out.println(args[0]);
+          try{
+            String[] temp = equa.split("\""); //first should be [, ______];
+            //System.out.println(Arrays.toString(temp));
+            System.out.println(Polynomial.parsePoly(temp[1]).derive());
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+          }catch (Exception e){
+            System.out.println("\nPlease enter proper arguments. Type help for an example\n");
+          }
+          System.out.println();
+          equa = scan.nextLine();
+        }
+      }
+      if (equa.equals("exit mode")){
+        Calculator.main(args);
+      }
+    }
+    else if (equa.equals("integrate")){
+      System.out.println();
+      equa = scan.nextLine();
+      while (!equa.equals("exit mode") && !equa.equals("exit")){
+        if (equa.equals("help")){
+          System.out.println("THIS MODE IS A WORK IN PROGRESS. WE ARE NOT LIABLE. \nExample: \n\t\"5x^(4) - 4x + 2\"\n = x^(5) - 2x^(2) + 2x");
+          equa = scan.nextLine();
+        }
+        else{
+          //System.out.println(args[0]);
+          try{
+            String[] temp = equa.split("\""); //first should be [, ______];
+            //System.out.println(Arrays.toString(temp));
+            System.out.println(Polynomial.parsePoly(temp[1]).integrate());
+          }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
           }catch (Exception e){
             System.out.println("\nPlease enter proper arguments. Type help for an example\n");
           }

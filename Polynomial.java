@@ -71,7 +71,7 @@ public class Polynomial{
   public void subtract(Polynomial other){
     Polynomial opp = new Polynomial();
     for (Monomial t: other.getMonos()) {
-      opp.add(t.multiply(new Monomial(new Fraction(-1, 1), 'x', 0)));
+      opp.subtract(t);
     }
     this.add(opp);
   }
@@ -150,8 +150,10 @@ public class Polynomial{
   public String toString(){
     if (getMonos().size() == 1) return getMonos().get(0).toString();
     String ans = "";
+
     for (Monomial term: monos){
       if (term.toString().equals("0"));
+      if (getMonos().indexOf(term) == 0);
       else if (Double.parseDouble(term.getCoef().toString()) < 0) ans += " - " + term.multiply(new Monomial(new Fraction(-1, 1), term.getVar(), 0));
       else if (monos.indexOf(term) != 0) ans += " + " + term;
       else ans += term;

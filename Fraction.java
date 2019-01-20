@@ -133,7 +133,7 @@ public class Fraction{
   public String toString(){
     if (numerator == 0) return "0";
     if (denominator == 1) return "" + getNum();
-    return "" + (double)getNum()/getDeno();
+    return "(" + getNum() + "/"+getDeno() + ")";
   }
 
   /**

@@ -128,7 +128,7 @@ public class Calculator{
 
   private static String summSym(String f, String n, Polynomial eq,String inc) {
     String sym =   " " + n +" \n___\n\\\n/" + "  =  " + eq.toString() +
-    "\n\u203E\u203E\u203E\n" +  eq.getMonos().get(0).getVar() + "=" + f  + ", increment by: " + inc + "\n" + drwl(20) + "\n";
+    "\n---\n" +  eq.getMonos().get(0).getVar() + "=" + f  + ", increment by: " + inc + "\n" + drwl(20) + "\n";
     return sym;
   }
 
@@ -509,7 +509,7 @@ public class Calculator{
       equa = scan.nextLine();
       while (!equa.equals("exit mode") && !equa.equals("exit")){
         if (equa.equals("help")){
-          System.out.println("Format: [f]\t[n]\t[poly]      [increment(optional)]\n\tThe arguments are separated by tabs. \n\tIntegers f and n and Polynomial poly correspond to the following diagram: \n\t n\n\t___\n\t\\\n\t/  = poly\n\t\u203E\u203E\u203E\n\tx = f (Note: x is the variable in poly and poly is limited to one variable. \n\t\tDefault increment is 1)\nExample: \n\t2\t5\t2x\n\t= 28.0\nOR: \t2\t5\t2x\t2\n\t= 12.0\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
+          System.out.println("Format: [f]\t[n]\t[poly]      [increment(optional)]\n\tThe arguments are separated by tabs. \n\tIntegers f and n and Polynomial poly correspond to the following diagram: \n\t n\n\t___\n\t\\\n\t/  = poly\n\t---\n\tx = f (Note: x is the variable in poly and poly is limited to one variable. \n\t\tDefault increment is 1)\nExample: \n\t2\t5\t2x\n\t= 28.0\nOR: \t2\t5\t2x\t2\n\t= 12.0\nType \"exit mode\" in order to choose another mode.\nType exit to close the Calculator.\n");
           equa = scan.nextLine();
         }
         else{

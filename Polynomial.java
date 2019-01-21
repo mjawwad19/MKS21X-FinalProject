@@ -33,6 +33,7 @@ public class Polynomial{
    * @param other the Monomial to be added
    */
   public void add(Monomial other){
+    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new ArithmeticException("Polynomial can only have one variable");
     boolean added = false;
     Monomial to = new Monomial(other.getCoef(), other.getVar(), other.getDeg());
     for (int i = 0; i < monos.size(); i++){
@@ -60,7 +61,6 @@ public class Polynomial{
    * @throws ArithmeticException if the Monomial has a different variable than the Polynomial
    */
   public void subtract(Monomial other){
-    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new ArithmeticException("Polynomial can only have one variable");
     this.add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 

@@ -155,6 +155,7 @@ public class Calculator{
    */
   public static Polynomial factor(String input, String method){
     String[] out = input.split("\\)\\(");
+    if (out[0].charAt(0) != '(' || out[1].charAt(out[1].length() - 1) != ')') throw new IllegalArgumentException();
     Polynomial a = Polynomial.parsePoly(out[0].substring(1));
     Polynomial b = Polynomial.parsePoly(out[1].substring(0, out[1].length() - 1));
     if (method.equals("multiply-pp")) {

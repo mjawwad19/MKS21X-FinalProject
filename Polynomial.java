@@ -153,7 +153,7 @@ public class Polynomial{
 
     for (Monomial term: monos){
       if (term.toString().equals("0"));
-      if (getMonos().indexOf(term) == 0);
+      if (getMonos().indexOf(term) == 0) ans += term;
       else if (Double.parseDouble(term.getCoef().toString()) < 0) ans += " - " + term.multiply(new Monomial(new Fraction(-1, 1), term.getVar(), 0));
       else if (monos.indexOf(term) != 0) ans += " + " + term;
       else ans += term;
@@ -216,12 +216,14 @@ public class Polynomial{
     }
     if (input.size() > 0) ans.add(Monomial.parseMono(input.get(0)));
     for (int i = 1; i < input.size(); i += 2){
+      String a = (input.get(i + 1));
       if (input.get(i).equals("+")){
         ans.add(Monomial.parseMono(input.get(i+1)));
       }
-      if (input.get(i).equals("-")){
+      else if (input.get(i).equals("-")){
         ans.subtract(Monomial.parseMono(input.get(i+1)));
       }
+      else if ((i != 1 && input.get(i - 1) != "+" && input.get(i - 1) != "-") || (i != input.size() - 1 && input.get(i + 1) != "+" && input.get(i + 1) != "-")) throw new IllegalArgumentException();
     }
     return ans;
   }

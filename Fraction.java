@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 public class Fraction{
+  
   private int numerator,denominator;
 
   /**

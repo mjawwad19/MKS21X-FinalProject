@@ -129,6 +129,7 @@ public class Polynomial{
     }
     return ans;
   }
+
   /**
     * Creates the derivative of the caller as a new Polynomial
     * Still a WIP since not all derivative rules have been layed out.

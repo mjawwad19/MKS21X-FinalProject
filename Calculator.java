@@ -150,7 +150,7 @@ public class Calculator{
     * @param f is the starting number
     * @param n is the end number
     * @param eq is the polynomial equation function
-    * @param inc is how much to increment by from start to end
+    * @param k is how much to increment by from start to end
     * @return the summation of function eq from f to n incrementing by k
     */
   public static double summ(int f, int n, Polynomial eq, int k) {
@@ -614,7 +614,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
-    
+
     else if (!equa.equals("exit") && !equa.equals("help")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);

@@ -3,11 +3,17 @@ import java.util.*;
 
 public class Calculator{
   private double ans;
-
+  /**
+    * retrieves answer
+    * @return answer
+    */
   public double getAns(){
     return ans;
   }
-
+  /**
+    * changes answer
+    * @param a is the replacement answer
+    */
   public void setAns(double a){
     ans = a;
   }
@@ -126,12 +132,27 @@ public class Calculator{
     return l;
   }
 
+  /**
+    * draws the summation symbol with i, n, and the function
+    * @param f is the starting number
+    * @param n is the end number
+    * @param eq is the polynomial equation function
+    * @param inc is the string v. of how much to increment by from start to end
+    * @return the summation symbol with the start end increment and function as a String
+    */
   private static String summSym(String f, String n, Polynomial eq,String inc) {
     String sym =   " " + n +" \n___\n\\\n/" + "  =  " + eq.toString() +
     "\n---\n" +  eq.getMonos().get(0).getVar() + "=" + f  + ", increment by: " + inc + "\n" + drwl(20) + "\n";
     return sym;
   }
-
+  /**
+    * finds the summation of function from f to n with increment k
+    * @param f is the starting number
+    * @param n is the end number
+    * @param eq is the polynomial equation function
+    * @param inc is how much to increment by from start to end
+    * @return the summation of function eq from f to n incrementing by k
+    */
   public static double summ(int f, int n, Polynomial eq, int k) {
     double sum = 0.0;
     if (k == 0) {
@@ -504,6 +525,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+
     else if (equa.equals("summation")){
       System.out.println();
       equa = scan.nextLine();
@@ -535,6 +557,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+
     else if (equa.equals("derive")){
       System.out.println();
       equa = scan.nextLine();
@@ -562,6 +585,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+
     else if (equa.equals("integrate")){
       System.out.println();
       equa = scan.nextLine();
@@ -589,6 +613,7 @@ public class Calculator{
         Calculator.main(args);
       }
     }
+    
     else if (!equa.equals("exit") && !equa.equals("help")){
       System.out.println("Please choose a valid mode");
       Calculator.main(args);

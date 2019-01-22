@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Graph{
+
   private char[][] grid;
   private Polynomial equation;
   private int startX = -20;
@@ -10,6 +11,7 @@ public class Graph{
   public static final String ANSI_RESET = "\u001B[0m";
   public static final String ANSI_RED = "\u001B[31m";
   public static final String WHITE = "\033[107m\033[30m";
+  
   /**
     * creates empty graph grid (2D array) [helper]
     * @param minX is the left bound of the graph/grid
@@ -34,26 +36,36 @@ public class Graph{
       }
     }
   }
-  private ArrayList<ArrayList<Integer>> List(Polynomial eq) {
-  ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
-   for (int i = startX; i <= endX; i++){
+
+  /**
+    * creates a list of the x and their corresponding y values in the grid (rounded to nearest int)
+    * @param eq is the function used to find the corresponding y value
+    * @return a double arraylist containing x and their corresponding y from start of grid to end of grid
+    */
+  private ArrayList<ArrayList<Integer>> List(Polynomial eq){
+    ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+    for (int i = startX; i <= endX; i++){
      ArrayList<Integer> inner = new ArrayList<>();
      for (int j = 0; j < 2; j++){
        if (j == 0) inner.add(i);
        if (j == 1) inner.add(eq.sub(i).round());
-     }
+      }
      list.add(inner);
-   }
+
+
+
+    }
    //System.out.println(list);
    return list;
- }
+  }
+
   /*
    * Converts a double ArrayList into an XY table (vertical)
    * @param l is the arraylist to be converted
    * @return a string that looks like a vertical Table
    */
   public String ALToString(ArrayList<ArrayList<Integer>> l) {
-    String out = "| X | Y |\n"+"\u203E" + "\u203E" + "\u203E" + "\u203E" + "\u203E" +	"\u203E" + "\u203E" + "\u203E" + "\u203E" + "\n";
+    String out = "| X | Y |\n\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\u203E\n";
     for (int i = 0; i < l.size(); i++) {
       for (int j = 0; j < 1; j++) {
         String x = "|";
@@ -75,6 +87,7 @@ public class Graph{
     //System.out.println(x);
     return out;
   }
+
   /**
     * plots the equation into the graph/grid
     * @param Eq is the equation that will be plotted
@@ -104,6 +117,7 @@ public class Graph{
     System.out.println(WHITE + eq);
     if (l) System.out.println(ALToString(List(eq)));
   }
+
   /**
     * Initializes a graph with the plotting of the equation given, using user given bounds
     * @param eq is the equation to be graphed within default Bounds
@@ -124,6 +138,7 @@ public class Graph{
     System.out.println(WHITE + ANSI_RED + eq + ANSI_RESET + WHITE);
     if (l) System.out.println(ALToString(List(eq)));
   }
+
   /**
     * Returns a String (viewable in terminal) of the graph, changing the background color to white to easily see the equation, which is plotted in red.
     * @return a String of the graph.
@@ -140,13 +155,5 @@ public class Graph{
     }
     return out + "\n\nX Bounds: " + startX + " to " + endX +
                         "\nY Bounds: " + startY + " to " + endY + ANSI_RESET;
-  }
-  public static void main(String[] args) {
-    Polynomial a = new Polynomial();
-    a.add(new Monomial(new Fraction(1,1), 'x', 2));
-    Graph g1 = new Graph(-10, 15, -20, 20, a, true);
-    System.out.println(g1);
-    //int b = g1.endX - g1.startX;
-    //System.out.println(b); //shows 25
   }
 }

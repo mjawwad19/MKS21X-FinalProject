@@ -33,6 +33,7 @@ public class Polynomial{
    * @param other the Monomial to be added
    */
   public void add(Monomial other){
+    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new ArithmeticException("Polynomial can only have one variable");
     boolean added = false;
     Monomial to = new Monomial(other.getCoef(), other.getVar(), other.getDeg());
     for (int i = 0; i < monos.size(); i++){
@@ -60,7 +61,6 @@ public class Polynomial{
    * @throws ArithmeticException if the Monomial has a different variable than the Polynomial
    */
   public void subtract(Monomial other){
-    if (getMonos().size() > 0 && getMonos().get(0).getVar() != other.getVar()) throw new ArithmeticException("Polynomial can only have one variable");
     this.add(other.multiply(new Monomial(new Fraction(-1, 1), other.getVar(), 0)));
   }
 
@@ -154,7 +154,7 @@ public class Polynomial{
 
     for (Monomial term: monos){
       if (term.toString().equals("0"));
-      if (getMonos().indexOf(term) == 0);
+      if (getMonos().indexOf(term) == 0) ans += term;
       else if (Double.parseDouble(term.getCoef().toString()) < 0) ans += " - " + term.multiply(new Monomial(new Fraction(-1, 1), term.getVar(), 0));
       else if (monos.indexOf(term) != 0) ans += " + " + term;
       else ans += term;
@@ -217,12 +217,14 @@ public class Polynomial{
     }
     if (input.size() > 0) ans.add(Monomial.parseMono(input.get(0)));
     for (int i = 1; i < input.size(); i += 2){
+      String a = (input.get(i + 1));
       if (input.get(i).equals("+")){
         ans.add(Monomial.parseMono(input.get(i+1)));
       }
-      if (input.get(i).equals("-")){
+      else if (input.get(i).equals("-")){
         ans.subtract(Monomial.parseMono(input.get(i+1)));
       }
+      else if ((i != 1 && input.get(i - 1) != "+" && input.get(i - 1) != "-") || (i != input.size() - 1 && input.get(i + 1) != "+" && input.get(i + 1) != "-")) throw new IllegalArgumentException();
     }
     return ans;
   }

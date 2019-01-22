@@ -82,3 +82,7 @@ APCS Project ;) : Calculator
 1/20/2019
 - Finished making help messages specific for each mode. Fixed small bugs in Calculator and Polynomial classes. Also implemented the option to use the previous answer in the polynomial operation methods. (Peihua)
 - Attempts/ Repetitive Code Clean Up (Plus more documentation)(Jawwad)
+
+1/21/2019
+- Fixed bugs involving the printing of polynomials. Also caught a few errors in polynomial operations and fixed it so that errors would be thrown for expressions with multivariables and if parentheses are missing. (Peihua)
+- Paranoia last check/spacing/bug finding(Jawwad)
